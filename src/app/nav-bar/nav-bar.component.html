@@ -1,0 +1,440 @@
+<!-- DESKTOP -->
+
+<div class='container mt-4 desktop'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center;">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+      <a routerLink="cardapioPrincipal" routerLinkActive="active" class="navbar-brand  navbar-title"
+        style="font-size: 2em; margin-left: 0.5em; font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+      <div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0; " class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- LAPTOP -->
+
+<div class='container mt-4 laptop'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.8em; margin-left: 0.5em; font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+      <div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- LAPTOP2 -->
+
+<div class='container mt-4 laptop2'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.8em; margin-left: 0.5em;  font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+      <div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- TABLET -->
+
+<div class='container mt-4 tablet'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.4em; margin-left: 0.5em; font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+      <div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE -->
+
+<div class='container mt-3 mobile'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center;">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.0em; margin-left: 0.5em; font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+
+      <div> 
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE PEQUENO --> 
+<!--  -->
+<div class='container mt-4 mobile-pequeno'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center">
+    <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.0em; margin-left: 0.5em; font-weight: bold;">
+        QUIOSQUERIDO
+      </a>
+      <div>
+        <div>
+          <a style="font-size: 0.5em;
+                    padding-bottom: 0;" 
+                    class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 0.5em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; 
+                color: #01a501; 
+                width: 28px;
+                height: 36px; 
+
+                " 
+                aria-hidden="true" 
+                data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="
+                  margin-right: 4px; 
+                  color: red; 
+                  width: 28px;
+                  height: 28px; 
+                  " 
+                aria-hidden="true" 
+                data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 4px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE PEQUENO2 -->
+<div class='container mt-4 mobile-pequeno2'>
+  <nav class="navbar" style="display: flex; justify-content: center; align-items: center">
+    <div class="col-12 row" style="display: flex; justify-content: space-between; align-items: center;">
+      <a [routerLink]="['/cardapioPrincipal']" class="navbar-brand  navbar-title"
+        style="font-size: 1.2em; margin-left: 0.5em; font-weight: bold; display: flex; justify-content: center; align-items: center">
+        QUIOSQUERIDO
+      </a>
+      <BR>
+
+      <div>
+        <div>
+          <a style="font-size: 0.7em; padding-bottom: 0;display: flex; justify-content: center; align-items: center;"
+            class="navbar-brand  navbar-info">
+            {{ this.local }}
+          </a>
+        </div>
+        <div>
+          <a style="font-size: 0.7em; padding-bottom: 0;display: flex; justify-content: center; align-items: center;"
+            class="navbar-brand  navbar-info">
+            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
+          </a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <a (click)="loginService.userStatus()">
+            @if (loginService.userLogin) {
+            <button style="border: none; background: none;" (click)="logout();">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 2px; color: #01a501; width: 0.8em;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+            </button>
+            } @else {
+            <button style="border: none; background: none;" (click)="openPopup2()">
+              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 2px; color: red; width: 0.8em;" aria-hidden="true" data-mat-icon-type="font"
+                title="Login">account_circle</mat-icon>
+            </button>
+            }
+          </a>
+          <a [routerLink]="['/conta']" routerLinkActive="active">
+            <button style="border: none; background: none;">
+              <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+                style="margin-right: 2px;" aria-hidden="true" data-mat-icon-type="font" title="Conta">paid</mat-icon>
+            </button>
+          </a>
+          <button (click)="openPopup()" style="border: none; background: none;">
+            <mat-icon _ngcontent-yfk-c12="" role="img" class="mat-icon notranslate material-icons navbar-button"
+              style="margin-right: 2px;" aria-hidden="true" data-mat-icon-type="font"
+              title="Ajuda">help_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Ajuda</h4>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Fechar
+        </button>
+      </div>
+      <div class="modal-body">
+        <img mat-card-md-image src='/assets/images/menu.jpg' style="width: 100px;" alt="Cardápio">
+      </div>
+
+      <div class="modal-body">
+        <p>No cardápio você encontra os pratos da casa:</p>
+        <ul>
+          <li>alho</li>
+          <li>cebola</li>
+          <li>coentro</li>
+          <li>maionese</li>
+          <li>manjericão</li>
+        </ul>
+      </div>
+      <div class="modal-body">
+        <img mat-card-md-image src='/assets/images/carrinho.jpg' style="width: 100px;" alt="Cardápio">
+      </div>
+
+      <div class="modal-body">
+        <p>No pedido você confere e acompanha o status do seu pedido:</p>
+        <ul>
+          <li>pendente</li>
+          <li>fila de preparação</li>
+          <li>em preparação</li>
+          <li>fila de entrega</li>
+          <li>entregue</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- login -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle2}">
+  <div class='col-sm-12'>
+    <app-phone-number (phoneNumberChangeEvent)="handleEvent($event)"></app-phone-number>
+  </div>
+</div>

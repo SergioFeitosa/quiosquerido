@@ -1,0 +1,278 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-snack-bar-container {
+    &.custom-css-class {
+      --mdc-snackbar-container-color: yellow;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: blue;
+    }
+  }
+
+
+  
+.desktop {
+  display: block;
+  /* ou inline, inline-block */
+}
+.laptop {
+  display: none;
+
+}
+.laptop2 {
+  display: none;
+}
+.tablet {
+  display: none;
+}
+.mobile {
+  display: none;
+}
+.mobile-pequeno {
+  display: none;
+}
+.mobile-pequeno2 { 
+  display: none;
+}
+
+ /* LAPTOP */
+
+ @media(min-width: 992px) and (max-width: 1399px) {
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .tablet {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+}
+ /* LAPTOP2 */
+
+ @media(min-width: 768px) and (max-width: 991px) {
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .laptop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .laptop2 {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .tablet {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile-pequeno {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile-pequeno2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+
+}
+
+/* TABLET  */
+
+@media(min-width: 576px) and (max-width: 767px) {
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .laptop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .laptop2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .tablet {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile-pequeno {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+  .mobile-pequeno2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+}
+
+/* MOBILE */
+
+@media(min-width: 380px) and (max-width: 575px) {
+ 
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .tablet {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+    margin-left: 1em;
+    width: 30em;
+    
+  } 
+
+  .mobile-pequeno {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+}
+
+/* MOBILE PEQUENO */
+
+@media(min-width: 316px) and (max-width: 379px) {
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .tablet {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+    width: 20em;
+    margin-left: 1em;
+
+  }
+
+  .mobile-pequeno2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+}
+
+/* MOBILE PEQUENO2 */
+
+@media(max-width: 315px) {
+  .desktop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .laptop2 {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .tablet {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno {
+    display: none;
+    background-image: '../../assets/images/color-azul-mar.png';
+  }
+
+  .mobile-pequeno2 {
+    display: block;
+    background-image: '../../assets/images/color-azul-mar.png';
+    margin-left: 1em;
+    width: 20em;
+  }
+}
+
+
+/* Importing Bootstrap SCSS file. */
+/* @import 'bootstrap/scss/bootstrap'; */

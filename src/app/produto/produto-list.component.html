@@ -1,0 +1,348 @@
+<app-caminho-menu></app-caminho-menu>
+
+
+<!-- DESKTOP -->
+
+<div class='table-responsive desktop'>
+  <div class='form-group row container mt-5'>
+    <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+      Filter By:
+      <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 30em;">
+    </label>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts ' (click)="openPopup(produto.id! )">
+        <td >
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
+            style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }}</td>
+         
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- LAPTOP -->
+
+<div class='table-responsive laptop'>
+<div class='form-group row container mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 30em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id! )">
+        <td style='padding-right: 0px; display: flex; justify-content: center;
+          align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
+            style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- LAPTOP2 -->
+
+<div class='table-responsive laptop2'>
+<div class='form-group row container mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 30em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id! )">
+        <td style='padding-right: 0px; display: flex; justify-content: center;
+          align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
+            style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- TABLET -->
+
+<div class='table-responsive tablet'>
+<div class='form-group row container mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 20em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id!)">
+        <td style='padding-right: 0px; display: flex; justify-content: center; align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70" style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MOBILE -->
+
+<div class='table-responsive mobile'>
+<div class='form-group row container  mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 15em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em; width: 30em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEMxx</a> 
+        </th>
+        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id! )">
+        <td style='padding-right: 0px; display: flex; justify-content: center; align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70" style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MOBILE PEQUENO -->
+
+<div class='table-responsive mobile-pequeno'>
+<div class='form-group row container mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 12em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id! )">
+        <td style='padding-right: 0px; display: flex; justify-content: center; align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70" style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MOBILE PEQUENO2 -->
+
+<div class='table-responsive mobile-pequeno2'>
+<div class='form-group row container mt-5'>
+  <label class='col-sm-2 col-form-label' style="width: 6em; color: #2494fc">
+    Filter By:
+    <input name="filter1"  [(ngModel)]='filter' class='form-control' style="width: 10em;">
+  </label>
+</div>
+
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
+    <thead>
+      <tr>
+        <th style='width: 1%;'></th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id! )">
+        <td style='padding-right: 0px; display: flex; justify-content: center;
+          align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
+            style="margin: 0;">
+        </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
+        <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Detalhes do produto/pedido -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style='background-color:rgb(246, 253, 232)'>
+      <div class="modal-header" style='background-color:rgb(225, 240, 252)'>
+        <button (click)="login ? carrinhoCreate( produto.id! ) : openPopup2(produto.id! )">
+          <img src='/assets/images/carrinho.jpg' class="figure-img img-fluid
+            rounded" alt="Carrinho" width="50" height="25">
+        </button>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Fechar
+        </button>
+
+      </div>
+      <div class="modal-body row">
+        Avaliação: <app-star [rating]="produto.avaliacao"></app-star>
+      </div>
+      <div class="modal-body row">
+        <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="400" height="400">
+      </div>
+      <div class="modal-body row">
+        <span style='font-weight: bolder;'>Nome:</span>
+        <span>{{ produto.nome }}</span>
+      </div>
+      <div class="modal-body row">
+        <span style='font-weight: bolder;'>Descrição:</span>
+        <span> {{ produto.descricao }} </span>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <span class="col-4" style='font-weight: bolder; color:blue'>Preço
+            Unitário:</span>
+          <span class="col-8" style='font-weight: bolder; color:blue'>Preço
+            Total:</span>
+        </div>
+        <div class="row">
+          <span class="col-4"> {{ produto.preco }} </span>
+          <span class="col-8">{{ produto.preco * carrinho.quantidade }}
+          </span>
+        </div>
+      </div>
+
+      <div class="modal-body row">
+        <span style='font-weight: bolder; color:blue'>Quantidade:</span>
+        <a style="width: 2em; margin-top: 0.5em" (click)="minus()"><i class="fa
+            fa-minus" style="color:red"></i></a>
+        <input 
+          id="quantidadeModal1"
+          name="quantidadeModal1"          
+          style="width: 3em;" 
+          [(ngModel)]='carrinho.quantidade' 
+          class='form-control'>
+        <a style="width: 2em; margin-top: 0.5em" (click)="plus()"><i class="fa
+            fa-plus" style="color:red"></i></a>
+      </div>
+      <div class="modal-body row">
+        <div class='form-group row container'>
+          <span style='font-weight: bolder; color:blue'>Observações:</span>
+          <div>
+            <textarea 
+                [(ngModel)]='carrinho.observacao' 
+                class='form-control'
+                id="observacaoModal1"
+                name="observacaoModal1"                
+                >
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body row">
+        <span style='font-weight: bolder;'>Tempo de Preparação:</span>
+        <span>{{ produto.tempo_preparacao }} </span>
+      </div>
+
+      <div class="modal-content" style='background-color:rgb(225, 240,
+        252)'>
+        <div class="modal-header" style='background-color:rgb(225, 240, 252)'>
+          <button (click)="login ? carrinhoCreate( produto.id! ) :
+            openPopup2(produto.id! )">
+            <img src='/assets/images/carrinho.jpg' class="figure-img img-fluid
+              rounded" alt="..." width="50" height="25">
+          </button>
+          <button type="button" class="btn btn-danger" (click)="closePopup()">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+<!-- login -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle2}">
+  <div class='col-sm-12'>
+    <app-phone-number (phoneNumberChangeEvent)="handleEvent($event)"></app-phone-number>
+  </div>
+</div>
