@@ -91,7 +91,7 @@ export const routes: Routes = [
         path: 'produto/**', component: ProdutoListComponent
       },
       {
-        path: 'produto/:categoryId', component: ProdutoListComponent,
+        path: 'produto/:categoryId', component: ProdutoListComponent, title: 'Produtos por categoria'
       }, 
       {
         path: '**', component: Error404Component
