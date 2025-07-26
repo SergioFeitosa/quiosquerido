@@ -4,7 +4,7 @@ export const environment = {
   telefone: 5511982551256,
   codigo: 123,
   local: 'GS001',
-  modulo: 'quiosque',
+  modulo: 'quiosquerido',
   login: false,
   fundoColoridoCardapio: true,
   fundoColoridoPedido: false,
