@@ -2,7 +2,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FechamentoService } from './fechamento.service';
 import { Fechamento } from './fechamento';
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

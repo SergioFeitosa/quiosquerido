@@ -11,7 +11,7 @@ import { CaminhoMenuComponent } from '../caminho-menu/caminho-menu.component';
 import { StarComponent } from '../star/star.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: './entrega-list.component.html',

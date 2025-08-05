@@ -5,15 +5,17 @@ import { interval } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgOtpInputModule } from 'ng-otp-input';
-import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
-import { environment } from '../../environments/environment.development';
+import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, ApplicationVerifier } from "firebase/auth";
+import { environment } from '../../environments/environment';
 import { ProdutoService } from '../produto/produto.service';
 import { Produto } from '../produto/produto';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 import { LoginService } from '../services/login.service';
 import { getFirestore } from 'firebase/firestore/lite';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
- 
+import 'firebase/compat/auth';
+import { Application } from 'express';
+
 @Component({
   selector: 'app-phone-number',
   templateUrl: './phone-number.component.html',
@@ -37,6 +39,8 @@ export class PhoneNumberComponent implements OnInit {
 
   phoneNumber: any;
   applicationVerifier : any;
+  recaptchaVerifier: any;
+  recapt : any;
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
   displayCode = 'none';
@@ -87,26 +91,31 @@ export class PhoneNumberComponent implements OnInit {
 
     this.app = firebase.initializeApp(environment.firebaseConfig);
     this.auth = getAuth();
-    const db = getFirestore(this.app);
+    //const db = getFirestore(this.app);
     //this.auth.languageCode = 'pt-Br';
     this.displayCode = 'none';
   }
 
   async getOtp() {
 
-    this.applicationVerifier  = new RecaptchaVerifier(this.auth, 'sign-in-button', { size: 'invisible' })
+    this.recaptchaVerifier  = new RecaptchaVerifier(this.auth, 'sign-in-button', { size: 'invisible' })
 
-    this.verify = JSON.parse(localStorage.getItem('verificationId') || '{}');
+    //this.verify = JSON.parse(localStorage.getItem('verificationId') || '{}');
 
     signInWithPhoneNumber(
       this.auth,
       this.phoneNumber, 
-      this.applicationVerifier ,
+      this.recaptchaVerifier as ApplicationVerifier ,
     ).then((confirmationResult) => {
-      window.localStorage.setItem('confirmationResult',
-        JSON.stringify(confirmationResult.verificationId))
+      alert(1)
+        window.confirmationResult = confirmationResult
+        this.verify = confirmationResult.verificationId
+      alert(2)
         environment.telefone = this.phoneNumber
+      alert(3)
         environment.login = true
+
+      alert(4)
         this.displayCode = 'block';
       //this.router.navigate(['/cardapioPrincipal'])
     }).catch((error) => {
@@ -155,3 +164,4 @@ export class PhoneNumberComponent implements OnInit {
 
 
 }
+

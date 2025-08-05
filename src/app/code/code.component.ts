@@ -7,7 +7,7 @@ import { ProdutoService } from '../produto/produto.service';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 import { Produto } from '../produto/produto';
 import { Carrinho } from '../carrinho/carrinho';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { timer } from 'rxjs';

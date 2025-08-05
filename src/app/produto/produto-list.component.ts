@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StarComponent } from '../star/star.component';
 import { PhoneNumberComponent } from '../phone-number/phone-number.component';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { LoginService } from '../services/login.service';
 
 

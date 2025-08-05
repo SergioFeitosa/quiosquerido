@@ -8,7 +8,7 @@ import { interval, Subscription } from 'rxjs';
 import { Carrinho } from '../carrinho/carrinho';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { CaminhoMenuComponent } from '../caminho-menu/caminho-menu.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

@@ -2,7 +2,7 @@
 import { CardapioPrincipalService } from './cardapio-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { CaminhoMenuComponent } from '../caminho-menu/caminho-menu.component';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';

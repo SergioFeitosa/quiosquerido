@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../pedido/pedido';
 import { Produto } from '../produto/produto';
 import { PedidoService } from '../pedido/pedido.service';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { CaminhoMenuComponent } from '../caminho-menu/caminho-menu.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

@@ -4,7 +4,7 @@ import { booleanAttribute, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, NgZ
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../services/login.service';

@@ -23,7 +23,6 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-
               }
             ],
             "styles": [
@@ -35,10 +34,10 @@
             "ssr": {
               "entry": "src/server.ts"
             },
-             "allowedCommonJsDependencies": [
-                  "@grpc/grpc-js",
-                  "@grpc/proto-loader"
-                ]
+            "allowedCommonJsDependencies": [
+              "@grpc/grpc-js",
+              "@grpc/proto-loader"
+            ]
           },
           "configurations": {
             "production": {
@@ -55,24 +54,23 @@
                 }
               ],
               "outputHashing": "all",
-                            "fileReplacements": [
-                  {
-                    "replace": "src/environments/environment.ts",
-                    "with": "src/environments/environment.prod.ts"
-                  }
-                ]
-
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
               "fileReplacements": [
-                  {
-                    "replace": "src/environments/environment.ts",
-                    "with": "src/environments/environment.development.ts"
-                  }
-                ]
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

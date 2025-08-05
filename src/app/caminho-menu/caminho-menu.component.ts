@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { RouterLink } from '@angular/router';
 
 @Component({

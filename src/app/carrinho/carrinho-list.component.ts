@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../pedido/pedido';
 import { PedidoService } from '../pedido/pedido.service';
 import { debounceTime, interval, Subscription } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule } from '@angular/forms';
 import { StarComponent } from '../star/star.component';
