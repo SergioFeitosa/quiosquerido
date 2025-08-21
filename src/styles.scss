@@ -23,8 +23,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .laptop {
   display: none;
-
-}
+} 
 .laptop2 {
   display: none;
 }
@@ -89,10 +88,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .laptop {
     display: none;
     background-image: '../../assets/images/color-azul-mar.png';
+    ::ng-deep .otp-input {
+      width: 32px !important; /* Adjust width as needed */
+      height: 40px !important; /* Adjust height as needed */
+      font-size: 65px !important; /* Adjust font size as needed */
+      /* Add other styling properties like border, margin, etc. */
+    }
   }
   .laptop2 {
     display: block;
     background-image: '../../assets/images/color-azul-mar.png';
+    ::ng-deep .otp-input {
+      width: 26px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 15px !important; /* Adjust font size as needed */
+      /* Add other styling properties like border, margin, etc. */
+    }
+
   }
   .tablet {
     display: none;

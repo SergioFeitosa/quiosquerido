@@ -76,8 +76,8 @@ export class PhoneNumberComponent implements OnInit {
     placeholder: '',
     inputStyles: {
       width: '25px',
-      height: '30px',
-      color: '#041794',
+      height: '25px',
+      color: '#041794',      
     },
 
   };

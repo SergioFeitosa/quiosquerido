@@ -66,7 +66,7 @@ export class NavBarComponent implements OnInit {
 
     this.local = environment.local;
 
-  }
+  } 
 
   // tslint:disable-next-line:typedef
   toggleNavbar() {
