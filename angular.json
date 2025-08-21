@@ -13,7 +13,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "prerender": false,
+             "browser": "src/main.ts",
+            "index": "src/index.html",
             "polyfills": [
               "zone.js"
             ],
@@ -30,10 +32,6 @@
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            },
             "allowedCommonJsDependencies": [
               "@grpc/grpc-js",
               "@grpc/proto-loader"

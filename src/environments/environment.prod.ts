@@ -13,12 +13,12 @@ export const environment = {
   fundoColoridoEntrega: false,
   fundoColoridoConta: false,
   firebaseConfig: {
-    apiKey: "AIzaSyB2h7G3YHQQKEWM0MKlmCdhLK0qjH_Bjuk",
-    authDomain: "angular-quiosque.firebaseapp.com",
-    projectId: "angular-quiosque",
-    storageBucket: "angular-quiosque.firebasestorage.app",
-    messagingSenderId: "172900752590",
-    appId: "1:172900752590:web:94b4f4701dddccee88c49f"
+      apiKey: "AIzaSyB2h7G3YHQQKEWM0MKlmCdhLK0qjH_Bjuk",
+      authDomain: "angular-quiosque.firebaseapp.com",
+      projectId: "angular-quiosque",
+      storageBucket: "angular-quiosque.firebasestorage.app",
+      messagingSenderId: "172900752590",
+      appId: "1:172900752590:web:0aadf3b4157e89ad88c49f" 
   }
 
 };

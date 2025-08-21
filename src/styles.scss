@@ -132,6 +132,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .tablet {
     display: block;
     background-image: '../../assets/images/color-azul-mar.png';
+    justify-content: center;
   }
   .mobile {
     display: none;
@@ -176,6 +177,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-image: '../../assets/images/color-azul-mar.png';
     margin-left: 1em;
     width: 30em;
+    justify-content: center;
+
     
   } 
 

@@ -134,7 +134,7 @@
     </thead>
     <tbody>
       <tr *ngFor='let produto of sortedProducts' (click)="openPopup(produto.id!)">
-        <td style='padding-right: 0px; display: flex; justify-content: center; align-items: center; '>
+        <td style='padding-right: 20px; display: flex; justify-content: center; align-items: center; '>
           <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70" style="margin: 0;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
@@ -154,12 +154,12 @@
   </label>
 </div>
 
-  <table class="table table-bordered table-striped" style="margin-top: 1em; width: 30em;">
+  <table class="table table-bordered table-striped" style="margin-top: 1em;">
     <thead>
       <tr>
         <th style='width: 1%;'></th>
         <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
-          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEMxx</a> 
+          <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
         <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>

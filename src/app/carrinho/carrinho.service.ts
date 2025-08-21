@@ -24,7 +24,7 @@ export class CarrinhoService {
 
   // baseUrl = 'http://localhost:8080/quiosqueBackend/carts';
 
-  baseUrl = 'http://localhost:8080/carrinho';
+  // baseUrl = 'http://localhost:8080/carrinho';
 
   // baseUrl = 'http://localhost:8080/quiosque/carts';
 
@@ -32,7 +32,7 @@ export class CarrinhoService {
 
   // baseUrl = 'https://quiosque.sgpn.com.br/carts';
 
-  // baseUrl = 'https://sgpn.com.br/carts';
+  baseUrl = 'https://sgpn.com.br/carrinho';
 
   // baseUrl = 'https://springboot-postgresheroku.herokuapp.com/api/v1/carts';
 

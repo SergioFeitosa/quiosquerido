@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../services/login.service';
 import { PhoneNumberComponent } from '../phone-number/phone-number.component';
-import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-nav-bar',
@@ -64,8 +63,6 @@ export class NavBarComponent implements OnInit {
   currentValue: string = '';
 
   ngOnInit(): void {
-
-    firebase.initializeApp(environment.firebaseConfig);
 
     this.local = environment.local;
 

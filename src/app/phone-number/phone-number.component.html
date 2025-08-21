@@ -1,29 +1,219 @@
-
-<div class="contain"> 
-  <div class="row justify-content-center" >
-    <form class="col-md-5">
-      <div class="card px-5 py-5">
-        <span style="color: #4f63e7; text-align: center;">Cadastro Telefone</span>
-        <div class="form-input">
-          <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
-            placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+<div class='desktop'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Desktop</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Enviar código SMS</button>
+          
         </div>
-        <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
-        <div id="sign-in-button"></div>
-      </div>
-    </form>
-  </div>
-  <div class="otp row justify-content-center" >
-    <form class="col-md-5">
-      <div class="card px-5 py-5">
-        <div class="form-input" [ngStyle]="{'display': displayCode}">
-          <div class="otp" >
-            <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode' ></ng-otp-input>
-            <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Conferir o código SMS</button>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
+    <div id="sign-in-button"></div>
+
+    <!-- <div id="recaptcha-container"></div> -->
   </div>
-  <!-- <div id="recaptcha-container"></div> -->
 </div>
+
+<div class='laptop'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone laptop</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+
+<div class='laptop2'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Laptop2</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+
+<div class='tablet justify-content-center' style=" margin-left: 2em;">
+  <div class="contain">
+    <div class="row">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Tablet</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+
+<div class='mobile'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+
+<div class='mobile-pequeno'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile Pequeno</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+
+<div class='mobile-pequeno2'>
+  <div class="contain">
+    <div class="row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile Pequeno2</span>
+          <div class="form-input">
+            <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control"
+              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+          </div>
+          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <div id="sign-in-button"></div>
+        </div>
+      </form>
+    </div>
+    <div class="otp row justify-content-center">
+      <form class="col-md-5">
+        <div class="card px-5 py-5">
+          <div class="form-input" [ngStyle]="{'display': displayCode}">
+            <div class="otp" style="font-size: 2em;">
+              <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'></ng-otp-input>
+              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div id="recaptcha-container"></div> -->
+  </div>
+</div>
+

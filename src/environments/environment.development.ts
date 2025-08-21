@@ -23,9 +23,8 @@ export const environment = {
       projectId: "angular-quiosque",
       storageBucket: "angular-quiosque.firebasestorage.app",
       messagingSenderId: "172900752590",
-      appId: "1:172900752590:web:94b4f4701dddccee88c49f"
+      appId: "1:172900752590:web:0aadf3b4157e89ad88c49f"    
     }
-
   };
 
 

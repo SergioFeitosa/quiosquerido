@@ -1,21 +1,19 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, NgZone, CUSTOM_ELEMENTS_SCHEMA, Injectable, NO_ERRORS_SCHEMA, inject, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, NgZone, CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { interval } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatNumber } from '@angular/common';
 import { NgOtpInputModule } from 'ng-otp-input';
-import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, ApplicationVerifier } from "firebase/auth";
+import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, PhoneAuthProvider, signInWithCredential } from "firebase/auth";
 import { environment } from '../../environments/environment';
 import { ProdutoService } from '../produto/produto.service';
 import { Produto } from '../produto/produto';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 import { LoginService } from '../services/login.service';
-import { getFirestore } from 'firebase/firestore/lite';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import 'firebase/compat/auth';
+import { initializeApp } from 'firebase/app';
 import { Application } from 'express';
-
 @Component({
   selector: 'app-phone-number',
   templateUrl: './phone-number.component.html',
@@ -25,7 +23,7 @@ import { Application } from 'express';
     FormsModule,
     NgOtpInputModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     NavBarService
   ]
@@ -38,14 +36,14 @@ import { Application } from 'express';
 export class PhoneNumberComponent implements OnInit {
 
   phoneNumber: any;
-  applicationVerifier : any;
+  applicationVerifier: any;
   recaptchaVerifier: any;
-  recapt : any;
+  recapt: any;
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
   displayCode = 'none';
   teste = 'teste'
-  otp!: string;
+  otp!: number;
   verify: any;
   auth: any;
   app: any;
@@ -55,7 +53,7 @@ export class PhoneNumberComponent implements OnInit {
   produto = {} as Produto;
 
   @Output() phoneNumberChangeEvent = new EventEmitter<number>();
-  
+
   constructor(
     private router: Router,
     private ngZone: NgZone,
@@ -64,11 +62,11 @@ export class PhoneNumberComponent implements OnInit {
     private loginService: LoginService,
     private navBarService: NavBarService,
     private produtoService: ProdutoService,
-    
 
- ) { 
 
- }
+  ) {
+
+  }
 
   configCode = {
     allowNumbersOnly: true,
@@ -78,90 +76,77 @@ export class PhoneNumberComponent implements OnInit {
     placeholder: '',
     inputStyles: {
       width: '25px',
-      height: '25px',
+      height: '30px',
       color: '#041794',
     },
+
   };
 
   currentValue: string = '';
 
   ngOnInit() {
 
-    //firebase.initializeApp(environment.firebaseConfig);
-
-    this.app = firebase.initializeApp(environment.firebaseConfig);
+    this.app = initializeApp(environment.firebaseConfig);
+    
     this.auth = getAuth();
-    //const db = getFirestore(this.app);
-    //this.auth.languageCode = 'pt-Br';
+    this.auth.languageCode = 'pt-Br';
     this.displayCode = 'none';
   }
 
   async getOtp() {
 
-    this.recaptchaVerifier  = new RecaptchaVerifier(this.auth, 'sign-in-button', { size: 'invisible' })
+    //window.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'sign-in-button', { size: 'invisible' })
 
-    //this.verify = JSON.parse(localStorage.getItem('verificationId') || '{}');
+    window.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'sign-in-button', {
+      'size': 'invisible',
+      'callback': () => {
+      }
+    });
 
     signInWithPhoneNumber(
       this.auth,
-      this.phoneNumber, 
-      this.recaptchaVerifier as ApplicationVerifier ,
-    ).then((confirmationResult) => {
-      alert(1)
-        window.confirmationResult = confirmationResult
-        this.verify = confirmationResult.verificationId
-      alert(2)
-        environment.telefone = this.phoneNumber
-      alert(3)
-        environment.login = true
-
-      alert(4)
-        this.displayCode = 'block';
-      //this.router.navigate(['/cardapioPrincipal'])
+      this.phoneNumber,
+      window.recaptchaVerifier,
+    ).then( (confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      environment.telefone = this.phoneNumber
+      environment.login = true;
+      this.displayCode = 'block';
     }).catch((error) => {
-      //send sms
-      alert('erro no numero do telefone. Tente Novamente!!!')
-      this.router.navigate(['/cardapioPrincipal'])
+      alert('erro no numero do telefone. Tente Novamente!!! ' + this.phoneNumber)
+      if (window.recaptchaVerifier) window.recaptchaVerifier.clear();
       interval(1000).subscribe(n => window.location.reload());
+      this.router.navigate(['/cardapioPrincipal'])
+      
     })
   }
 
   onOtpChange(otp: string) {
-    this.otp = otp; 
+    this.otp = +otp;
   }
 
-  handleClick() {
+  async handleClick() {
 
-    var credential = firebase.auth.PhoneAuthProvider.credential(
-      this.verify,
-      this.otp
-    );
+    window.confirmationResult.confirm(this.otp).then((result: any) => {
 
-    firebase
-      .auth()
-      .signInWithCredential(credential)
-      .then((response) => {
-        localStorage.setItem('user_data', JSON.stringify(response));
-        this.ngZone.run(() => {
-          environment.telefone = this.phoneNumber;
-          this.navBarService.telefoneOk = true
+        const user = result.user;
+        console.log('User:', user);
+        this.emitEvent();
+        this.router.navigate(['/']);
+        this.loginService.login();
 
-          this.emitEvent();
-          this.router.navigate(['/cardapioPrincipal'])
-
-        });
-      })
-      .catch((error) => {
-        alert('erro no código enviado. Tente Novamente!!!')
+      }).catch((error: any) => {
+        console.error('Error during verification:', error.message);
+        alert('erro no código enviado. Tente Novamente!!! ' + error.message)
         interval(1000).subscribe(n => window.location.reload());
-      });
-      this.loginService.login()
-    }
+        this.router.navigate(['/'])
+    })
+    this.loginService.login()
+  }
 
-    emitEvent() {
-      this.phoneNumberChangeEvent.emit(this.phoneNumber);
-    }
+  emitEvent() {
+    this.phoneNumberChangeEvent.emit(this.phoneNumber);
+  }
 
 
 }
-

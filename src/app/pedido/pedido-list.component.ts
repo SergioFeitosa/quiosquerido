@@ -90,7 +90,7 @@ export class PedidoListComponent implements OnInit {
         this.filteredPedidos = this.pedidos
           .filter((pedido: Pedido) => pedido.enviado !== true)
           .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebida')
+          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
           .sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
         this.sortedPedidos = this.filteredPedidos;
         });
@@ -102,7 +102,7 @@ export class PedidoListComponent implements OnInit {
             this.filteredPedidos = this.pedidos
               .filter((pedido: Pedido) => pedido.enviado !== true)
               .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebida')
+              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
               .sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
         this.sortedPedidos = this.filteredPedidos;
           });
@@ -115,7 +115,7 @@ export class PedidoListComponent implements OnInit {
         this.filteredPedidos = this.pedidos.filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
           .filter((pedido: Pedido) => pedido.enviado !== true)
           .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebida')
+          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
           .sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
         this.sortedPedidos = this.filteredPedidos;
       });
