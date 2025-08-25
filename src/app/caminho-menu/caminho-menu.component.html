@@ -2,7 +2,7 @@
 <!-- DESKTOP -->
 
 <div class="container desktop">
-    <mat-grid-list cols="5" rowHeight="10em">
+    <mat-grid-list cols="5" rowHeight="10em" style="display: flex; justify-content: space-evenly;">
       <mat-grid-tile>
         <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active" class="nav-link">
           <mat-card [ngStyle]="{'background-color':fundoColoridoCardapio ? '#fad42e' : ''}" 
@@ -102,7 +102,7 @@
   <!-- LAPTOP  -->
   
   <div class="container laptop" >
-    <mat-grid-list cols="5" rowHeight="10em">
+    <mat-grid-list cols="5" rowHeight="10em" style="display: flex; justify-content: space-evenly;">
       <mat-grid-tile  gutterSize="1em" >
         <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active"
           class="nav-link">
@@ -202,7 +202,7 @@
   <!-- LAPTOP2  -->
   
   <div class="container laptop2" >
-    <mat-grid-list cols="5" rowHeight="8em">
+    <mat-grid-list cols="5" rowHeight="8em" style="display: flex; justify-content: space-evenly;">
       <mat-grid-tile  gutterSize="1em" >
         <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active"
           class="nav-link">
@@ -301,7 +301,7 @@
   <!-- TABLET -->
   
   <div class="container tablet" >
-    <mat-grid-list cols="5" rowHeight="10em">
+    <mat-grid-list cols="5" rowHeight="10em" style="display: flex; justify-content: space-evenly;">
       <mat-grid-tile  gutterSize="1em" >
         <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active" class="nav-link">
           <mat-card [ngStyle]="{'background-color':fundoColoridoCardapio ? '#fad42e' : ''}" 
@@ -399,7 +399,7 @@
   
   <div class="container mobile">
     <div class="content">
-      <mat-grid-list cols="5" rowHeight="6em" style="margin-right: 1em;">
+      <mat-grid-list cols="5" rowHeight="6em" style="display: flex; justify-content: space-evenly;">
         <mat-grid-tile>
           <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active" class="nav-link">
           <mat-card class="example-card" 
@@ -496,7 +496,7 @@
   
   <div class="container mobile-pequeno">
     <div class="content" >
-      <mat-grid-list cols="5" rowHeight="5em"  style="margin-right: 1em;">
+      <mat-grid-list cols="5" rowHeight="5em" style="display: flex; justify-content: space-evenly;">
         <mat-grid-tile>
           <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active" class="nav-link">
           <mat-card class="example-card" 
@@ -594,7 +594,7 @@
   
   <div class="container mobile-pequeno2">
 
-    <mat-grid-list cols="1" rowHeight="5.5em">
+    <mat-grid-list cols="1" rowHeight="5.5em" style="display: flex; justify-content: space-evenly;">
       <mat-grid-tile  gutterSize="1em" >
         <a [routerLink]="['/cardapioPrincipal']" routerLinkActive="active" class="nav-link">
           <mat-card [ngStyle]="{'background-color':fundoColoridoCardapio ? '#fad42e' : ''}" 

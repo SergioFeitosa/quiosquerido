@@ -83,7 +83,7 @@ DESKTOP
 
 .card-desktop {
   border: #4cc5fd;
-  margin-left: 10em;
+  margin-left: 8em;
   margin-top: 10.8em;
   background-color: yellow;
   color: #dcf5fc;
@@ -94,7 +94,7 @@ DESKTOP
 
 .card2-desktop {
   border: #4cc5fd;
-  margin-left: 10em;
+  margin-left: 8em;
   background-color: yellow;
   color: #dcf5fc;
   width: 35em;
@@ -103,14 +103,6 @@ DESKTOP
 }
 
 
-.form-input-desktop {
-  position: relative;
-  margin-left: 6.5em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
-}
 
 .form-control-desktop {
   height: 40px;
@@ -127,6 +119,15 @@ DESKTOP
   box-shadow: none;
   color: #041794;
   border-color: #4cc5fd;
+}
+
+.form-input-desktop {
+  position: relative;
+  margin-left: 6.5em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
 .otp-input-desktop {
@@ -161,20 +162,19 @@ DESKTOP
 lAPTOP
 */
 
-.otp-input-laptop {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
 
+.btn-laptop {
+  width: 20em;
 }
 
+.btn-success-laptop {
+  width: 18em;
+}
 
 .card-laptop {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 7em;
+  margin-top: 10.7em;
   background-color: yellow;
   color: #dcf5fc;
   width: 25em;
@@ -182,13 +182,15 @@ lAPTOP
 
 }
 
-.form-input-laptop {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-laptop {
+  border: #4cc5fd;
+  margin-left: 7em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 25em;
+  box-shadow: 0 4px 6px #4cc5fd;
+
 }
 
 .form-control-laptop {
@@ -208,18 +210,31 @@ lAPTOP
   border-color: #4cc5fd;
 }
 
-.btn-laptop {
-  width: 20em;
+
+.form-input-laptop {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-laptop {
-  width: 18em;
+.otp-input-laptop {
+  ::ng-deep .otp-input {
+      width: 26px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 15px !important; /* Adjust font size as needed */
+      margin-left: 0.2em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-laptop {
   height: 40px;
   font-size: 14px;
-  width: 17.2em;
+  width: 17em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
@@ -228,7 +243,7 @@ lAPTOP
 .signup2-laptop {
   height: 40px;
   font-size: 14px;
-  width: 16.2em;
+  width: 17em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
@@ -238,20 +253,18 @@ lAPTOP
 lAPTOP2
 */
 
-.otp-input-laptop2 {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
-
+.btn-laptop2 {
+  width: 20em;
 }
 
+.btn-success-laptop2 {
+  width: 18em;
+}
 
 .card-laptop2 {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 2em;
+  margin-top: 9.7em;
   background-color: yellow;
   color: #dcf5fc;
   width: 25em;
@@ -259,13 +272,15 @@ lAPTOP2
 
 }
 
-.form-input-laptop2 {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-laptop2 {
+  border: #4cc5fd;
+  margin-left: 2em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 25em;
+  box-shadow: 0 4px 6px #4cc5fd;
+
 }
 
 .form-control-laptop2 {
@@ -285,18 +300,31 @@ lAPTOP2
   border-color: #4cc5fd;
 }
 
-.btn-laptop2 {
-  width: 20em;
+
+.form-input-laptop2 {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-laptop2 {
-  width: 18em;
+.otp-input-laptop2 {
+  ::ng-deep .otp-input {
+      width: 26px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 15px !important; /* Adjust font size as needed */
+      margin-left: 0.2em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-laptop2 {
   height: 40px;
   font-size: 14px;
-  width: 17.2em;
+  width: 17em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
@@ -305,7 +333,7 @@ lAPTOP2
 .signup2-laptop2 {
   height: 40px;
   font-size: 14px;
-  width: 16.2em;
+  width: 17em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
@@ -316,43 +344,43 @@ lAPTOP2
 TABLET
 */
 
-.otp-input-tablet {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
-
+.btn-tablet {
+  width: 13em;
 }
 
+.btn-success-tablet {
+  width: 13em;
+}
 
 .card-tablet {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 13em;
+  margin-top: 21.7em;
   background-color: yellow;
   color: #dcf5fc;
-  width: 25em;
+  width: 20em;
   box-shadow: 0 4px 6px #4cc5fd;
 
 }
 
-.form-input-tablet {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-tablet {
+  border: #4cc5fd;
+  margin-left: 13em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 20em;
+  box-shadow: 0 4px 6px #4cc5fd;
+
 }
 
 .form-control-tablet {
   height: 40px;
   margin-left: 1em;
   background-color: #dcf5fc;
-  text-indent: 20px;
+  text-indent: 10px;
   font-size: 12px;
-  width: 20em;
+  width: 15em;
 }
 
 .form-control:focus-tablet {
@@ -363,27 +391,42 @@ TABLET
   border-color: #4cc5fd;
 }
 
-.btn-tablet {
-  width: 20em;
+
+.form-input-tablet {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-tablet {
-  width: 18em;
+.otp-input-tablet {
+  ::ng-deep .otp-input {
+      width: 20px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 15px !important; /* Adjust font size as needed */
+      margin-left: 0.2em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-tablet {
   height: 40px;
-  font-size: 14px;
-  width: 17.2em;
+  font-size: 12px;
+  width: 15em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
 }
+
 .signup2-tablet {
   height: 40px;
-  font-size: 14px;
-  width: 16.2em;
+  font-size: 12px;
+  width: 15em;
+  margin-left: 0.7em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
@@ -393,43 +436,41 @@ TABLET
 MOBILE
 */
 
-.otp-input-mobile {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
-
+.btn-mobile {
+  width: 10em;
 }
 
+.btn-success-mobile {
+  width: 10em;
+}
 
 .card-mobile {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 6.5em;
+  margin-top: 7.2em;
   background-color: yellow;
   color: #dcf5fc;
-  width: 25em;
+  width: 15em;
   box-shadow: 0 4px 6px #4cc5fd;
-
 }
 
-.form-input-mobile {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-mobile {
+  border: #4cc5fd;
+  margin-left: 6.5em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 15em;
+  box-shadow: 0 4px 6px #4cc5fd;
 }
 
 .form-control-mobile {
   height: 40px;
   margin-left: 1em;
   background-color: #dcf5fc;
-  text-indent: 20px;
-  font-size: 12px;
-  width: 20em;
+  text-indent: 10px;
+  font-size: 10px;
+  width: 15em;
 }
 
 .form-control:focus-mobile {
@@ -440,27 +481,42 @@ MOBILE
   border-color: #4cc5fd;
 }
 
-.btn-mobile {
-  width: 20em;
+
+.form-input-mobile {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-mobile {
-  width: 18em;
+.otp-input-mobile {
+  ::ng-deep .otp-input {
+      width: 19px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 12px !important; /* Adjust font size as needed */
+      margin-left: 0em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-mobile {
   height: 40px;
-  font-size: 14px;
-  width: 17.2em;
+  font-size: 12px;
+  width: 12.5em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
 }
+
 .signup2-mobile {
   height: 40px;
-  font-size: 14px;
-  width: 16.2em;
+  font-size: 12px;
+  width: 15em;
+  margin-left: 0.7em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
@@ -470,43 +526,42 @@ MOBILE
 MOBILE PEQUENO
 */
 
-.otp-input-mobile-pequeno {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
-
+.btn-mobile-pequeno {
+  width: 10em;
 }
 
+.btn-success-mobile-pequeno {
+  width: 10em;
+}
 
 .card-mobile-pequeno {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 3.4em;
+  margin-top: 5.9em;
   background-color: yellow;
   color: #dcf5fc;
-  width: 25em;
+  width: 15em;
   box-shadow: 0 4px 6px #4cc5fd;
-
 }
 
-.form-input-mobile-pequeno {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-mobile-pequeno {
+  border: #4cc5fd;
+  margin-left: 3.4em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 15em;
+  height: 11em;
+  box-shadow: 0 4px 6px #4cc5fd;
 }
 
 .form-control-mobile-pequeno {
   height: 40px;
   margin-left: 1em;
   background-color: #dcf5fc;
-  text-indent: 20px;
-  font-size: 12px;
-  width: 20em;
+  text-indent: 10px;
+  font-size: 10px;
+  width: 15em;
 }
 
 .form-control:focus-mobile-pequeno {
@@ -517,27 +572,42 @@ MOBILE PEQUENO
   border-color: #4cc5fd;
 }
 
-.btn-mobile-pequeno {
-  width: 20em;
+
+.form-input-mobile-pequeno {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-mobile-pequeno {
-  width: 18em;
+.otp-input-mobile-pequeno {
+  ::ng-deep .otp-input {
+      width: 19px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 12px !important; /* Adjust font size as needed */
+      margin-left: 0em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-mobile-pequeno {
   height: 40px;
-  font-size: 14px;
-  width: 17.2em;
+  font-size: 12px;
+  width: 12.5em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
 }
+
 .signup2-mobile-pequeno {
   height: 40px;
-  font-size: 14px;
-  width: 16.2em;
+  font-size: 12px;
+  width: 15em;
+  margin-left: 0.7em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
@@ -547,43 +617,41 @@ MOBILE PEQUENO
 mobile-pequeno2
 */
 
-.otp-input-mobile-pequeno2 {
-  ::ng-deep .otp-input {
-      width: 26px !important; /* Adjust width as needed */
-      height: 30px !important; /* Adjust height as needed */
-      font-size: 15px !important; /* Adjust font size as needed */
-      /* Add other styling properties like border, margin, etc. */
-    }
-
+.btn-mobile-pequeno2 {
+  width: 10em;
 }
 
+.btn-success-mobile-pequeno2 {
+  width: 10em;
+}
 
 .card-mobile-pequeno2 {
   border: #4cc5fd;
-  margin-left: 1em;
+  margin-left: 0.5em;
+  margin-top: 3.5em;
   background-color: yellow;
   color: #dcf5fc;
-  width: 25em;
+  width: 15em;
   box-shadow: 0 4px 6px #4cc5fd;
-
 }
 
-.form-input-mobile-pequeno2 {
-  position: relative;
-  margin-left: 1em;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  color: #4f63e7;
-  border-color: #4f63e7;
+
+.card2-mobile-pequeno2 {
+  border: #4cc5fd;
+  margin-left: 0.5em;
+  background-color: yellow;
+  color: #dcf5fc;
+  width: 15em;
+  box-shadow: 0 4px 6px #4cc5fd;
 }
 
 .form-control-mobile-pequeno2 {
   height: 40px;
   margin-left: 1em;
   background-color: #dcf5fc;
-  text-indent: 20px;
-  font-size: 12px;
-  width: 20em;
+  text-indent: 10px;
+  font-size: 10px;
+  width: 15em;
 }
 
 .form-control:focus-mobile-pequeno2 {
@@ -594,27 +662,42 @@ mobile-pequeno2
   border-color: #4cc5fd;
 }
 
-.btn-mobile-pequeno2 {
-  width: 20em;
+
+.form-input-mobile-pequeno2 {
+  position: relative;
+  margin-left: 2em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
-.btn-success-mobile-pequeno2 {
-  width: 18em;
+.otp-input-mobile-pequeno2 {
+  ::ng-deep .otp-input {
+      width: 19px !important; /* Adjust width as needed */
+      height: 30px !important; /* Adjust height as needed */
+      font-size: 14px !important; /* Adjust font size as needed */
+      margin-left: 0em  !important;
+      /* Add other styling properties like border, margin, etc. */
+    }
+
 }
 
 .signup-mobile-pequeno2 {
   height: 40px;
   font-size: 14px;
-  width: 17.2em;
+  width: 10.5em;
   margin-left: 1em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;
 }
+
 .signup2-mobile-pequeno2 {
   height: 40px;
-  font-size: 14px;
-  width: 16.2em;
+  font-size: 12px;
+  width: 15em;
+  margin-left: 0.7em;
   background-color: #4cc5fd;
   color: #041794;
   border-color: #4f63e7;

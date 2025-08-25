@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <form class="col-md-5">
         <div class="card-desktop px-5 py-5">
-          <span style="color: #4f63e7; text-align: center; margin-left: 10em; ">Cadastro Telefone</span>
+          <span style="color: #4f63e7; text-align: center; margin-left: 10em; ">Cadastro Telefone d</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-desktop"
               placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
@@ -34,8 +34,8 @@
   <div class="contain">
     <div class="row justify-content-center">
       <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone laptop</span>
+        <div class="card-laptop px-5 py-5">
+          <span style="color: #4f63e7; text-align: center; margin-left: 5.5em;">Cadastro Telefone l</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-laptop"
               placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
@@ -47,11 +47,11 @@
     </div>
     <div class="otp row justify-content-center">
       <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="font-size: 2em;">
+        <div class="card2-laptop px-5 py-5">
+          <div class="form-input-laptop" [ngStyle]="{'display': displayCode}">
+            <div class="row otp" >
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode' class="otp-input-laptop"></ng-otp-input>
-              <button class="signup-laptop" style="margin-top: 1em;" (click)="handleClick()">Conferir código SMS</button>
+              <button class="signup2-laptop" style="margin-top: 1em;" (click)="handleClick()">Conferir código SMS</button>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
     <div class="row justify-content-center">
       <form class="col-md-5">
         <div class="card-laptop2 px-5 py-5">
-          <span style="color: #4f63e7; text-align: center; ">Cadastro Telefone Laptop2</span>
+          <span style="color: #4f63e7; text-align: center;  margin-left: 5.5em;">Cadastro Telefone l2</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-laptop2"
               placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
@@ -78,9 +78,9 @@
     </div>
     <div class="otp row justify-content-center">
       <form class="col-md-5">
-        <div class="card-laptop2 px-5 py-5">
+        <div class="card2-laptop2 px-5 py-5">
           <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="margin-left: 1.4em;">
+            <div class="row otp" style="margin-left: 1.4em;">
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode' class="otp-input-laptop2"></ng-otp-input>
               <button class="signup2-laptop2" style="margin-top: 1em;" (click)="handleClick()">Conferir código SMS</button>
             </div>
@@ -92,28 +92,28 @@
   </div>
 </div>
 
-<div class='container tablet' style=" margin-left: 2em;">
-  <div class="contain">
-    <div class="row">
+<div class='tablet'   fxLayout="row" fxLayoutAlign= "space-evenly center" >
+  <div>
+    <div>
       <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Tablet</span>
+        <div class="card-tablet px-5 py-5 ">
+          <span style="color: #4f63e7; text-align: center;  margin-left: 3em;" >Cadastro Telefone t</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-tablet"
-              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+              placeholder="Informe número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
           </div>
-          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <button class="btn-tablet btn-success-tablet mt-4 signup-tablet" (click)="getOtp()">Enviar SMS</button>
           <div id="sign-in-button"></div>
         </div>
       </form>
     </div>
-    <div class="otp row">
+    <div>
       <form class="col-md-5">
-        <div class="card px-5 py-5">
+        <div class="card2-tablet px-5 py-5">
           <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="font-size: 2em;">
+            <div class="row otp" style="margin-left: 0.2em;">
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'  class="otp-input-tablet"></ng-otp-input>
-              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+              <button class="btn-tablet btn-success-tablet mt-4 signup2-tablet" (click)="handleClick()">Conferir código SMS</button>
             </div>
           </div>
         </div>
@@ -123,28 +123,28 @@
   </div>
 </div>
 
-<div class='container mobile'>
+<div class='container mt-3 mobile' style=" margin-left: 1.2em;">
   <div class="contain">
-    <div class="row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile</span>
+    <div  class='col-8' style="display: flex; justify-content: center;">
+      <form class="col-md-4">
+        <div class="card-mobile px-4 py-4">
+          <span style="color: #4f63e7; text-align: center; margin-left: 2em;">Cadastro Telefone m</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-mobile"
-              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+              placeholder="Informe Número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
           </div>
-          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <button class="btn-mobile btn-success-mobile mt-4 signup-mobile" (click)="getOtp()">Enviar SMS</button>
           <div id="sign-in-button"></div>
         </div>
       </form>
     </div>
-    <div class="otp row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
+    <div class="otp col-8" style="display: flex; justify-content: center;">
+      <form class="col-md-4">
+        <div class="card2-mobile px-4 py-4">
           <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="font-size: 2em;">
+            <div class="row otp" style="margin-left: 0.2em;">
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'  class="otp-input-mobile"></ng-otp-input>
-              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+              <button class="btn-mobile btn-success-mobile mt-4 signup-mobile" (click)="handleClick()">Conferir código SMS</button>
             </div>
           </div>
         </div>
@@ -154,28 +154,28 @@
   </div>
 </div>
 
-<div class='container mobile-pequeno'>
+<div class='container mobile-pequeno' style=" margin-left: 1.2em;">
   <div class="contain">
-    <div class="row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile Pequeno</span>
+    <div class="row">
+      <form class="col-md-4">
+        <div class="card-mobile-pequeno px-4 py-4">
+          <span style="color: #4f63e7; text-align: center; margin-left: 2em;">Cadastro Telefone mp</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-mobile-pequeno"
-              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+              placeholder="Informe Número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
           </div>
-          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <button class="btn-mobile-pequeno btn-success-mobile-pequeno mt-4 signup-mobile-pequeno" (click)="getOtp()">Enviar SMS</button>
           <div id="sign-in-button"></div>
         </div>
       </form>
     </div>
     <div class="otp row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
+      <form class="col-md-4">
+        <div class="card2-mobile-pequeno px-4 py-4">
           <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="font-size: 2em;">
+            <div class="row otp" style="margin-left: 0.2em;">
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'  class="otp-input-mobile-pequeno"></ng-otp-input>
-              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+              <button class="btn-mobile-pequeno btn-success-mobile-pequeno mt-4 signup-mobile-pequeno" (click)="handleClick()">Conferir código SMS</button>
             </div>
           </div>
         </div>
@@ -185,28 +185,28 @@
   </div>
 </div>
 
-<div class='container mobile-pequeno2'>
+<div class='container mobile-pequeno2' style=" margin-left: 1.2em;">
   <div class="contain">
-    <div class="row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
-          <span style="color: #4f63e7; text-align: center;">Cadastro Telefone Mobile Pequeno2</span>
+    <div class="row">
+      <form class="col-md-4">
+        <div class="card-mobile-pequeno2 px-4 py-4">
+          <span style="color: #4f63e7; text-align: center; margin-left: 2em;">Cadastro Telefone pq2</span>
           <div class="form-input">
             <input type="text" name="phoneNumber" placeholder="Phone Number" class="form-control-mobile-pequeno2"
-              placeholder="Entre com seu número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
+              placeholder="Informe Número de telefone" [(ngModel)]="phoneNumber" min="10" max="15">
           </div>
-          <button class="btn btn-success mt-4 signup" (click)="getOtp()">Validar Telefone</button>
+          <button class="btn-mobile-pequeno2 btn-success-mobile-pequeno2 mt-4 signup-mobile-pequeno2" (click)="getOtp()">Enviar SMS</button>
           <div id="sign-in-button"></div>
         </div>
       </form>
     </div>
     <div class="otp row justify-content-center">
-      <form class="col-md-5">
-        <div class="card px-5 py-5">
+      <form class="col-md-4">
+        <div class="card2-mobile-pequeno2 px-4 py-4">
           <div class="form-input" [ngStyle]="{'display': displayCode}">
-            <div class="otp" style="font-size: 2em;">
+            <div class="row otp" style="margin-left: 0.2em;">
               <ng-otp-input #ngOtpInput (onInputChange)='onOtpChange($event)' [config]='configCode'  class="otp-input-mobile-pequeno2"></ng-otp-input>
-              <button class="btn btn-success mt-4 signup" (click)="handleClick()">Verify OTP</button>
+              <button class="btn-mobile-pequeno2 btn-success-mobile-pequeno2 mt-4 signup-mobile-pequeno2" (click)="handleClick()">Conferir código SMS</button>
             </div>
           </div>
         </div>
@@ -215,4 +215,5 @@
     <!-- <div id="recaptcha-container"></div> -->
   </div>
 </div>
+
 
