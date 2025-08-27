@@ -25,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }, // Provide Firebase config here
     provideRouter(routes), 
+    provideClientHydration(),
     provideZoneChangeDetection({ eventCoalescing: true }), 
     importProvidersFrom(BrowserModule,BrowserAnimationsModule ),
     provideHttpClient(),

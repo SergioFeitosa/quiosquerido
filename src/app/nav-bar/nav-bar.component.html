@@ -5,7 +5,7 @@
     <div class="col-12" style="display: flex; justify-content: space-evenly;">
       <a routerLink="cardapioPrincipal" routerLinkActive="active" class="navbar-brand  navbar-title"
         style="font-size: 2em; margin-left: 0.5em; font-weight: bold; padding-top: 0.6em;">
-        QUIOSQUERIDO D
+        QUIOSQUERIDO
       </a>
       <div>
         <div>
@@ -14,24 +14,26 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400;" class="navbar-brand  navbar-info">
+          @if (loginService.getUserLogin()) {
+          <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400; padding-left: 1em;" class="navbar-brand  navbar-info">
             {{ +this.phoneNumber ? +this.phoneNumber : ''}}
           </a>
+        }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
                 style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -72,19 +74,19 @@
           </a>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
                 style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -125,19 +127,19 @@
           </a>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
                 style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -178,19 +180,19 @@
           </a>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
                 style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -233,19 +235,19 @@
           </a>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
                 style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -288,33 +290,19 @@
           </a>
         </div>
         <div style=" display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="margin-right: 4px; 
-                color: #01a501; 
-                width: 22px;
-                height: 26px; 
-
-                " 
-                aria-hidden="true" 
-                data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                style="
-                  margin-right: 4px; 
-                  color: red; 
-                  width: 22px;
-                  height: 26px; 
-                  " 
-                aria-hidden="true" 
-                data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -357,31 +345,19 @@
           </a>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <a (click)="loginService.userStatus()">
-            @if (loginService.userLogin) {
-            <button style="border: none; background: none;" (click)="logout();">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                                style="margin-right: 4px; 
-                color: #01a501; 
-                width: 22px;
-                height: 26px; 
-
-                " 
- aria-hidden="true" data-mat-icon-type="font"
-                title="Logout">account_circle</mat-icon>
-            </button>
+          <a>
+            @if (loginService.getUserLogin()) {
+              <button style="border: none; background: none;" (click)="logout();">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                  style="margin-right: 4px; color: #01a501;" aria-hidden="true" data-mat-icon-type="font"
+                  title="Login">account_circle</mat-icon>
+              </button>
             } @else {
-            <button style="border: none; background: none;" (click)="openPopup2()">
-              <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
-                                style="
-                  margin-right: 4px; 
-                  color: red; 
-                  width: 22px;
-                  height: 26px; 
-                  " 
-                aria-hidden="true" data-mat-icon-type="font"
-                title="Login">account_circle</mat-icon>
-            </button>
+              <button style="border: none; background: none;" (click)="openPopup2()">
+                <mat-icon _ngcontent-yfk-c11="" role="img" class="mat-icon notranslate material-icons"
+                style="margin-right: 4px; color: red;" aria-hidden="true" data-mat-icon-type="font"
+                title="Logout">account_circle</mat-icon>
+              </button>
             }
           </a>
           <a [routerLink]="['/conta']" routerLinkActive="active">
@@ -435,7 +411,7 @@
           <li>pendente</li>
           <li>fila de preparação</li>
           <li>em preparação</li>
-          <li>fila de entrega</li>
+          <li>fila de entrega</li> 
           <li>entregue</li>
         </ul>
       </div>

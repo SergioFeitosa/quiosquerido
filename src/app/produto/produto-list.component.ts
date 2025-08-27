@@ -220,7 +220,6 @@ export class ProdutoListComponent implements OnInit {
     // tslint:disable-next-line:no-unused-expression
     this.produtoService.readById(produtoId).subscribe(product => {
       this.produto = product;
-
       this.carrinho.enviado = false
       this.carrinho.isencao = false;
       this.carrinho.local = environment.local;
@@ -234,6 +233,9 @@ export class ProdutoListComponent implements OnInit {
       this.carrinhoService.create(this.carrinho).subscribe(() => {
         this.carrinhoService.showMessage('Produto adicionado no carrinho');
       });
+      
+      this.loginService.login();
+
       this.router.navigate(['/carrinho']);
     });
 

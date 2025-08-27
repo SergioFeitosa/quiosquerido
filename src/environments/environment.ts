@@ -1,8 +1,8 @@
 export const environment = {
-  production: true,
+  production: false,
   ApiURL : 'http://quiosque.sgpn.com.br',
-  telefone: 5511982551256,
-  codigo: 123,
+  telefone: 0,
+  codigo: 0,
   local: 'GS001',
   modulo: 'quiosquerido',
   login: false,

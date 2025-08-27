@@ -8,7 +8,7 @@ export const environment = {
     login: false,
     ApiURL : 'http://localhost:8000',
     telefone: 0,
-    codigo: 123,
+    codigo: 0,
     local: 'GS001',
     modulo: 'quiosquerido',
     fundoColoridoCardapio: true,

@@ -126,8 +126,8 @@ export class NavBarComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   openPopup2(): void {
-    this.displayStyle2 = 'block';
-  }
+    this.displayStyle2 = 'block'; 
+  } 
 
   // tslint:disable-next-line:typedef
   closePopup2() {
