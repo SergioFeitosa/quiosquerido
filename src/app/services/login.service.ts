@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 })
 export class LoginService {
 
+  telefone: number = 0;
   userLogin: boolean = false
 
   constructor(
@@ -20,6 +21,8 @@ export class LoginService {
 
   login() {
     this.userLogin = true;
+    environment.login = false;
+    environment.telefone = this.telefone;
   }
 
   logout() {

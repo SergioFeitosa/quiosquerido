@@ -945,26 +945,27 @@
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style='background-color:rgb(246, 253, 232)'>
-      <div class="modal-header" style='background-color:rgb(225, 240, 252)'>
+      <div class="modal-header" style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
+        @if (statusPendente) {
+          <div>
+            <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
+              Cancelar
+            </button>
+          </div>
 
-        <div *ngIf="statusPendente">
-          <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
-            Deletar
-          </button>
-        </div>
-
-        <div *ngIf="statusPendente">
-          <button (click)="pedidoCreate( carrinho.id! );">
-            Confirmar
-          </button>
-        </div>
-
+          <div>
+            <button (click)="pedidoCreate( carrinho.id! );">
+              Confirmar
+            </button>
+          </div>
+        }
         <button type="button" class="btn btn-danger" (click)="closePopup()">
           Fechar
         </button>
       </div>
       <div class="modal-body row">
-        Avaliação: <app-star [rating]="produto.avaliacao"></app-star>
+        <span>Avaliação: </span>
+        <app-star [rating]="produto.avaliacao"></app-star>
       </div>
       <div class="modal-body row">
         <img [src]="produto.imagem_url" class="figure-img img-fluid rounded" alt="Imagem do Produto" width="400"
@@ -1028,25 +1029,26 @@
           </ul>
         </div>
       </div>
-      <div class="modal-content" style='background-color:rgb(225, 240,
-        252)'>
-        <div class="modal-header" style='background-color:rgb(225, 240, 252)'>
+      <div class="modal-content" style='background-color:rgb(225, 240, 252)'>
+        <div class="modal-header" style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
 
-          <div *ngIf="statusPendente">
-            <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
-              Deletar
+          @if (statusPendente) {
+            <div>
+              <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
+                Cancelar
+              </button>
+            </div>
+
+            <div>
+              <button (click)="pedidoCreate( carrinho.id! );">
+                Confirmar
+              </button>
+            </div>
+
+            <button type="button" class="btn btn-danger" (click)="closePopup()">
+              Fechar
             </button>
-          </div>
-
-          <div *ngIf="statusPendente">
-            <button (click)="pedidoCreate( carrinho.id! );">
-              Confirmar
-            </button>
-          </div>
-
-          <button type="button" class="btn btn-danger" (click)="closePopup()">
-            Fechar
-          </button>
+          }
         </div>
       </div>
     </div>

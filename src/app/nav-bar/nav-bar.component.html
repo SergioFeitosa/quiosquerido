@@ -14,11 +14,11 @@
           </a>
         </div>
         <div>
-          @if (loginService.getUserLogin()) {
-          <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400; padding-left: 1em;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
-        }
+          @if (loginService.getUserLogin()) {            
+            <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400; padding-left: 1em;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>
@@ -69,9 +69,11 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+            <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>
@@ -122,9 +124,12 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+
+            <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>
@@ -175,9 +180,11 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+            <a style="font-size: 1em; padding-bottom: 0;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>
@@ -230,9 +237,11 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 1em;  padding-left: 1em;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+            <a style="font-size: 1em;  padding-left: 1em;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>
@@ -285,9 +294,11 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 0.9em; padding-left: 1em;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+            <a style="font-size: 0.9em; padding-left: 1em;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style=" display: flex; justify-content: center; align-items: center;">
           <a>
@@ -340,9 +351,11 @@
           </a>
         </div>
         <div>
-          <a style="font-size: 0.9em; padding-left: 1em;  font-weight: 400;" class="navbar-brand  navbar-info">
-            {{ +this.phoneNumber ? +this.phoneNumber : ''}}
-          </a>
+          @if (loginService.getUserLogin()) {
+            <a style="font-size: 0.9em; padding-left: 1em;  font-weight: 400;" class="navbar-brand  navbar-info">
+              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
+            </a>
+          }
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
           <a>

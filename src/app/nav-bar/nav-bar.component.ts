@@ -189,6 +189,8 @@ export class NavBarComponent implements OnInit {
   handleEvent(event: number) {
     this.telefone = event;
     this.phoneNumber = event;
+    environment.telefone = event;
+    this.loginService.telefone = event;
     this.closePopup2();
 
   }

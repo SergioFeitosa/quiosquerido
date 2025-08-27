@@ -636,7 +636,7 @@
   [ngStyle]="{'display': displayStyle}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style='display: flex; justify-content: space-evenly;'>
         <h4 class="modal-title">Detalhes do Pedido</h4>
         <button type="button" class="btn btn-danger"
           (click)="closePopup()">
@@ -644,7 +644,7 @@
         </button>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Avaliação:</span>
+        <span style='font-weight: bolder;'>Avaliação</span>
         <span><app-star [rating]="this.produto.avaliacao"></app-star></span>
 
       </div>

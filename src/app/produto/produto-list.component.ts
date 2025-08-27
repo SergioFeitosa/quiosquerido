@@ -233,8 +233,6 @@ export class ProdutoListComponent implements OnInit {
       this.carrinhoService.create(this.carrinho).subscribe(() => {
         this.carrinhoService.showMessage('Produto adicionado no carrinho');
       });
-      
-      this.loginService.login();
 
       this.router.navigate(['/carrinho']);
     });
@@ -300,10 +298,15 @@ export class ProdutoListComponent implements OnInit {
   // }
 
   handleEvent(event: number) {
+    this.loginService.login();
+    this.loginService.telefone = event;
+    environment.login = true;
+    environment.telefone= event;
+    this.telefone = event;
+    this.phoneNumber = event;
     this.carrinhoCreate(this.produto.id!);
     this.router.navigate(['/carrinho']);
 
   }
-
 
 }

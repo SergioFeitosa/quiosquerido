@@ -253,21 +253,15 @@
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style='background-color:rgb(246, 253, 232)'>
-      <div class="modal-header d-flex justify-content-between" style='background-color:rgb(225, 240, 252); '>
+      <div class="modal-header d-flex " style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252); '>
         <button type="button" 
                 (click)="login ? carrinhoCreate( produto.id! ) : openPopup2(produto.id! )" 
-                style="margin-left: 1em;
-                border-color: #2494fc;
-                border-radius: 10px;"
-                >
+                style="margin-left: 1em; border-color: #2494fc; border-radius: 10px;">
           <img  src='/assets/images/carrinho.jpg' 
                 class="figure-img img-fluid rounded" 
                 alt="Carrinho" 
                 width="60px" 
-                height="50px"
-                
-          >
-
+                height="50px">
         </button>
         <button type="button" 
                 class="btn btn-danger" 
@@ -277,8 +271,9 @@
         </button>
 
       </div>
-      <div class="modal-body row">
-        Avaliação: <app-star [rating]="produto.avaliacao"></app-star>
+      <div class="modal-body row" >
+        <span>Avaliação: </span> 
+        <app-star style='float: right;' [rating]="produto.avaliacao"></app-star>
       </div>
       <div class="modal-body row">
         <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="400" height="400">
@@ -338,7 +333,7 @@
       </div>
 
       <div class="modal-content " style='background-color:rgb(225, 240,252)'>
-        <div class="modal-header d-flex justify-content-between" style='background-color:rgb(225, 240, 252)'>
+        <div class="modal-header" style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
         <button type="button" 
                 (click)="login ? carrinhoCreate( produto.id! ) : openPopup2(produto.id! )" 
                 style="margin-left: 1em;
