@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   ApiURL : 'http://quiosque.sgpn.com.br',
   telefone: 0,
   codigo: 0,

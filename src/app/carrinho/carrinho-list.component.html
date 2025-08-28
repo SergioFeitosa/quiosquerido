@@ -627,12 +627,12 @@
       <tr>
 
         <th style='width: 10%'> </th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 1em;' class="text-center"> QTDE. </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 1em;'> <a (click)="sortCarrinhosByName()"
+        <th style='width: 8%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QTDE. </th>
+        <th style='width: 54%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> <a (click)="sortCarrinhosByName()"
             style="cursor: pointer;">ITEM</a> </th>
-        <th style='width: 10%;  color: #2494fc; font-weight: 500;font-size: 1em;' class="text-center"> <a
+        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> <a
             (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORÁRIO</a></th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 1em;' class="text-center"> STATUS </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
       </tr>
     </thead>
     }
@@ -642,11 +642,10 @@
         <td>
           <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="...">
         </td>
-        <td style="color: #4f63e7; font-size: 1em; text-align: center; align-content: center;">{{ carrinho.quantidade }}</td>
-        <td style="color: #4f63e7; font-size: 1em; text-align: start; align-content: center;">{{ carrinho.produto.nome }}</td>
-        <td style="color: #4f63e7; font-size: 1em; text-align: center; align-content: center;">{{ carrinho.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style="color: #4f63e7; font-size: 1em; text-align: center; align-content: center;" class="text-center"> {{carrinho.status }}
-        </td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade }}</td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome }}</td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.data_criacao | date:'HH:mm:ss'}} </td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{carrinho.status }}</td>
       </tr>
     </tbody>
   }
