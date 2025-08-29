@@ -17,14 +17,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let fechamento of filteredFechamentos'>
-      <td> <img src='/assets/images/cioba-frito.jpg' width="100" height="100"> </td>
-      <td>{{ fechamento.observacao }} </td>
-      <td>{{ fechamento.isencao }} </td>
-      <td>{{ fechamento.releaseTime }} </td>
-      <td> <button [routerLink]="['/atendentecls']">
-          <img src='/assets/images/garcon.jpg' class="figure-img img-fluid rounded" alt="..." width="100" height="100">
-        </button></td>
-    </tr>
+    @for (fechamento of filteredFechamentos; track fechamento) {
+
+      <tr>
+        <td> <img src='/assets/images/cioba-frito.jpg' width="100" height="100"> </td>
+        <td>{{ fechamento.observacao }} </td>
+        <td>{{ fechamento.isencao }} </td>
+        <td>{{ fechamento.releaseTime }} </td>
+        <td> <button [routerLink]="['/atendentecls']">
+            <img src='/assets/images/garcon.jpg' class="figure-img img-fluid rounded" alt="..." width="100" height="100">
+          </button></td>
+      </tr>
+    }
   </tbody>
 </table>

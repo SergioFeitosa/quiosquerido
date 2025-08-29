@@ -12,6 +12,7 @@ import { StarComponent } from '../star/star.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './entrega-list.component.html',
@@ -29,6 +30,9 @@ import { environment } from '../../environments/environment';
 
 export class EntregaListComponent implements OnInit {
 
+  private readSubscription!: Subscription;
+  private updateSubscription!: Subscription;
+
   telefone: number = 0;
   // modulo: string;
   // local: string;
@@ -40,7 +44,7 @@ export class EntregaListComponent implements OnInit {
 
   filteredEntregas: Entrega[] = [];
   entregas: Entrega[] = [];
-
+  sortedEntregas: any[] = [];
   produto = {} as Produto;
   pedido = {} as Pedido;
   carrinho = {} as Carrinho;
@@ -51,6 +55,8 @@ export class EntregaListComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   _filterBy: string = '';
+
+  ultimoSort: string = 'nome';
 
   constructor(
     private entregaService: EntregaService,
@@ -79,7 +85,32 @@ export class EntregaListComponent implements OnInit {
       this.entregaService.read().subscribe(entregas => {
         this.entregas = entregas;
         this.filteredEntregas = this.entregas;
+        switch (this.ultimoSort) {
+          case ('nome'):
+            return this.sortEntregasByName();
+          case ('preco'):
+            return this.sortEntregasByPrice();
+          case ('data'):
+            return this.sortEntregasByHorarioPedido();
+        }
       });
+
+      this.updateSubscription = interval(5000).subscribe(
+        (val) => {
+          this.entregaService.read().subscribe(entregas => {
+            this.entregas = entregas;
+            this.filteredEntregas = this.entregas;
+            switch (this.ultimoSort) {
+              case ('nome'):
+                return this.sortEntregasByName();
+              case ('preco'):
+                return this.sortEntregasByPrice();
+              case ('data'):
+                return this.sortEntregasByHorarioPedido();
+            }
+
+          });
+        });
 
     } else {
 
@@ -87,6 +118,14 @@ export class EntregaListComponent implements OnInit {
         this.entregas = entregas;
         this.filteredEntregas = this.entregas.filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0);
       });
+      switch (this.ultimoSort) {
+        case ('nome'):
+          return this.sortEntregasByName();
+        case ('preco'):
+          return this.sortEntregasByPrice();
+        case ('data'):
+          return this.sortEntregasByHorarioPedido();
+      }
 
     }
   }
@@ -114,6 +153,20 @@ export class EntregaListComponent implements OnInit {
     }
   }
 
+  sortEntregasByName() {
+    this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+    this.ultimoSort = 'nome;'
+  }
+
+  sortEntregasByPrice() {
+    this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+    this.ultimoSort = 'preco;'
+  }
+
+  sortEntregasByHorarioPedido() {
+    this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(b.data_criacao).getTime() - new Date(a.data_criacao).getTime());
+    this.ultimoSort = 'data;'
+  }
 
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
@@ -140,7 +193,7 @@ export class EntregaListComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
 
-  } 
+  }
 
   entregaUpdate(entregaId: number) {
 
@@ -148,7 +201,7 @@ export class EntregaListComponent implements OnInit {
     const response = this.entregaService.readById(entregaId).subscribe(entrega => {
       this.entrega = entrega;
 
-            // tslint:disable-next-line:no-unused-expression
+      // tslint:disable-next-line:no-unused-expression
       const response2 = this.carrinhoService.readById(this.entrega.pedido.carrinho.id!).subscribe(carrinho => {
         this.carrinho = carrinho;
         this.carrinho.status = 'Pedido entregue';
@@ -161,7 +214,7 @@ export class EntregaListComponent implements OnInit {
         this.pedido.status = 'Pedido entregue';
         this.pedido.carrinho = this.carrinho;
         this.atualizarPedido(this.pedido);
-        
+
       })
 
       this.entrega.pedido = this.pedido;
@@ -185,8 +238,8 @@ export class EntregaListComponent implements OnInit {
   }
 
   async atualizarEntrega(entrega: Entrega) {
-      const response2 =  await this.entregaService.update(entrega).subscribe(() => {
-        this.entregaService.showMessage('Pedido Entregue');
+    const response2 = await this.entregaService.update(entrega).subscribe(() => {
+      this.entregaService.showMessage('Pedido Entregue');
     });
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

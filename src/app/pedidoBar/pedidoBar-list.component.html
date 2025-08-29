@@ -15,20 +15,24 @@
     <thead>
       <tr>
         <th style='width: 5%' ></th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;' > Item</th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;' > 
+          <a (click)="sortPedidosByName()" style="cursor: pointer;">ITEM</a> 
+        </th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > Quantidade</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;' > Observacao</th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > Local</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > Hora</th>
+        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > 
+          <a (click)="sortPedidosByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a>
+        </th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > Telefone</th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;' > Cortesia</th>
         <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;' > Ações </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-        <img [src]='pedido.carrinho.produto.imagem_url' 
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+       <img [src]='pedido.carrinho.produto.imagem_url' 
           class="figure-img img-fluid rounded"
           alt="..."
           width="100"
@@ -190,6 +194,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -212,8 +217,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
           rounded"
           alt="..."
@@ -260,6 +265,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -283,8 +289,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+
         <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
           rounded"
           alt="..."
@@ -330,6 +337,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -353,8 +361,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
           rounded"
           alt="..."
@@ -400,6 +408,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -422,9 +431,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-
+    @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <td>
           <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
             rounded"
@@ -472,6 +480,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -494,9 +503,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <td>
           <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
             rounded"
@@ -544,6 +552,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>
@@ -566,9 +575,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let pedido of filteredPedidos; let i= index'
-          [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-
+      @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
+      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <td>
           <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
             rounded"
@@ -616,6 +624,7 @@
           </button>
         </td>
       </tr>
+    }
     </tbody>
   </table>
 </div>

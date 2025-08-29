@@ -71,6 +71,10 @@ export class CarrinhoListComponent implements OnInit {
 
   searchControl = new FormControl('');
 
+  data: any;
+
+  ultimoSort: string = 'nome';
+
   constructor(
     private carrinhoService: CarrinhoService,
     private pedidoService: PedidoService,
@@ -78,14 +82,7 @@ export class CarrinhoListComponent implements OnInit {
   ) {
   }
 
-
-
-
-
   ngOnInit(): void {
-
-    
-
     // this.modulo = 'Pedido';
     // this.local = environment.local;
     this.carrinho.quantidade = 1;
@@ -93,7 +90,7 @@ export class CarrinhoListComponent implements OnInit {
     environment.fundoColoridoCardapio = false;
     environment.fundoColoridoPedido = true;
     environment.fundoColoridoCozinha = false;
-    environment.fundoColoridoBar = false; 
+    environment.fundoColoridoBar = false;
     environment.fundoColoridoEntrega = false;
     environment.fundoColoridoConta = false;
 
@@ -104,17 +101,53 @@ export class CarrinhoListComponent implements OnInit {
         this.carrinhos = carrinhos;
         this.filteredCarrinhos = this.carrinhos
           .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-        this.sortCarrinhosByHorarioPedido();
+        switch (this.ultimoSort) {
+          case ('nome'):
+            return this.sortCarrinhosByName();
+          case ('preco'):
+            return this.sortCarrinhosByPrice();
+          case ('data'):
+            return this.sortCarrinhosByHorarioPedido();
+        }
+
       });
 
+      this.updateSubscription = interval(5000).subscribe(
+        (val) => {
+          this.carrinhoService.read().subscribe(carrinhos => {
+            this.carrinhos = carrinhos;
+            this.filteredCarrinhos = this.carrinhos
+              .filter((carrinho: Carrinho) => carrinho.enviado !== true);
+            switch (this.ultimoSort) {
+              case ('nome'):
+                return this.sortCarrinhosByName();
+              case ('preco'):
+                return this.sortCarrinhosByPrice();
+              case ('data'):
+                return this.sortCarrinhosByHorarioPedido();
+            }
+
+          });
+        });
+
+
     } else {
+
 
       this.carrinhoService.read().subscribe(carrinhos => {
         this.carrinhos = carrinhos;
         this.filteredCarrinhos = this.carrinhos
           .filter((carrinho: Carrinho) => carrinho.telefone - environment.telefone === 0)
           .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-        this.sortCarrinhosByHorarioPedido();
+        switch (this.ultimoSort) {
+          case ('nome'):
+            return this.sortCarrinhosByName();
+          case ('preco'):
+            return this.sortCarrinhosByPrice();
+          case ('data'):
+            return this.sortCarrinhosByHorarioPedido();
+        }
+
 
       });
     }
@@ -122,14 +155,17 @@ export class CarrinhoListComponent implements OnInit {
 
   sortCarrinhosByName() {
     this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
+    this.ultimoSort = 'nome;'
   }
 
   sortCarrinhosByPrice() {
     this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
+    this.ultimoSort = 'preco;'
   }
 
   sortCarrinhosByHorarioPedido() {
-    this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    this.ultimoSort = 'data;'
   }
 
 
@@ -157,7 +193,7 @@ export class CarrinhoListComponent implements OnInit {
           .filter((carrinho: Carrinho) => carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
 
     }
-    this.sortCarrinhosByName(); 
+    this.sortCarrinhosByName();
 
   }
   // tslint:disable-next-line:quotemark
@@ -199,7 +235,7 @@ export class CarrinhoListComponent implements OnInit {
   async pedidoCreate(carrinhoId: number): Promise<void> {
 
     // tslint:disable-next-line:no-unused-expression
-    const response = await this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+    const response = this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
       this.carrinho = carrinho;
 
       if (carrinho.enviado !== true) {
@@ -231,11 +267,11 @@ export class CarrinhoListComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  async atualizarCarrinho(carrinho: Carrinho) {
+  atualizarCarrinho(carrinho: Carrinho) {
 
-        this.carrinhoService.update(carrinho).subscribe(() => {
-          this.carrinhoService.showMessage('Carrinho Atualizado');
-        });
+    this.carrinhoService.update(carrinho).subscribe(() => {
+      this.carrinhoService.showMessage('Carrinho Atualizado');
+    });
   }
 
   // tslint:disable-next-line:typedef
