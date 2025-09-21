@@ -1,26 +1,20 @@
 <!-- DESKTOP -->
 
-<div class='container mt-4 desktop'>
+<div class='container-fluid mt-4 desktop'>
   <nav class="navbar">
-    <div class="col-12" style="display: flex; justify-content: space-evenly;">
+    <div class="col-12" style="display: flex; justify-content: space-between;">
       <a routerLink="cardapioPrincipal" routerLinkActive="active" class="navbar-brand  navbar-title"
         style="font-size: 2em; margin-left: 0.5em; font-weight: bold; padding-top: 0.6em;">
         QUIOSQUERIDO
       </a>
-      <div>
-        <div>
-          <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400; " class="navbar-brand  navbar-info">
+      <div row>
+        <div col style="height: 5em;">
+          <a style="font-size: 0.8em; padding-bottom: 0;  font-weight: 400; padding-left: 1em;" class="navbar-brand  navbar-info">
+            {{ loginService.getUserLogin() ? +this.loginService.telefone : '' }}
+          </a>
+          <a style="font-size: 0.8em; padding-bottom: 0;  font-weight: 400; " class="navbar-brand  navbar-info">
             {{ this.local }}
           </a>
-        </div>
-        <div>
-          @if (loginService.getUserLogin()) {            
-            <a style="font-size: 1em; padding-bottom: 0;  font-weight: 400; padding-left: 1em;" class="navbar-brand  navbar-info">
-              {{ +this.loginService.telefone ? +this.loginService.telefone : '' }}
-            </a>
-          }
-        </div>
-        <div style="display: flex; justify-content: center; align-items: center;">
           <a>
             @if (loginService.getUserLogin()) {
               <button style="border: none; background: none;" (click)="logout();">
