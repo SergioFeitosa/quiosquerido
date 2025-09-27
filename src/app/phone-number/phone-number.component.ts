@@ -130,7 +130,6 @@ export class PhoneNumberComponent implements OnInit {
     window.confirmationResult.confirm(this.otp).then((result: any) => {
 
         const user = result.user;
-        console.log('User:', user);
         this.emitEvent();
         this.router.navigate(['/']);
         this.loginService.login();

@@ -16,8 +16,10 @@ import { initializeApp } from '@angular/fire/app';
 import { consumerBeforeComputation } from '@angular/core/primitives/signals';
 import { Subject } from 'rxjs';
 
+
 @Component({
   standalone: true,
+
   imports: [
     CaminhoMenuComponent,
     CommonModule,
@@ -26,7 +28,9 @@ import { Subject } from 'rxjs';
     StarComponent
 
   ],
-  templateUrl: './carrinho-list.component.html'
+  templateUrl: './carrinho-list.component.html',
+  styleUrls: ['./carrinho-list.component.css'],
+  
 })
 
 export class CarrinhoListComponent implements OnInit {
@@ -150,6 +154,7 @@ export class CarrinhoListComponent implements OnInit {
 
 
       });
+
     }
   }
 
@@ -168,6 +173,10 @@ export class CarrinhoListComponent implements OnInit {
     this.ultimoSort = 'data;'
   }
 
+  removerAcentos(str: string): string {
+    // Converte para minúsculas e remove os diacríticos usando Unicode
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
 
   // tslint:disable-next-line:typedef
   get filter() {
@@ -182,7 +191,7 @@ export class CarrinhoListComponent implements OnInit {
       this.filteredCarrinhos =
         this.carrinhos
           .filter((carrinho: Carrinho) => carrinho.enviado !== true)
-          .filter((carrinho: Carrinho) => carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+          .filter((carrinho: Carrinho) => this.removerAcentos(carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)));
 
     } else {
 
@@ -190,7 +199,7 @@ export class CarrinhoListComponent implements OnInit {
         this.carrinhos
           .filter((carrinho: Carrinho) => carrinho.enviado !== true)
           .filter((carrinho: Carrinho) => environment.telefone - carrinho.telefone === 0)
-          .filter((carrinho: Carrinho) => carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+          .filter((carrinho: Carrinho) => this.removerAcentos(carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)));
 
     }
     this.sortCarrinhosByName();
@@ -219,47 +228,54 @@ export class CarrinhoListComponent implements OnInit {
   // tslint:disable-next-line:typedef
   closePopup() {
     this.displayStyle = 'none';
-
-    this.atualizarCarrinho(this.carrinho);
-
-
-    // tslint:disable-next-line:prefer-const
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
-
   }
 
 
-  async pedidoCreate(carrinhoId: number): Promise<void> {
+  pedidoCreate(carrinhoId: number): void {
 
     // tslint:disable-next-line:no-unused-expression
-    const response = this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+    this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
       this.carrinho = carrinho;
 
       if (carrinho.enviado !== true) {
 
-        this.carrinho.enviado = false;
+        this.carrinho.enviado = false; 
         this.carrinho.status = 'Confirmado';
 
+
+        let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
+        console.log('index ' + index )
+        console.log('entrega' + carrinho)
+        this.sortedCarrinhos[index].status = 'Confirmado';      
+
         this.atualizarCarrinho(this.carrinho);
+
 
         this.pedido.telefone = this.carrinho.telefone;
         this.pedido.local = this.carrinho.local;
         this.pedido.quantidade = this.carrinho.quantidade;
         this.pedido.observacao = this.carrinho.observacao;
         this.pedido.isencao = this.carrinho.isencao;
-        this.pedido.dataCriacao = this.carrinho.data_criacao;
+        this.pedido.data_criacao = this.carrinho.data_criacao;
         this.pedido.enviado = false;
         this.pedido.status = 'Confirmado';
         this.pedido.carrinho = this.carrinho;
 
         this.pedido.carrinho.produto = this.carrinho.produto;
 
-        this.pedidoService.create(this.pedido).subscribe(() => {
+        const isCreate = new Promise<Pedido>((resolve, reject) =>
+          this.pedidoService.create(this.pedido).subscribe(() => {
+            resolve(this.pedido);
+          })
+        )
+
+        isCreate.then ((value) => {
           this.pedidoService.showMessage('Pedido solicitado');
-        });
+        }).catch((error) =>{
+          console.log(error);
+        }).finally(() => {
+          console.log('finally')
+        })
       }
     });
 
@@ -269,9 +285,19 @@ export class CarrinhoListComponent implements OnInit {
   // tslint:disable-next-line:typedef
   atualizarCarrinho(carrinho: Carrinho) {
 
-    this.carrinhoService.update(carrinho).subscribe(() => {
-      this.carrinhoService.showMessage('Carrinho Atualizado');
-    });
+    const isCreate = new Promise<Carrinho>((resolve, reject) =>
+        this.carrinhoService.update(carrinho).subscribe(() => {
+          resolve(this.carrinho);
+        })
+      )
+
+      isCreate.then ((value) => {
+        this.carrinhoService.showMessage('Carrinho atualizado');
+      }).catch((error) =>{
+        console.log(error);
+      }).finally(() => {
+        console.log('finally')
+      })
   }
 
   // tslint:disable-next-line:typedef

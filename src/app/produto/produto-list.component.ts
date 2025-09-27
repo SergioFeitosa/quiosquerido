@@ -19,6 +19,7 @@ import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-produto-list',
   templateUrl: './produto-list.component.html',
+  styleUrl: './produto-list.component.css',
   standalone: true,
   imports: [
     CaminhoMenuComponent,
@@ -140,6 +141,10 @@ export class ProdutoListComponent implements OnInit {
     this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.preco - b.preco);
   }
 
+  removerAcentos(str: string): string {
+    // Converte para minúsculas e remove os diacríticos usando Unicode
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
 
   // tslint:disable-next-line:typedef
   onOtpChange(otp: string) {
@@ -172,9 +177,10 @@ export class ProdutoListComponent implements OnInit {
 
     this.filteredProdutos =
       this.produtos
-        .filter((produto: Produto) => produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+        .filter((produto: Produto) =>
+          this.removerAcentos(produto.nome).includes(this.removerAcentos(this._filterBy)));
 
-    this.sortProductsByName();        
+    this.sortProductsByName();
 
   }
 
@@ -215,7 +221,7 @@ export class ProdutoListComponent implements OnInit {
     this.displayStyle2 = 'none';
   }
 
-  async carrinhoCreate(produtoId: number): Promise<void> {
+  carrinhoCreate(produtoId: number): void {
 
     // tslint:disable-next-line:no-unused-expression
     this.produtoService.readById(produtoId).subscribe(product => {
@@ -230,83 +236,94 @@ export class ProdutoListComponent implements OnInit {
       this.carrinho.status = 'Pendente';
       this.carrinho.produto = this.produto;
 
-      this.carrinhoService.create(this.carrinho).subscribe(() => {
+      const isCreate = new Promise<Carrinho>((resolve, reject) =>
+        this.carrinhoService.create(this.carrinho).subscribe(() => {
+          resolve(this.carrinho);
+        })
+      )
+
+      isCreate.then ((value) => {
         this.carrinhoService.showMessage('Produto adicionado no carrinho');
-      });
+      }).catch((error) =>{
+        console.log(error);
+      }).finally(() => {
+        console.log('finally')
+      })
 
-      this.router.navigate(['/carrinho']);
-    });
-
-    //    this.closePopup();
-  }
-
-  // validarTelefone(): void {
-
-  //   if (this.telefone > 0) {
-  //     environment.telefone = this.telefone;
-  //     this.enviarCodigo();
-  //   }
-  // }
-
-  // validarCodigo(produtoId: number): void {
-
-  //   // tslint:disable-next-line:no-unused-expression
-  //   this.produtoService.readById(produtoId).subscribe(product => {
-  //     this.produto = product;
-
-  //   });
-
-  //   if (environment.codigo > 0) {
-  //     environment.codigo = this.codigo;
-  //     // tslint:disable-next-line:semicolon
-  //     // this.updateClassDisabled();
-  //     this.carrinhoCreate(produtoId);
-
-  //     this.closePopup2();
-  //     this.closePopup();
-
-
-  //   }
-  // }
-
-  // enviarCodigo(): void {
-  //   // tslint:disable-next-line:comment-format
-  //   //const telefone = this.navForm.get('telefone').value;
-  //   const codigoGerado = Math.random() * this.telefone;
-  // }
-
-  // // tslint:disable-next-line:typedef
-  // updateClassDisabled() {
-  //   this.buttonDisabled = false;
-  //   this.element1 = document.getElementById('desabilitado1') as HTMLElement;
-  //   this.element2 = document.getElementById('desabilitado2') as HTMLElement;
-  //   this.element3 = document.getElementById('desabilitado3') as HTMLElement;
-  //   this.element4 = document.getElementById('desabilitado4') as HTMLElement;
-  //   this.element5 = document.getElementById('desabilitado5') as HTMLElement;
-  //   this.element6 = document.getElementById('desabilitado6') as HTMLElement;
-  //   this.element7 = document.getElementById('desabilitado7') as HTMLElement;
-  //   this.element8 = document.getElementById('desabilitado8') as HTMLElement;
-
-  //   this.element1.removeAttribute('disabled');
-  //   this.element2.removeAttribute('disabled');
-  //   this.element3.removeAttribute('disabled');
-  //   this.element4.removeAttribute('disabled');
-  //   this.element5.removeAttribute('disabled');
-  //   this.element6.removeAttribute('disabled');
-  //   this.element7.removeAttribute('disabled');
-  //   this.element8.removeAttribute('disabled');
-  // }
-
-  handleEvent(event: number) {
-    this.loginService.login();
-    this.loginService.telefone = event;
-    environment.login = true;
-    environment.telefone= event;
-    this.telefone = event;
-    this.phoneNumber = event;
-    this.carrinhoCreate(this.produto.id!);
     this.router.navigate(['/carrinho']);
 
-  }
+  });
+
+  //    this.closePopup();
+}
+
+// validarTelefone(): void {
+
+//   if (this.telefone > 0) {
+//     environment.telefone = this.telefone;
+//     this.enviarCodigo();
+//   }
+// }
+
+// validarCodigo(produtoId: number): void {
+
+//   // tslint:disable-next-line:no-unused-expression
+//   this.produtoService.readById(produtoId).subscribe(product => {
+//     this.produto = product;
+
+//   });
+
+//   if (environment.codigo > 0) {
+//     environment.codigo = this.codigo;
+//     // tslint:disable-next-line:semicolon
+//     // this.updateClassDisabled();
+//     this.carrinhoCreate(produtoId);
+
+//     this.closePopup2();
+//     this.closePopup();
+
+
+//   }
+// }
+
+// enviarCodigo(): void {
+//   // tslint:disable-next-line:comment-format
+//   //const telefone = this.navForm.get('telefone').value;
+//   const codigoGerado = Math.random() * this.telefone;
+// }
+
+// // tslint:disable-next-line:typedef
+// updateClassDisabled() {
+//   this.buttonDisabled = false;
+//   this.element1 = document.getElementById('desabilitado1') as HTMLElement;
+//   this.element2 = document.getElementById('desabilitado2') as HTMLElement;
+//   this.element3 = document.getElementById('desabilitado3') as HTMLElement;
+//   this.element4 = document.getElementById('desabilitado4') as HTMLElement;
+//   this.element5 = document.getElementById('desabilitado5') as HTMLElement;
+//   this.element6 = document.getElementById('desabilitado6') as HTMLElement;
+//   this.element7 = document.getElementById('desabilitado7') as HTMLElement;
+//   this.element8 = document.getElementById('desabilitado8') as HTMLElement;
+
+//   this.element1.removeAttribute('disabled');
+//   this.element2.removeAttribute('disabled');
+//   this.element3.removeAttribute('disabled');
+//   this.element4.removeAttribute('disabled');
+//   this.element5.removeAttribute('disabled');
+//   this.element6.removeAttribute('disabled');
+//   this.element7.removeAttribute('disabled');
+//   this.element8.removeAttribute('disabled');
+// }
+
+handleEvent(event: number) {
+  this.loginService.login();
+  this.loginService.telefone = event;
+  environment.login = true;
+  environment.telefone = event;
+  this.telefone = event;
+  this.phoneNumber = event;
+  this.carrinhoCreate(this.produto.id!);
+  this.router.navigate(['/carrinho']);
+
+}
 
 }

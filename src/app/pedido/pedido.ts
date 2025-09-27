@@ -9,7 +9,7 @@ export interface Pedido {
   observacao: string;
   enviado: boolean;
   isencao: boolean;
-  dataCriacao: Date;
+  data_criacao: Date;
   status: string;
 
   carrinho: Carrinho;

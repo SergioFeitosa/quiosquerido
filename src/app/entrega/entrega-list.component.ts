@@ -129,8 +129,7 @@ export class EntregaListComponent implements OnInit {
 
     }
   }
-
-  // tslint:disable-next-line:typedef
+    // tslint:disable-next-line:typedef
   get filter() {
     return this._filterBy;
   }
@@ -141,17 +140,19 @@ export class EntregaListComponent implements OnInit {
     if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999996) {
       this.filteredEntregas =
         this.entregas
-          .filter((entrega: Entrega) => entrega.pedido.carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+          .filter((entrega: Entrega) => this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
 
     } else {
 
       this.filteredEntregas =
         this.entregas
           .filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0)
-          .filter((entrega: Entrega) => entrega.pedido.carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+          .filter((entrega: Entrega) => this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
 
     }
+    this.sortEntregasByName();
   }
+
 
   sortEntregasByName() {
     this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
@@ -167,6 +168,12 @@ export class EntregaListComponent implements OnInit {
     this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(b.data_criacao).getTime() - new Date(a.data_criacao).getTime());
     this.ultimoSort = 'data;'
   }
+
+  removerAcentos(str: string): string {
+    // Converte para minúsculas e remove os diacríticos usando Unicode
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
 
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
@@ -198,53 +205,55 @@ export class EntregaListComponent implements OnInit {
   entregaUpdate(entregaId: number) {
 
     // tslint:disable-next-line:no-unused-expression
-    const response = this.entregaService.readById(entregaId).subscribe(entrega => {
+    this.entregaService.readById(entregaId).subscribe(entrega => {
       this.entrega = entrega;
 
       // tslint:disable-next-line:no-unused-expression
-      const response2 = this.carrinhoService.readById(this.entrega.pedido.carrinho.id!).subscribe(carrinho => {
+      this.carrinhoService.readById(
+        this.entrega.pedido.carrinho.id!).subscribe(carrinho => {
         this.carrinho = carrinho;
         this.carrinho.status = 'Pedido entregue';
         this.atualizarCarrinho(this.carrinho);
       })
 
       // tslint:disable-next-line:no-unused-expression
-      const response3 = this.pedidoService.readById(this.entrega.pedido.id!).subscribe(pedido => {
+      this.pedidoService.readById(this.entrega.pedido.id!).subscribe(pedido => {
         this.pedido = pedido;
         this.pedido.status = 'Pedido entregue';
         this.pedido.carrinho = this.carrinho;
+
         this.atualizarPedido(this.pedido);
 
       })
 
       this.entrega.pedido = this.pedido;
-      this.entrega.data_criacao = new Date();
+
+      let index = this.sortedEntregas.findIndex(entrega => entrega.id === entregaId);
+      this.sortedEntregas[index].data_criacao = new Date();      
+      this.entrega.data_criacao =  this.sortedEntregas[index].data_criacao ;
+
       this.atualizarEntrega(this.entrega);
     });
   }
 
   // tslint:disable-next-line:typedef
-  async atualizarPedido(pedido: Pedido) {
-    const response = await this.pedidoService.update(pedido).subscribe(() => {
+  atualizarPedido(pedido: Pedido) {
+    this.pedidoService.update(pedido).subscribe(() => {
       this.pedidoService.showMessage('Pedido Entregue');
     });
   }
 
   // tslint:disable-next-line:typedef
-  async atualizarCarrinho(carrinho: Carrinho) {
-    const response1 = await this.carrinhoService.update(carrinho).subscribe(() => {
+  atualizarCarrinho(carrinho: Carrinho) {
+    this.carrinhoService.update(carrinho).subscribe(() => {
       this.carrinhoService.showMessage('Pedido Entregue');
     });
   }
 
-  async atualizarEntrega(entrega: Entrega) {
-    const response2 = await this.entregaService.update(entrega).subscribe(() => {
+  atualizarEntrega(entrega: Entrega) {
+  this.entregaService.update(entrega).subscribe(() => {
       this.entregaService.showMessage('Pedido Entregue');
     });
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
 
   }
 }

@@ -18,6 +18,7 @@ import { StarComponent } from '../star/star.component';
   selector: 'app-pedido-list',
   standalone: true,
   templateUrl: './pedido-list.component.html',
+  styleUrl: './pedido-list.component.css',
   imports: [
     CaminhoMenuComponent,
     CommonModule, 
@@ -162,13 +163,17 @@ export class PedidoListComponent implements OnInit {
     this.ultimoSort = 'data;'
   }
 
+  removerAcentos(str: string): string {
+    // Converte para minúsculas e remove os diacríticos usando Unicode
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
 
   // tslint:disable-next-line:typedef
   get filter() {
     return this._filterBy;
   }
 
-  set filter(value: string) {
+  set filter(value: string) { 
     this._filterBy = value;
 
     if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999998) {
@@ -176,10 +181,9 @@ export class PedidoListComponent implements OnInit {
       this.filteredPedidos =
         this.pedidos
           .filter((pedido: Pedido) => pedido.enviado !== true)
-          .filter((pedido: Pedido) => pedido.carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1)
+          .filter((pedido: Pedido) => this.removerAcentos(pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
           .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
           .sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
-      this.sortedPedidos = this.filteredPedidos;
 
     } else {
 
@@ -187,25 +191,27 @@ export class PedidoListComponent implements OnInit {
         this.pedidos
           .filter((pedido: Pedido) => pedido.enviado !== true)
           .filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
-          .filter((pedido: Pedido) => pedido.carrinho.produto.nome.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1)
+          .filter((pedido: Pedido) => this.removerAcentos(pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
           .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
           .sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
-      this.sortedPedidos = this.filteredPedidos;
 
-    }
-  }
+    } 
+
+    this.sortPedidosByName();
+
+  } 
 
 
 
-  async entregaCreate(pedidoId: number): Promise<void> {
+  entregaCreate(pedidoId: number): void {
 
     // tslint:disable-next-line:no-unused-expression
-    const response = await  this.pedidoService.readById(pedidoId).subscribe(async pedido => {
+    this.pedidoService.readById(pedidoId).subscribe(async pedido => {
       this.pedido = pedido;
 
       if (this.pedido.enviado !== true) { 
 
-        const response = await this.carrinhoService.readById(this.pedido.carrinho.id!).subscribe(carrinho => {
+        this.carrinhoService.readById(this.pedido.carrinho.id!).subscribe(carrinho => {
           this.carrinho = carrinho;
           this.carrinho.status = 'Saiu para entrega';
           this.atualizarCarrinho(this.carrinho);
@@ -214,11 +220,15 @@ export class PedidoListComponent implements OnInit {
         this.pedido.enviado = false;
         this.pedido.status = 'Saiu para entrega';
         this.pedido.carrinho = this.carrinho;
-        const response2 = await this.atualizarPedido(this.pedido);
+
+        let index = this.sortedPedidos.findIndex(pedido => pedido.id === pedidoId);
+        this.sortedPedidos[index].status = 'Saiu para entrega';      
+
+        this.atualizarPedido(this.pedido);
 
         this.entrega.pedido = this.pedido;
 
-        const response3 = await this.entregaService.create(this.entrega).subscribe(() => {
+        this.entregaService.create(this.entrega).subscribe(() => {
           this.entregaService.showMessage('Saiu para entrega');
         });
       }
