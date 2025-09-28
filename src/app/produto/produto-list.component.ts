@@ -244,13 +244,13 @@ export class ProdutoListComponent implements OnInit {
 
       isCreate.then ((value) => {
         this.carrinhoService.showMessage('Produto adicionado no carrinho');
+        this.router.navigate(['/carrinho']);
       }).catch((error) =>{
         console.log(error);
       }).finally(() => {
         console.log('finally')
       })
 
-    this.router.navigate(['/carrinho']);
 
   });
 
