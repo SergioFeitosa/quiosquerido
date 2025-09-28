@@ -206,7 +206,7 @@ export class PedidoListComponent implements OnInit {
   entregaCreate(pedidoId: number): void {
 
     // tslint:disable-next-line:no-unused-expression
-    this.pedidoService.readById(pedidoId).subscribe(async pedido => {
+    this.pedidoService.readById(pedidoId).subscribe(pedido => {
       this.pedido = pedido;
 
       if (this.pedido.enviado !== true) { 
@@ -214,6 +214,7 @@ export class PedidoListComponent implements OnInit {
         this.carrinhoService.readById(this.pedido.carrinho.id!).subscribe(carrinho => {
           this.carrinho = carrinho;
           this.carrinho.status = 'Saiu para entrega';
+          this.carrinho.observacao = pedido.observacao;
           this.atualizarCarrinho(this.carrinho);
         })
 
@@ -284,22 +285,49 @@ export class PedidoListComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   atualizarPedido(pedido: Pedido) {
-    this.pedidoService.update(pedido).subscribe(() => {
-      this.pedidoService.showMessage('Pedido Atualizado');
-      this.carrinhoService.readById(pedido.carrinho.id!).subscribe(carrinho => {
-         this.carrinho = pedido.carrinho;
-         this.carrinho.observacao = pedido.observacao;
-         this.atualizarCarrinho(pedido.carrinho);
+
+    const isUpdate = new Promise<Pedido>((resolve, reject) =>
+      this.pedidoService.update(this.pedido).subscribe(() => {
+        resolve(this.pedido);
       })
+    )
 
-    });
+    isUpdate.then ((value) => {
+      this.pedidoService.showMessage('Pedido atualizado');
+      this.atualizarCarrinho(pedido.carrinho);
+    }).catch((error) =>{
+      console.log(error);
+    }).finally(() => {
+      console.log('finally')
+    })
+
+      // this.pedidoService.update(pedido).subscribe(() => {
+      //   this.pedidoService.showMessage('Pedido Atualizado');
+      //   this.atualizarCarrinho(pedido.carrinho);
+      // });
+      // this.carrinhoService.readById(pedido.carrinho.id!).subscribe(carrinho => {
+      //    this.carrinho = pedido.carrinho;
+      //    this.carrinho.observacao = pedido.observacao;
+      //    this.atualizarCarrinho(pedido.carrinho);
+      // })
+
+
   }
 
-  // tslint:disable-next-line:typedef
+
   atualizarCarrinho(carrinho: Carrinho) {
-    this.carrinhoService.update(carrinho).subscribe(() => {
-      this.carrinhoService.showMessage('Carrinho Atualizado');
-    });
-  }
+    const isUpdate = new Promise<Carrinho>((resolve, reject) =>
+        this.carrinhoService.update(carrinho).subscribe(() => {
+          resolve(this.carrinho);
+        })
+      )
 
+      isUpdate.then ((value) => {
+        this.carrinhoService.showMessage('Carrinho atualizado');
+      }).catch((error) =>{
+        console.log(error);
+      }).finally(() => {
+        console.log('finally')
+      })
+  }
 }
