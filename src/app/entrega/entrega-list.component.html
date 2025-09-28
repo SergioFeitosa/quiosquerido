@@ -66,15 +66,25 @@
         <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} </td>
         <td style='color: blue; font-weight: 400;'>{{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} </td>
         <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab " 
+                        matMiniFab 
+                        aria-label="Entregar">
+                    <mat-icon class="my-icon">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
  
@@ -631,6 +641,11 @@
         <button type="button" class="btn btn-danger" (click)="closePopup()">
           Fechar
         </button>
+      </div>
+      <div class="modal-body row">
+        <span style='font-weight: bolder;'>Avaliação</span>
+        <span><app-star [rating]="this.produto.avaliacao"></app-star></span>
+
       </div>
       <div class="modal-body row">
         <img [src]='this.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="400" height="400">

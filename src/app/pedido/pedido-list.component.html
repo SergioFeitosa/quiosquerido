@@ -139,7 +139,31 @@
 
           <td style='color: #4f63e7; font-weight: 400;'>{{ pedido.isencao }} </td>
           <td class="text-center">
-            <button (click)="openPopup( pedido.id! )"
+                <button (click)="openPopup( pedido.id! )" 
+                        class="my-custom-mini-fab " 
+                        matMiniFab 
+                        aria-label="Entregar"
+                        [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
+                        >
+                    <mat-icon class="my-icon">search</mat-icon>
+                </button>
+                <button routerLink="/pedido/delete/{{ pedido.id }}"
+                        matMiniFab 
+                        class="my-custom-mini-fab" 
+                        [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
+                        aria-label="Apagar pedido">
+                    <mat-icon class=" row my-icon">delete</mat-icon>
+                </button>
+                <button (click)="entregaCreate( pedido.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab" 
+                        [disabled]=" (telefone == 5511982551256 || telefone == 5599999999998) && pedido.status == 'Confirmado' ? false : true "
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon">beach_access</mat-icon>
+                </button>
+
+            
+            <!-- <button (click)="openPopup( pedido.id! )"
               [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
               <img src='/assets/images/lupa.jpg' class="figure-img img-fluid rounded" width="25" height="25"
                 title="Editar pedido">
@@ -155,7 +179,7 @@
               [disabled]=" (telefone == 5511982551256 || telefone == 5599999999998) && pedido.status == 'Confirmado' ? false : true ">
               <img src='/assets/images/garcon.jpg' class="figure-img img-fluid rounded" width="25" height="25"
                 title="Solicitar entrega">
-            </button>
+            </button> -->
           </td>
       </tr>
     </tbody>

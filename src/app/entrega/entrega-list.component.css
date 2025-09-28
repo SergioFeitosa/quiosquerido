@@ -24,3 +24,21 @@ input::placeholder{
   color: blue;
   font-weight: 200;
 }
+
+.my-icon {
+  font-size: 20px;
+}
+
+.my-custom-mini-fab .mat-icon {
+  font-size: 20px; /* Example: Larger icon size */
+  height: 28px;
+  width: 28px;  
+}    
+
+.my-custom-mini-fab {
+  margin-left: 0.5em; /* Example: Larger icon size */
+}    
+
+.my-custom-mini-fab:hover {
+  background-color: #fffda8;   
+}

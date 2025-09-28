@@ -13,8 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { interval, Subscription } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 
-@Component({
+@Component({ 
   templateUrl: './entrega-list.component.html',
   styleUrls: ['./entrega-list.component.css'],
   standalone: true,
@@ -22,7 +25,10 @@ import { interval, Subscription } from 'rxjs';
     FormsModule,
     CommonModule,
     CaminhoMenuComponent,
-    //StarComponent
+    MatButtonModule, 
+    MatDividerModule, 
+    MatIconModule,
+    StarComponent
 
   ]
 

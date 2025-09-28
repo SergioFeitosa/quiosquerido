@@ -13,6 +13,9 @@ import { PedidoService } from './pedido.service';
 import { Produto } from './../produto/produto';
 import { Router, RouterLink } from '@angular/router';
 import { StarComponent } from '../star/star.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-pedido-list',
@@ -24,8 +27,11 @@ import { StarComponent } from '../star/star.component';
     CommonModule, 
     FormsModule,
     RouterLink,
-    StarComponent
-    
+    StarComponent,
+    MatButtonModule, 
+    MatDividerModule, 
+    MatIconModule
+
   ]
 })
 
