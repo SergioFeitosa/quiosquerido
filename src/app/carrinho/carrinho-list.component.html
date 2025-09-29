@@ -147,9 +147,15 @@
         <td style='color: #4f63e7; font-weight: 400;font-size: 0.8em;'>{{ carrinho.isencao }} </td>
 
         <td (click)="openPopup(carrinho.id! )" class="text-center">
-          <p style="margin: 0; color: #4f63e7">
-            <small style="font-size: 0.8em;">{{ carrinho.status }}</small>
-          </p>
+          @if (carrinho.status === 'Excluído') {
+            <p style="margin: 0; color: red; font-size: 0.8em; " >
+              <small>{{ carrinho.status }}</small>
+            </p>
+          } @else {
+            <p style="margin: 0; color: #4f63e7; font-size: 0.8em; " >
+              <small>{{ carrinho.status }}</small>
+            </p>
+          } 
         </td>
       </tr>
     </tbody>
@@ -860,7 +866,7 @@
       </div>
       <div class="modal-body row">
         <div class='form-group row container'>
-          <span style='font-weight: bolder; color:blue'>ObservStatus:</span>
+          <span style='font-weight: bolder; color:blue'>Observação:</span>
           <div>
             <textarea name="observacaoModal1" [(ngModel)]='carrinho.observacao' class='form-control'
               (ngModelChange)="atualizarCarrinho(carrinho)"></textarea>

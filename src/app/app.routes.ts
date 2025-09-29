@@ -31,16 +31,16 @@ export const routes: Routes = [
         component: CarrinhoListComponent
       },
       {
-        path: 'carrinho/:id', component: CarrinhoListComponent
+        path: 'carrinho/:carrinhoId', component: CarrinhoListComponent
       },
       {
         path: 'carrinho/telefone/:telefone', component: CarrinhoListComponent
       },
       {
-        path: 'carrinho/update/:id', component: CarrinhoUpdateComponent
+        path: 'carrinho/update/:carrinhoId', component: CarrinhoUpdateComponent
       },
       {
-        path: 'carrinho/delete/:id', component: CarrinhoDeleteComponent
+        path: 'carrinho/delete/:carrinhoId', component: CarrinhoDeleteComponent
       },
       {
         path: 'code', component: CodeComponent
@@ -58,7 +58,7 @@ export const routes: Routes = [
         path: 'entrega', component: EntregaListComponent
       },
       {
-        path: 'entrega/update/:id', component: EntregaUpdateComponent
+        path: 'entrega/update/:entregaId', component: EntregaUpdateComponent
       },
       {
         path: 'fechamento', component: FechamentoListComponent
@@ -70,16 +70,16 @@ export const routes: Routes = [
         path: 'pedido', component: PedidoListComponent
       },
       {
-        path: 'pedido/:id', component: PedidoListComponent
+        path: 'pedido/:pedidoId', component: PedidoListComponent
       },
       {
         path: 'pedido/telefone/:telefone', component: PedidoListComponent
       },
       {
-        path: 'pedido/update/:id', component: PedidoUpdateComponent
+        path: 'pedido/update/:pedidoId', component: PedidoUpdateComponent
       },
       {
-        path: 'pedido/delete/:id', component: PedidoDeleteComponent
+        path: 'pedido/delete/:pedidoId', component: PedidoDeleteComponent
       },
       {
         path: 'pedidoBar', component: PedidoBarListComponent
@@ -91,7 +91,7 @@ export const routes: Routes = [
         path: 'produto/**', component: ProdutoListComponent
       },
       {
-        path: 'produto/:categoryId', component: ProdutoListComponent, title: 'Produtos por categoria'
+        path: 'produto/:categoriaId', component: ProdutoListComponent, title: 'Produtos por categoria'
       }, 
       {
         path: '**', component: Error404Component

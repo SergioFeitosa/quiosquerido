@@ -22,7 +22,7 @@ export class EntregaUpdateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    const id = +this.activatedRoute.snapshot.paramMap.get('entregaId')!;
 
     this.entregaService.readById(id).subscribe(entrega => {
       this.entrega = entrega;

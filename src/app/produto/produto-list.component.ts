@@ -121,7 +121,7 @@ export class ProdutoListComponent implements OnInit {
     environment.fundoColoridoEntrega = false;
     environment.fundoColoridoConta = false;
 
-    this._categoryId = this.activatedRoute.snapshot.paramMap.get('categoryId');
+    this._categoryId = this.activatedRoute.snapshot.paramMap.get('categoriaId');
 
     this.produtoService.read().subscribe(produto => {
       this.produtos = produto

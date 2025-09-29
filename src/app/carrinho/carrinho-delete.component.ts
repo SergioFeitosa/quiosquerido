@@ -19,10 +19,10 @@ export class CarrinhoDeleteComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    const id = +this.activatedRoute.snapshot.paramMap.get('carrinhoId')!;
 
     this.carrinhoService.delete(id).subscribe(() => {
-      this.carrinhoService.showMessage('Carrinho Deletado');
+      this.carrinhoService.showMessage('Carrinho Excluído');
       this.router.navigate(['/carrinho']);
     });
 
@@ -30,7 +30,7 @@ export class CarrinhoDeleteComponent implements OnInit {
 
   deleteCarrinho(id: number): void {
     this.carrinhoService.delete(id).subscribe(() => {
-      this.carrinhoService.showMessage('Carrinho Deletado');
+      this.carrinhoService.showMessage('Carrinho Excluído');
       this.router.navigate(['/carrinho']);
     });
   }

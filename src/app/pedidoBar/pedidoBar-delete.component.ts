@@ -20,10 +20,10 @@ export class PedidoBarDeleteComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    const id = +this.activatedRoute.snapshot.paramMap.get('pedidoId')!;
 
     this.pedidoService.delete(id).subscribe(() => {
-      this.pedidoService.showMessage('Pedido Deletado');
+      this.pedidoService.showMessage('Pedido Excluído');
       this.router.navigate(['/pedido']);
     });
 
@@ -31,7 +31,7 @@ export class PedidoBarDeleteComponent implements OnInit {
 
   deletePedido(id: number): void {
     this.pedidoService.delete(id).subscribe(() => {
-      this.pedidoService.showMessage('Pedido Deletado');
+      this.pedidoService.showMessage('Pedido Excluído');
       this.router.navigate(['/pedido']);
     });
   }
