@@ -309,16 +309,19 @@ export class CarrinhoListComponent implements OnInit {
     this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
       this.carrinho = carrinho;
 
-      let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
-      this.sortedCarrinhos.splice(index, 1);      
+      // let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
+      // this.sortedCarrinhos.splice(index, 1);      
+
+        let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
+        this.sortedCarrinhos[index].status = 'Excluído';      
+        carrinho.status = 'Excluído'
 
       const isDelete = new Promise<string>((resolve, reject) =>
-        this.carrinhoService.delete(carrinhoId).subscribe(() => {
+        this.carrinhoService.update(carrinho).subscribe(() => {
           this.message = 'Carrinho excluído'
           resolve(this.message);
         })
       )
-
 
       isDelete.then((value) => {
         this.carrinhoService.showMessage('Carrinho excluìdo');
