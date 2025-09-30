@@ -41,8 +41,7 @@
     <tbody>
       <tr style="cursor: pointer; ">
         <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
-            height="70" style="margin-top: 0.4em;">
+          <img [src]='carrinho.produto.imagem_url' class="img-fluid rounded" alt="..." >
         </td>
 
         <td style="color: #4f63e7; font-size: 0.8em;" (click)="openPopup(carrinho.id! )">
@@ -209,8 +208,7 @@
     <tbody>
       <tr style="cursor: pointer;">
         <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
-            height="70">
+          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." alt="..." width="70" height="70">
         </td>
         <td style="color: #4f63e7; font-size: 0.8em;" (click)="openPopup(carrinho.id! )">
           <p>{{ carrinho.produto.nome }}</p>
@@ -379,8 +377,7 @@
     <tbody>
       <tr style="cursor: pointer;">
         <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
-            height="70">
+          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded"  alt="..." >
         </td>
         <td style="color: #4f63e7; font-size: 0.7em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
         </td>
@@ -540,8 +537,7 @@
     <tbody>
       <tr style="cursor: pointer;">
         <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid
-            rounded" alt="..." width="100" height="70">
+          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." >
         </td>
         <td style="color: #4f63e7; font-size: 0.6em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
         </td>
@@ -698,7 +694,7 @@
     <tbody>
       <tr style="cursor: pointer;" (click)="openPopup(carrinho.id! )">
         <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="...">
+          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." >
         </td>
         <td (click)="openPopup(carrinho.id! )"
           style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade
@@ -764,7 +760,7 @@
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
       <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
-        <td><img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..."> </td>
+        <td><img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." > </td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{ carrinho.quantidade
           }} </td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;"> {{
