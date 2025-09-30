@@ -248,7 +248,6 @@ export class ProdutoListComponent implements OnInit {
       }).catch((error) =>{
         console.log(error);
       }).finally(() => {
-        console.log('finally')
       })
 
 

@@ -39,6 +39,7 @@ export class CarrinhoListComponent implements OnInit {
   private updateSubscription!: Subscription;
 
   login: boolean = false;
+  message: string = '';
 
   // modulo: string;
   // local: string;
@@ -90,6 +91,8 @@ export class CarrinhoListComponent implements OnInit {
     // this.modulo = 'Pedido';
     // this.local = environment.local;
     this.carrinho.quantidade = 1;
+
+
 
     environment.fundoColoridoCardapio = false;
     environment.fundoColoridoPedido = true;
@@ -156,6 +159,10 @@ export class CarrinhoListComponent implements OnInit {
       });
 
     }
+
+        this.login = this.carrinho.telefone - environment.telefone === 0
+
+
   }
 
   sortCarrinhosByName() {
@@ -244,8 +251,6 @@ export class CarrinhoListComponent implements OnInit {
 
 
         let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
-        console.log('index ' + index )
-        console.log('entrega' + carrinho)
         this.sortedCarrinhos[index].status = 'Confirmado';      
 
         this.atualizarCarrinho(this.carrinho);
@@ -274,7 +279,6 @@ export class CarrinhoListComponent implements OnInit {
         }).catch((error) =>{
           console.log(error);
         }).finally(() => {
-          console.log('finally')
         })
       }
     });
@@ -296,8 +300,37 @@ export class CarrinhoListComponent implements OnInit {
       }).catch((error) =>{
         console.log(error);
       }).finally(() => {
-        console.log('finally')
       })
+  }
+
+  // tslint:disable-next-line:typedef
+  excluirCarrinho(carrinhoId: number) {
+  
+    this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+      this.carrinho = carrinho;
+
+      let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
+      this.sortedCarrinhos.splice(index, 1);      
+
+      const isDelete = new Promise<string>((resolve, reject) =>
+        this.carrinhoService.delete(carrinhoId).subscribe(() => {
+          this.message = 'Carrinho excluído'
+          resolve(this.message);
+        })
+      )
+
+
+      isDelete.then((value) => {
+        this.carrinhoService.showMessage('Carrinho excluìdo');
+      }).catch((error) => {
+        console.log(error);
+      }).finally(() => {
+        this.closePopup();
+      })
+
+      
+    })
+
   }
 
   // tslint:disable-next-line:typedef

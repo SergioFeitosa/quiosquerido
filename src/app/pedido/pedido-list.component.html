@@ -41,6 +41,10 @@
     </thead>
     @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
     <tbody>
+      @if ((+this.telefone == 5511982551256 || +this.telefone == 5599999999998) && (
+      (pedido.carrinho.status !='Excluído' && pedido.carrinho.status != 'Pedido Entregue')
+      )) {
+
       <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
 
         <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
@@ -139,30 +143,22 @@
 
           <td style='color: #4f63e7; font-weight: 400;'>{{ pedido.isencao }} </td>
           <td class="text-center">
-                <button (click)="openPopup( pedido.id! )" 
-                        class="my-custom-mini-fab " 
-                        matMiniFab 
-                        aria-label="Entregar"
-                        [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
-                        >
-                    <mat-icon class="my-icon">search</mat-icon>
-                </button>
-                <button (click)="excluirPedido( pedido.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab" 
-                        [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
-                        aria-label="Excluir pedido">
-                    <mat-icon class=" row my-icon">delete</mat-icon>
-                </button>
-                <button (click)="entregaCreate( pedido.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab" 
-                        [disabled]=" (telefone == 5511982551256 || telefone == 5599999999998) && pedido.status == 'Confirmado' ? false : true "
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon">beach_access</mat-icon>
-                </button>
+            <button (click)="openPopup( pedido.id! )" class="my-custom-mini-fab " matMiniFab aria-label="Entregar"
+              [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
+              <mat-icon class="my-icon">search</mat-icon>
+            </button>
+            <button (click)="excluirPedido( pedido.id! )" matMiniFab class="my-custom-mini-fab"
+              [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
+              aria-label="Excluir pedido">
+              <mat-icon class=" row my-icon">delete</mat-icon>
+            </button>
+            <button (click)="entregaCreate( pedido.id! )" matMiniFab class="my-custom-mini-fab"
+              [disabled]=" (telefone == 5511982551256 || telefone == 5599999999998) && pedido.status == 'Confirmado' ? false : true "
+              aria-label="Entregar">
+              <mat-icon class=" row my-icon">beach_access</mat-icon>
+            </button>
 
-            
+
             <!-- <button (click)="openPopup( pedido.id! )"
               [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
               <img src='/assets/images/lupa.jpg' class="figure-img img-fluid rounded" width="25" height="25"
@@ -182,6 +178,7 @@
             </button> -->
           </td>
       </tr>
+      }
     </tbody>
 
     }
@@ -230,6 +227,10 @@
     </thead>
     @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
     <tbody>
+      @if ((+this.telefone == 5511982551256 || +this.telefone == 5599999999998) && (
+      (pedido.carrinho.status !='Excluído' && pedido.carrinho.status != 'Pedido Entregue')
+      )) {
+
       <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
         <img [src]='pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
           rounded" alt="..." width="100" height="70">
@@ -252,25 +253,23 @@
         <td style='color: #4f63e7; font-weight: 400;'>{{ pedido.isencao }} </td>
         <td style='color: #4f63e7; font-weight: 400;'>{{ pedido.data_criacao | date:'HH:mm:ss'}} </td>
         <td class="text-center">
-          <button (click)="openPopup( pedido.id! )"
+          <button (click)="openPopup( pedido.id! )" class="my-custom-mini-fab " matMiniFab aria-label="Entregar"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" width="25" height="25" title="Editar pedido">
+            <mat-icon class="my-icon">search</mat-icon>
           </button>
-
-          <button routerLink="/pedido/delete/{{ pedido.id }}"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
-            <img src='/assets/images/botao-cancelar.jpg' class="figure-img
-              img-fluid rounded" width="25" height="25" title="Remover pedido">
+          <button (click)="excluirPedido( pedido.id! )" matMiniFab class="my-custom-mini-fab"
+            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false"
+            aria-label="Excluir pedido">
+            <mat-icon class=" row my-icon">delete</mat-icon>
           </button>
-
-          <button (click)="entregaCreate( pedido.id! )"
-            [disabled]=" (+telefone == 5511982551256 || +telefone == 5599999999998) ? false : true">
-            <img src='/assets/images/garcon.jpg' class="figure-img img-fluid
-              rounded" width="25" height="25" title="Solicitar entrega">
+          <button (click)="entregaCreate( pedido.id! )" matMiniFab class="my-custom-mini-fab"
+            [disabled]=" (telefone == 5511982551256 || telefone == 5599999999998) && pedido.status == 'Confirmado' ? false : true "
+            aria-label="Entregar">
+            <mat-icon class=" row my-icon">beach_access</mat-icon>
           </button>
         </td>
       </tr>
+      }
     </tbody>
     }
     } @else {
@@ -588,10 +587,12 @@
         <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Produto</th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Telefone</th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Local</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Observacao</th>
+        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Observacao
+        </th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Cortesia</th>
         <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Hora</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Ações</th>
+        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Ações
+        </th>
       </tr>
     </thead>
     @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
@@ -716,8 +717,10 @@
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
         </td>
 
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{pedido.isencao }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{pedido.data_criacao | date:'HH:mm:ss'}} </td>
+        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{pedido.isencao
+          }} </td>
+        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>
+          {{pedido.data_criacao | date:'HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">

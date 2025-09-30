@@ -148,14 +148,14 @@
 
         <td (click)="openPopup(carrinho.id! )" class="text-center">
           @if (carrinho.status === 'Excluído') {
-            <p style="margin: 0; color: red; font-size: 0.8em; " >
-              <small>{{ carrinho.status }}</small>
-            </p>
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
           } @else {
-            <p style="margin: 0; color: #4f63e7; font-size: 0.8em; " >
-              <small>{{ carrinho.status }}</small>
-            </p>
-          } 
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -208,11 +208,11 @@
     @for (carrinho of sortedCarrinhos; track carrinho.id) {
     <tbody>
       <tr style="cursor: pointer;">
-        <td>
+        <td (click)="openPopup(carrinho.id! )">
           <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
             height="70">
         </td>
-        <td style="color: #4f63e7; font-size: 0.8em;">
+        <td style="color: #4f63e7; font-size: 0.8em;" (click)="openPopup(carrinho.id! )">
           <p>{{ carrinho.produto.nome }}</p>
         </td>
         @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
@@ -319,8 +319,15 @@
           {{ carrinho.isencao }}
         </td>
         <td (click)="openPopup(carrinho.id! )" class="text-center">
-          <p style="margin: 0; "><small style="color: #4f63e7;font-size: 0.8em;">{{
-              carrinho.status }}</small></p>
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
 
       </tr>
@@ -371,11 +378,12 @@
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
       <tr style="cursor: pointer;">
-        <td>
+        <td (click)="openPopup(carrinho.id! )">
           <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="100"
             height="70">
         </td>
-        <td style="color: #4f63e7; font-size: 0.7em;">{{ carrinho.produto.nome }}</td>
+        <td style="color: #4f63e7; font-size: 0.7em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
+        </td>
         @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
         (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
 
@@ -467,15 +475,22 @@
             type="text" style='color: red;font-size: 0.7em;' [disabled]="true">
         </td>
         }
-        <td style="color: #4f63e7;font-size: 0.8em;">{{ carrinho.local }} </td>
-        <td style="color: #4f63e7;font-size: 0.8em;">{{ carrinho.data_criacao | date:'HH:mm:ss'}} </td>
+        <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.local }} </td>
+        <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.data_criacao |
+          date:'HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
           {{ carrinho.telefone }}
         </td>
-        <td name="status" id="status" (click)="openPopup(carrinho.id! )" class="text-center">
-          <p style="margin: 0;">
-            <small style="color: #4f63e7;font-size: 0.8em;">{{carrinho.status }}</small>
+        <td (click)="openPopup(carrinho.id! )" class="text-center">
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
           </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -524,11 +539,12 @@
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
       <tr style="cursor: pointer;">
-        <td>
+        <td (click)="openPopup(carrinho.id! )">
           <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid
             rounded" alt="..." width="100" height="70">
         </td>
-        <td style="color: #4f63e7; font-size: 0.6em;">{{ carrinho.produto.nome }}</td>
+        <td style="color: #4f63e7; font-size: 0.6em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
+        </td>
         @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
         (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
 
@@ -620,13 +636,20 @@
             type="text" style='color: red;font-size: 0.6em; width: 7em;' [disabled]="true">
         </td>
         }
-        <td style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.local }} </td>
-        <td style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.data_criacao | date:'HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">
-          {{ carrinho.telefone }}
-        </td>
-        <td style="color: #4f63e7;font-size: 0.6em;" (click)="openPopup(carrinho.id! )" class="text-center">
-          {{carrinho.status }}
+        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.local }} </td>
+        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.data_criacao |
+          date:'HH:mm:ss'}} </td>
+        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.telefone }} </td>
+        <td (click)="openPopup(carrinho.id! )" class="text-center">
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.6em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.6em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -674,16 +697,28 @@
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
       <tr style="cursor: pointer;" (click)="openPopup(carrinho.id! )">
-        <td>
+        <td (click)="openPopup(carrinho.id! )">
           <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="...">
         </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade
+        <td (click)="openPopup(carrinho.id! )"
+          style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade
           }}</td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
+        <td (click)="openPopup(carrinho.id! )"
+          style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
           }}</td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{
+        <td (click)="openPopup(carrinho.id! )"
+          style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{
           carrinho.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{carrinho.status }}
+        <td (click)="openPopup(carrinho.id! )" class="text-center">
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -703,8 +738,8 @@
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..."
-            [(ngModel)]='filter' style="color: #4f63e7; " />
+          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
+            style="color: #4f63e7; " />
           <span class="input-group-text">
             <i class="bi bi-search"></i>🔍
           </span>
@@ -728,17 +763,24 @@
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr style="cursor: pointer;" (click)="openPopup(carrinho.id! )">
-        <td>
-          <img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="...">
-        </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade
-          }}</td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
-          }}</td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{
+      <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
+        <td><img [src]='carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..."> </td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{ carrinho.quantidade
+          }} </td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;"> {{
+          carrinho.produto.nome }} </td>
+        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{
           carrinho.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{carrinho.status }}
+        <td (click)="openPopup(carrinho.id! )" style="font-size: 0.8em; text-align: center; align-content: center;">
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -758,8 +800,8 @@
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..."
-            [(ngModel)]='filter' style="color: #4f63e7; " />
+          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
+            style="color: #4f63e7; " />
           <span class="input-group-text">
             <i class="bi bi-search"></i>🔍
           </span>
@@ -780,17 +822,26 @@
         <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> STATUS </th>
       </tr>
     </thead>
-    
+
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr style="cursor: pointer;" (click)="openPopup(carrinho.id! )">
+      <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
         <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;">{{ carrinho.quantidade
           }}</td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
           }}</td>
         <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;">{{
           carrinho.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;"> {{carrinho.status }}
+        <td (click)="openPopup(carrinho.id! )" style=" text-align: center; align-content: center;">
+          @if (carrinho.status === 'Excluído') {
+          <p style="margin: 0; color: red; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          } @else {
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+            <small>{{ carrinho.status }}</small>
+          </p>
+          }
         </td>
       </tr>
     </tbody>
@@ -809,10 +860,10 @@
     <div class="modal-content" style='background-color:rgb(246, 253, 232)'>
       <div class="modal-header"
         style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
-        @if (statusPendente) {
+        @if (carrinho.status === 'Pendente') {
         <div>
-          <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
-            Cancelar
+          <button (click)="excluirCarrinho( carrinho.id! );">
+            Excluir
           </button>
         </div>
 
@@ -855,6 +906,8 @@
         </div>
       </div>
 
+      @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997 || login ) &&
+      (carrinho.status != 'Confirmado' && carrinho.status != 'Excluído')) {
       <div class="modal-body row">
         <span style='font-weight: bolder; color:blue'>Quantidade:</span>
         <a style="width: 2em; margin-top: 0.5em" (click)="minus(carrinho)"><i class="fa
@@ -873,6 +926,22 @@
           </div>
         </div>
       </div>
+      } @else {
+      <div class="modal-body row">
+        <span style='font-weight: bolder; color:blue'>Quantidade:</span>
+        <span name="quantidadeModal1" style="width: 3em;" name="prp"  class='form-control'> {{ carrinho.quantidade }}</span>
+      </div>
+      <div class="modal-body row">
+        <div class='form-group row container'>
+          <span style='font-weight: bolder; color:blue'>Observação:</span>
+          <div>
+            <textarea name="observacaoModal1" [(ngModel)]='carrinho.observacao' class='form-control'
+              (ngModelChange)="atualizarCarrinho(carrinho)"></textarea>
+          </div>
+        </div>
+      </div>
+
+      }
       <div class="modal-body row">
         <span style='font-weight: bolder;'>Tempo de Preparação:</span>
         <span>{{ produto.tempo_preparacao }} </span>

@@ -316,7 +316,6 @@ export class PedidoListComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     }).finally(() => {
-      console.log('finally')
     })
 
 
@@ -363,7 +362,6 @@ export class PedidoListComponent implements OnInit {
       }).catch((error) => {
         console.log(error);
       }).finally(() => {
-        console.log('finally')
       })
 
       
@@ -384,7 +382,6 @@ export class PedidoListComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     }).finally(() => {
-      console.log('finally')
     })
   }
 
