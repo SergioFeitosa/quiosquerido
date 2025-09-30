@@ -20,11 +20,11 @@
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th style='width: 1%;'></th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+        <th style='width: 6%;'></th>
+        <th style='width: 69%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
 
@@ -34,8 +34,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td >
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
-            style="margin: 0;">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;" >
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }}</td>
          
@@ -67,11 +66,11 @@
   <table class="table table-bordered table-striped" style="margin-top: 1em;">
     <thead>
       <tr>
-        <th style='width: 1%;'></th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+        <th style='width: 7%;'></th>
+        <th style='width: 67%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
       </tr>
@@ -79,9 +78,8 @@
     <tbody>
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
-        <td style='padding-right: 0px; display: flex; justify-content: center;align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"
-            style="margin: 0;">
+        <td style='display: flex; justify-content: center;align-items: center; '>
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70" style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
@@ -111,11 +109,11 @@
   <table class="table table-bordered table-striped" style="margin-top: 1em;">
     <thead>
       <tr>
-        <th style='width: 1%;'></th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+        <th style='width: 10%;'></th>
+        <th style='width: 65%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
       </tr>
@@ -124,7 +122,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td style='display: flex; justify-content: center;align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
@@ -156,10 +154,10 @@
     <thead>
       <tr>
         <th style='width: 10%;'></th>
-        <th style='width: 65%; color: #2494fc; font-weight: 500; font-size: 1.2em;'> 
+        <th style='width: 65%; color: #2494fc; font-weight: 500; font-size: 1.0em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 1.0em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
       </tr>
@@ -168,7 +166,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td style='display: flex; justify-content: center; align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="80" height="80">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 400;font-size: 1.0em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 400;font-size: 1.0em;'>R$ {{ produto.preco }} </td>
@@ -199,10 +197,10 @@
     <thead>
       <tr>
         <th style='width: 10%;'></th>
-        <th style='width: 65%; color: #2494fc; font-weight: 500; font-size: 1.2em;'> 
+        <th style='width: 65%; color: #2494fc; font-weight: 500; font-size: 1.0em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 1.0em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
       </tr>
@@ -211,7 +209,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td style='display: flex; justify-content: center; align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 400;font-size: 1.0em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 400;font-size: 1.0em;'>R$ {{ produto.preco }} </td>
@@ -254,7 +252,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td style=' display: flex; justify-content: center; align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.8em;'>R$ {{ produto.preco }} </td>
@@ -285,10 +283,10 @@
     <thead>
       <tr>
         <th style='width: 20%;'></th>
-        <th style='width: 60%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+        <th style='width: 60%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> 
           <a (click)="sortProductsByName()" style="cursor: pointer;">ITEM</a> 
         </th>
-        <th style='width: 20%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+        <th style='width: 20%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> 
           <a (click)="sortProductsByPrice()" style="cursor: pointer;">PREÇO</a>
         </th>
       </tr>
@@ -297,7 +295,7 @@
       @for (produto of sortedProducts; track produto.nome) {
       <tr (click)="openPopup(produto.id! )">
         <td style='display: flex; justify-content: center; align-items: center; '>
-          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70">
+          <img [src]='produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="70" height="70"  style="margin: 0.1em;">
         </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.7em;'>{{ produto.nome }} </td>
         <td style='width: 1%; color: #4f63e7; font-weight: 500;font-size: 0.7em;'>R$ {{ produto.preco }} </td>
