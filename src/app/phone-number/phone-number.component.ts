@@ -116,7 +116,7 @@ export class PhoneNumberComponent implements OnInit {
       alert('erro no numero do telefone. Tente Novamente!!! ' + this.phoneNumber)
       if (window.recaptchaVerifier) window.recaptchaVerifier.clear();
       interval(1000).subscribe(n => window.location.reload());
-      this.router.navigate(['/cardapioPrincipal'])
+      this.router.navigate(['/'])
       
     })
   }
