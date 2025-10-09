@@ -1,6 +1,6 @@
 
 import { NavBarService } from './nav-bar.service';
-import { booleanAttribute, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, NgZone, OnInit } from '@angular/core';
+import { booleanAttribute, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -68,10 +68,10 @@ export class NavBarComponent implements OnInit {
 
   } 
 
-  // tslint:disable-next-line:typedef
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
+  // // tslint:disable-next-line:typedef
+  // toggleNavbar() {
+  //   this.navbarOpen = !this.navbarOpen;
+  // }
 
   // tslint:disable-next-line:typedef
   Ajuda() {
@@ -79,10 +79,10 @@ export class NavBarComponent implements OnInit {
   }
 
 
-  // tslint:disable-next-line:typedef
-  onOtpChange(otp: string) {
-    this.otp = otp;
-  }
+  // // tslint:disable-next-line:typedef
+  // onOtpChange(otp: string) {
+  //   this.otp = otp;
+  // }
 
   // getOTP() {
 
@@ -133,39 +133,39 @@ export class NavBarComponent implements OnInit {
   closePopup2() {
     this.displayStyle = 'none';
     this.displayStyle2 = 'none';
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
+    // let currentUrl = this.router.url;
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    // this.router.onSameUrlNavigation = 'reload';
+    // this.router.navigate([currentUrl]);
 
   }
 
-  validarTelefone(): void {
+  // validarTelefone(): void {
 
-    if (this.telefone > 0) {
-      environment.telefone = this.telefone;
-      this.enviarCodigo();
-    }
-  }
+  //   if (this.telefone > 0) {
+  //     environment.telefone = this.telefone;
+  //     this.enviarCodigo();
+  //   }
+  // }
 
 
 
-  enviarCodigo(): void {
-    // tslint:disable-next-line:comment-format
-    //const telefone = this.navForm.get('telefone').value;
-    const codigoGerado = Math.random() * this.telefone;
-    this.navBarService.enviarCodigo(this.telefone.toString(), codigoGerado.toString());
+  // enviarCodigo(): void {
+  //   // tslint:disable-next-line:comment-format
+  //   //const telefone = this.navForm.get('telefone').value;
+  //   const codigoGerado = Math.random() * this.telefone;
+  //   this.navBarService.enviarCodigo(this.telefone.toString(), codigoGerado.toString());
 
-  }
+  // }
 
-  validarCodigo(): void {
+  // validarCodigo(): void {
 
-    // tslint:disable-next-line:semicolon
-    // this.updateClassDisabled();  
-    this.closePopup2();
-    this.closePopup();
+  //   // tslint:disable-next-line:semicolon
+  //   // this.updateClassDisabled();  
+  //   this.closePopup2();
+  //   this.closePopup();
 
-  }
+  // }
 
   logout() {
     return this.afAuth.signOut().then(() => {
@@ -178,13 +178,13 @@ export class NavBarComponent implements OnInit {
 
 
 
-  phone() {
-    return this.afAuth.signOut().then(() => {
-      this.ngZone.run(() => {
-        this.router.navigate(['/phone']);
-      });
-    });
-  }
+  // phone() {
+  //   return this.afAuth.signOut().then(() => {
+  //     this.ngZone.run(() => {
+  //       this.router.navigate(['/phone']);
+  //     });
+  //   });
+  // }
 
   handleEvent(event: number) {
     this.telefone = event;

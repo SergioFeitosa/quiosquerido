@@ -10,3 +10,35 @@
 .example-selected-value {
   margin: 15px 0;
 }
+
+.a {
+  color: #2494fc; 
+  font-weight: 500;
+}
+
+/* Aplica border-radius em todos os cantos da tabela */
+table {
+  border-collapse: separate; /* Necessário para border-radius funcionar em tabelas */
+  border-spacing: 0; /* Remove o espaço entre as células */
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+
+tfoot {
+
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+
+}

@@ -1,19 +1,17 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, NgZone, CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter } from '@angular/core';
-import firebase from 'firebase/compat/app';
+import { Component, OnInit, NgZone, CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { interval } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, formatNumber } from '@angular/common';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, PhoneAuthProvider, signInWithCredential } from "firebase/auth";
 import { environment } from '../../environments/environment';
-import { ProdutoService } from '../produto/produto.service';
 import { Produto } from '../produto/produto';
-import { NavBarService } from '../nav-bar/nav-bar.service';
 import { LoginService } from '../services/login.service';
 import 'firebase/compat/auth';
 import { initializeApp } from 'firebase/app';
-import { Application } from 'express';
+
+
 @Component({
   selector: 'app-phone-number',
   templateUrl: './phone-number.component.html',
@@ -23,15 +21,8 @@ import { Application } from 'express';
     FormsModule,
     NgOtpInputModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
-    NavBarService
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-
-//  @Injectable({
-//    providedIn: 'root'
-//  })
 
 export class PhoneNumberComponent implements OnInit {
 
@@ -39,8 +30,6 @@ export class PhoneNumberComponent implements OnInit {
   applicationVerifier: any;
   recaptchaVerifier: any;
   recapt: any;
-  // tslint:disable-next-line:quotemark
-  // tslint:disable-next-line:member-ordering
   displayCode = 'none';
   teste = 'teste'
   otp!: number;
@@ -57,12 +46,7 @@ export class PhoneNumberComponent implements OnInit {
   constructor(
     private router: Router,
     private ngZone: NgZone,
-    //private produtoListComponent: ProdutoListComponent,
-    //private navBarComponent: NavBarComponent,
     private loginService: LoginService,
-    private navBarService: NavBarService,
-    private produtoService: ProdutoService,
-
 
   ) {
 
@@ -74,12 +58,8 @@ export class PhoneNumberComponent implements OnInit {
     isPasswordInput: false,
     disableAutoFocus: false,
     placeholder: '',
-    inputStyles: {
-      width: '25px',
-      height: '25px',
-      color: '#041794',      
-    },
-
+    inputClass: 'my-custom-input',
+    autofocus: "autofocus"
   };
 
   currentValue: string = '';
@@ -91,11 +71,10 @@ export class PhoneNumberComponent implements OnInit {
     this.auth = getAuth();
     this.auth.languageCode = 'pt-Br';
     this.displayCode = 'none';
+
   }
 
   async getOtp() {
-
-    //window.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'sign-in-button', { size: 'invisible' })
 
     window.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'sign-in-button', {
       'size': 'invisible',
@@ -113,7 +92,7 @@ export class PhoneNumberComponent implements OnInit {
       environment.login = true;
       this.displayCode = 'block';
     }).catch((error) => {
-      alert('erro no numero do telefone. Tente Novamente!!! ' + this.phoneNumber)
+      console.error('Erro no numero do telefone. Tente Novamente!!!  ', error.message);
       if (window.recaptchaVerifier) window.recaptchaVerifier.clear();
       interval(1000).subscribe(n => window.location.reload());
       this.router.navigate(['/'])
@@ -135,8 +114,7 @@ export class PhoneNumberComponent implements OnInit {
         this.loginService.login();
 
       }).catch((error: any) => {
-        console.error('Error during verification:', error.message);
-        alert('erro no código enviado. Tente Novamente!!! ' + error.message)
+        console.error('Erro durante a verificação: ', error.message);
         interval(1000).subscribe(n => window.location.reload());
         this.router.navigate(['/'])
     })

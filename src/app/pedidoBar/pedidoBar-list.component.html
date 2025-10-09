@@ -142,7 +142,7 @@
           </textarea>
           </td>
           <td style='color: blue; font-weight: 400;'>{{ pedido.local }} </td>
-          <td style='color: blue; font-weight: 400;'>{{ pedido.data_criacao | date:'HH:mm:ss'}} </td>
+          <td style='color: blue; font-weight: 400;'>{{ pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
 
           <td style='color: blue; font-weight: 400;'>{{ pedido.telefone }} </td>
           <td style='color: blue; font-weight: 400;'>{{ pedido.isencao }} </td>
@@ -232,7 +232,7 @@
         </td>
 
         <td>{{ pedido.isencao }} </td>
-        <td>{{ pedido.data_criacao | date:'HH:mm:ss'}} </td>
+        <td>{{ pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
@@ -319,7 +319,7 @@
         </td>
 
         <td>{{ pedido.isencao }} </td>
-        <td>{{ pedido.data_criacao | date:'HH:mm:ss'}} </td>
+        <td>{{ pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
@@ -414,7 +414,7 @@
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
           pedido.isencao }} </td>
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          pedido.data_criacao | date:'HH:mm:ss'}} </td>
+          pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
@@ -509,7 +509,7 @@
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
           pedido.isencao }} </td>
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          pedido.data_criacao | date:'HH:mm:ss'}} </td>
+          pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
@@ -604,7 +604,7 @@
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
           pedido.isencao }} </td>
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          pedido.data_criacao | date:'HH:mm:ss'}} </td>
+          pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
@@ -699,7 +699,7 @@
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
           pedido.isencao }} </td>
         <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          pedido.data_criacao | date:'HH:mm:ss'}} </td>
+          pedido.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td class="text-center">
           <button (click)="openPopup( pedido.id! )"
             [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">

@@ -111,6 +111,8 @@ DESKTOP
   text-indent: 20px;
   font-size: 13px;
   width: 21.6em;
+  color: #4f63e7;
+  border-color: #4f63e7;
 }
 
 .form-control:focus-desktop {
@@ -135,6 +137,8 @@ DESKTOP
       width: 26px !important; /* Adjust width as needed */
       height: 30px !important; /* Adjust height as needed */
       font-size: 15px !important; /* Adjust font size as needed */
+      color:#4f63e7 !important; /* Adjust font size as needed */
+      border-color: #041794  !important; /* Adjust font size as needed */
       /* Add other styling properties like border, margin, etc. */
     }
 }
@@ -207,7 +211,7 @@ lAPTOP
   margin-left: 1em;
   box-shadow: none;
   color: #041794;
-  border-color: #4cc5fd;
+  border-color: #4f63e7;
 }
 
 
@@ -216,7 +220,7 @@ lAPTOP
   margin-left: 2em;
   margin-bottom: 10px;
   margin-top: 10px;
-  color: #4f63e7;
+  color: #041794;
   border-color: #4f63e7;
 }
 
@@ -226,6 +230,8 @@ lAPTOP
       height: 30px !important; /* Adjust height as needed */
       font-size: 15px !important; /* Adjust font size as needed */
       margin-left: 0.2em  !important;
+      color: #041794;
+      border-color: #4f63e7;
       /* Add other styling properties like border, margin, etc. */
     }
 

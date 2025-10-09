@@ -9,40 +9,57 @@
   <span> </span>
 </div>
  (click)="pagamentoCartao()"
+ 
+ cor amarela
+ style="background-color: #f9ffa6;"
 -->
 <div [ngStyle]="{'display': displayStyle}">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="background-color: rgb(249, 255, 166);">
+    <div class="modal-content"> 
       <div class="table-responsive desktop">
         <div class="modal-header">
-          <button type="button" class="btn-fab btn-primary" style="border: 1px solid black; font-size: 15px; padding: 0.5rem
-            0.5rem; width: 30%">
+          <button 
+            type="button" 
+            class="btn-fab btn-primary" 
+            style="border: 1px solid blue; font-size: 15px; padding: 0.5rem; width: 30%; border-radius: 10px; margin-bottom: 1em;" >
             <a href="https://api.whatsapp.com/send?phone=5511982551256&text=Quero%20realizar%20o%20pagamento!"
-              style="color: white; font-size: 15px; text-decoration: none;">
-              Pagamento Cartão
+               style="text-decoration: none; color: #2494fc; font-weight: 500;">
+               WhatsApp
             </a>
           </button>
-          <button type="button" class="btn-fab btn-primary" style="border: 1px solid black; font-size: 15px; padding: 0.5rem
-            0.5rem; width: 30%" (click)="pagamentoPix()">
+          <button 
+            type="button" 
+            class="btn-fab btn-primary" 
+            style="border: 1px solid blue; font-size: 15px; padding: 0.5rem; width: 30%; border-radius: 10px; margin-bottom: 1em; color: #2494fc; font-weight: 500;" 
+            (click)="pagamentoCartao()">
+            Pagamento Cartão
+          </button>
+          <button 
+            type="button" 
+            class="btn-fab btn-primary" 
+            style="border: 1px solid blue; font-size: 15px; padding: 0.5rem; width: 30%; border-radius: 10px; margin-bottom: 1em; color: #2494fc; font-weight: 500;" 
+            (click)="pagamentoPix()">
             Pagamento Pix
           </button>
-          <button type="button" class="btn-fab btn-primary" style="border: 1px solid black; font-size: 15px; padding: 0.5rem
-            0.5rem; width: 30%" (click)="pagamentoDinheiro()">
+          <button 
+            type="button" 
+            class="btn-fab btn-primary" 
+            style="border: 1px solid blue; font-size: 15px; padding: 0.5rem; width: 30%; border-radius: 10px; margin-bottom: 1em; color: #2494fc; font-weight: 500;" 
+            (click)="pagamentoDinheiro()">
             Pagamento Dinheiro
           </button>
 
         </div>
         <table class="table table-bordered table-striped">
           <thead>
-            <tr class="table-primary">
-              <th style="border: 1px solid black; font-size: 16px;"> qtde
+            <tr class="table-primary" style=" border-radius: 10px; ">
+              <th style="border: 1px solid blue; font-size: 16px; margin-bottom: 1em; color: #4f63e7; font-weight: 500;"> Qtde.
               </th>
-              <th style="border: 1px solid black; font-size: 16px;"> nome
+              <th style="border: 1px solid blue; font-size: 16px; margin-bottom: 1em; color: #4f63e7; font-weight: 500;"> Nome
                 &nbsp;&nbsp;</th>
-              <th style="border: 1px solid black; font-size: 16px;"> unitário
+              <th style="border: 1px solid blue; font-size: 16px; margin-bottom: 1em; color: #4f63e7; font-weight: 500;"> Unitário
                 &nbsp;&nbsp;</th>
-              <th style="border: 1px solid black; font-size: 16px;"> total
-                prod
+              <th style="border: 1px solid blue; font-size: 16px; margin-bottom: 1em; color: #4f63e7; font-weight: 500;"> Total
               </th>
             </tr>
 
@@ -50,26 +67,17 @@
           <tbody>
             @for (conta of contas; track conta.id) {
             <tr>
-              <td style="border: 1px solid black; font-size: 16px;">{{
-                conta.quantidade }}
-                &nbsp;&nbsp;</td>
-              <td style="border: 1px solid black; font-size: 16px;">{{
-                conta.pedido.carrinho.produto.nome }} &nbsp;&nbsp;</td>
-              <td style="border: 1px solid black; font-size: 16px;">{{
-                conta.valorProdutoUnitario
-                | currency:'R$' }} &nbsp;&nbsp;</td>
-              <td style="border: 1px solid black; font-size: 16px;;">{{
-                conta.valorProdutoTotal |
-                currency:'R$' }} &nbsp;&nbsp;</td>
+              <td style="border: 1px solid #4f63e7; font-size: 16px; color: #4f63e7; font-weight: 300;">{{ conta.quantidade }} </td>
+              <td style="border: 1px solid #4f63e7; font-size: 16px; color: #4f63e7; font-weight: 300;">{{ conta.pedido.carrinho.produto.nome }} </td>
+              <td style="border: 1px solid #4f63e7; font-size: 16px; color: #4f63e7; font-weight: 300;">{{ conta.valorProdutoUnitario | currency:'R$' }} </td>
+              <td style="border: 1px solid #4f63e7; font-size: 16px; color: #4f63e7; font-weight: 300;">{{ conta.valorProdutoTotal | currency:'R$' }} </td>
             </tr>
             }
           </tbody>
           <tfoot>
             <tr class="table-primary">
-              <td colspan="3" style="border: 1px solid black; text-align:
-                right;"> TOTAL &nbsp;&nbsp;</td>
-              <td style="border: 1px solid black; text-align: right;">{{
-                contaValorTotal | currency:'R$' }} &nbsp;&nbsp;</td>
+              <td colspan="3" style="border: 1px solid #4f63e7; text-align: right; color: #4f63e7; font-weight: 500;"> TOTAL &nbsp;&nbsp;</td>
+              <td style="border: 1px solid #4f63e7; text-align: right; color: #4f63e7; font-weight: 500;">{{ contaValorTotal | currency:'R$' }} &nbsp;&nbsp;</td>
             </tr>
           </tfoot>
         </table>

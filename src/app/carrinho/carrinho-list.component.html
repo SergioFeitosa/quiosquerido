@@ -139,7 +139,7 @@
         }
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7; font-size: 0.8em;"> {{ carrinho.local }} </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7; font-size: 0.8em;" class="text-center">
-          {{ carrinho.data_criacao | date:'HH:mm:ss'}}
+          {{ carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}}
         </td>
         <td style='color: #4f63e7; font-weight: 400;font-size: 0.8em;'>{{ carrinho.telefone }} </td>
 
@@ -308,7 +308,7 @@
           {{ carrinho.local }}
         </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
-          {{ carrinho.data_criacao | date:'HH:mm:ss'}}
+          {{ carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}}
         </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
           {{ carrinho.telefone }}
@@ -474,7 +474,7 @@
         }
         <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.local }} </td>
         <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.data_criacao |
-          date:'HH:mm:ss'}} </td>
+          date:'dd/MM/yy HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
           {{ carrinho.telefone }}
         </td>
@@ -634,7 +634,7 @@
         }
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.local }} </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.data_criacao |
-          date:'HH:mm:ss'}} </td>
+          date:'dd/MM/yy HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.telefone }} </td>
         <td (click)="openPopup(carrinho.id! )" class="text-center">
           @if (carrinho.status === 'Excluído') {
@@ -704,7 +704,7 @@
           }}</td>
         <td (click)="openPopup(carrinho.id! )"
           style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{
-          carrinho.data_criacao | date:'HH:mm:ss'}} </td>
+          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" class="text-center">
           @if (carrinho.status === 'Excluído') {
           <p style="margin: 0; color: red; font-size: 0.8em; ">
@@ -766,7 +766,7 @@
         <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;"> {{
           carrinho.produto.nome }} </td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{
-          carrinho.data_criacao | date:'HH:mm:ss'}} </td>
+          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" style="font-size: 0.8em; text-align: center; align-content: center;">
           @if (carrinho.status === 'Excluído') {
           <p style="margin: 0; color: red; font-size: 0.8em; ">
@@ -827,7 +827,7 @@
         <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
           }}</td>
         <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;">{{
-          carrinho.data_criacao | date:'HH:mm:ss'}} </td>
+          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
         <td (click)="openPopup(carrinho.id! )" style=" text-align: center; align-content: center;">
           @if (carrinho.status === 'Excluído') {
           <p style="margin: 0; color: red; font-size: 0.8em; ">

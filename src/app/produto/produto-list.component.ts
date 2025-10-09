@@ -215,7 +215,7 @@ export class ProdutoListComponent implements OnInit {
     this.displayStyle2 = 'block';
   }
 
-  // tslint:disable-next-line:typedef
+  // tslint:disable-next-line:typedef 
   closePopup2() {
     //this.carrinhoCreate(this.produto.id!);
     this.displayStyle2 = 'none';
