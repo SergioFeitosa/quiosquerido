@@ -15,6 +15,8 @@ import { INITIAL_CONFIG } from '@angular/platform-server';
 import { initializeApp } from '@angular/fire/app';
 import { consumerBeforeComputation } from '@angular/core/primitives/signals';
 import { Subject } from 'rxjs';
+import { NgMaterialModule } from "../ng-material/ng-material.module";
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -25,9 +27,11 @@ import { Subject } from 'rxjs';
     CommonModule,
     FormsModule,
     RouterLink,
-    StarComponent
+    StarComponent,
+    NgMaterialModule,
+    MatIconModule,
 
-  ],
+],
   templateUrl: './carrinho-list.component.html',
   styleUrls: ['./carrinho-list.component.css'],
   
@@ -78,7 +82,7 @@ export class CarrinhoListComponent implements OnInit {
 
   data: any;
 
-  ultimoSort: string = 'nome';
+  ultimoSort: string = 'nomeDesc';
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -109,12 +113,24 @@ export class CarrinhoListComponent implements OnInit {
         this.filteredCarrinhos = this.carrinhos
           .filter((carrinho: Carrinho) => carrinho.enviado !== true);
         switch (this.ultimoSort) {
-          case ('nome'):
+          case (''):
             return this.sortCarrinhosByName();
-          case ('preco'):
+          case ('nomeAsc'):
+            return this.sortCarrinhosByName();
+          case ('nomeDesc'):
+            return this.sortCarrinhosByName();
+          case ('precoAsc'):
             return this.sortCarrinhosByPrice();
-          case ('data'):
+          case ('precoDesc'):
+            return this.sortCarrinhosByPrice();
+          case ('dataAsc'):
             return this.sortCarrinhosByHorarioPedido();
+          case ('dataDesc'):
+            return this.sortCarrinhosByHorarioPedido();
+          case ('statusAsc'):
+            return this.sortCarrinhosByStatus();
+          case ('statusDesc'):
+            return this.sortCarrinhosByStatus();
         }
 
       });
@@ -125,14 +141,6 @@ export class CarrinhoListComponent implements OnInit {
             this.carrinhos = carrinhos;
             this.filteredCarrinhos = this.carrinhos
               .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-            switch (this.ultimoSort) {
-              case ('nome'):
-                return this.sortCarrinhosByName();
-              case ('preco'):
-                return this.sortCarrinhosByPrice();
-              case ('data'):
-                return this.sortCarrinhosByHorarioPedido();
-            }
 
           });
         });
@@ -147,16 +155,36 @@ export class CarrinhoListComponent implements OnInit {
           .filter((carrinho: Carrinho) => carrinho.telefone - environment.telefone === 0)
           .filter((carrinho: Carrinho) => carrinho.enviado !== true);
         switch (this.ultimoSort) {
-          case ('nome'):
-            return this.sortCarrinhosByName();
-          case ('preco'):
-            return this.sortCarrinhosByPrice();
-          case ('data'):
-            return this.sortCarrinhosByHorarioPedido();
+              case ('nomeAsc'):
+                return this.sortCarrinhosByName();
+              case ('nomeDesc'):
+                return this.sortCarrinhosByName();
+              case ('precoAsc'):
+                return this.sortCarrinhosByPrice();
+              case ('precoDesc'):
+                return this.sortCarrinhosByPrice();
+              case ('dataAsc'):
+                return this.sortCarrinhosByHorarioPedido();
+              case ('dataDesc'):
+                return this.sortCarrinhosByHorarioPedido();
+              case ('statusAsc'):
+                return this.sortCarrinhosByStatus();
+              case ('statusDesc'):
+                return this.sortCarrinhosByStatus();
         }
 
-
       });
+
+      this.updateSubscription = interval(5000).subscribe(
+        (val) => {
+          this.carrinhoService.read().subscribe(carrinhos => {
+            this.carrinhos = carrinhos;
+            this.filteredCarrinhos = this.carrinhos
+              .filter((carrinho: Carrinho) => carrinho.telefone - environment.telefone === 0)
+              .filter((carrinho: Carrinho) => carrinho.enviado !== true);
+
+          });
+        });
 
     }
 
@@ -166,19 +194,49 @@ export class CarrinhoListComponent implements OnInit {
   }
 
   sortCarrinhosByName() {
-    this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
-    this.ultimoSort = 'nome;'
+
+    if (this.ultimoSort === 'nomeAsc') {
+      this.ultimoSort = 'nomeDesc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.nome.localeCompare(b.produto.nome));
+    } else {
+      this.ultimoSort = 'nomeAsc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
+    }
+
   }
 
   sortCarrinhosByPrice() {
-    this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
-    this.ultimoSort = 'preco;'
+    if (this.ultimoSort === 'precoAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.preco - b.produto.preco);
+      this.ultimoSort = 'precoDesc'
+    }  else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
+      this.ultimoSort = 'precoAsc'
+    }
   }
 
   sortCarrinhosByHorarioPedido() {
-    this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
-    this.ultimoSort = 'data;'
+    if (this.ultimoSort === 'dataAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.ultimoSort = 'dataDesc'
+    } else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.ultimoSort = 'dataAsc'
+    }
   }
+
+    sortCarrinhosByStatus() {
+
+    if (this.ultimoSort === 'statusAsc') {
+      this.ultimoSort = 'statusDesc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.status.localeCompare(b.status));
+    } else {
+      this.ultimoSort = 'statusAsc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.status.localeCompare(b.status));
+    }
+
+  }
+
 
   removerAcentos(str: string): string {
     // Converte para minúsculas e remove os diacríticos usando Unicode

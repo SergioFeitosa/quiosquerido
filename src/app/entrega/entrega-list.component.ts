@@ -13,9 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { interval, Subscription } from 'rxjs';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({ 
   templateUrl: './entrega-list.component.html',
@@ -62,7 +62,7 @@ export class EntregaListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   _filterBy: string = '';
 
-  ultimoSort: string = 'nome';
+  ultimoSort: string = 'nomeDesc';
 
   constructor(
     private entregaService: EntregaService,
@@ -92,12 +92,22 @@ export class EntregaListComponent implements OnInit {
         this.entregas = entregas;
         this.filteredEntregas = this.entregas;
         switch (this.ultimoSort) {
-          case ('nome'):
+          case ('nomeAsc'):
             return this.sortEntregasByName();
-          case ('preco'):
+          case ('nomeDesc'):
+            return this.sortEntregasByName();
+          case ('precoAsc'):
             return this.sortEntregasByPrice();
-          case ('data'):
+          case ('precoDesc'):
+            return this.sortEntregasByPrice();
+          case ('dataAsc'):
             return this.sortEntregasByHorarioPedido();
+          case ('dataDesc'):
+            return this.sortEntregasByHorarioPedido();
+          case ('dataEntregaAsc'):
+            return this.sortEntregasByHorarioEntrega();
+          case ('dataEntregaDesc'):
+            return this.sortEntregasByHorarioEntrega();
         }
       });
 
@@ -106,15 +116,6 @@ export class EntregaListComponent implements OnInit {
           this.entregaService.read().subscribe(entregas => {
             this.entregas = entregas;
             this.filteredEntregas = this.entregas;
-            switch (this.ultimoSort) {
-              case ('nome'):
-                return this.sortEntregasByName();
-              case ('preco'):
-                return this.sortEntregasByPrice();
-              case ('data'):
-                return this.sortEntregasByHorarioPedido();
-            }
-
           });
         });
 
@@ -123,15 +124,25 @@ export class EntregaListComponent implements OnInit {
       this.entregaService.read().subscribe(entregas => {
         this.entregas = entregas;
         this.filteredEntregas = this.entregas.filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0);
+        switch (this.ultimoSort) {
+          case ('nomeAsc'):
+            return this.sortEntregasByName();
+          case ('nomeDesc'):
+            return this.sortEntregasByName();
+          case ('precoAsc'):
+            return this.sortEntregasByPrice();
+          case ('precoDesc'):
+            return this.sortEntregasByPrice();
+          case ('dataAsc'):
+            return this.sortEntregasByHorarioPedido();
+          case ('dataDesc'):
+            return this.sortEntregasByHorarioPedido();
+          case ('dataEntregaAsc'):
+            return this.sortEntregasByHorarioEntrega();
+          case ('dataEntregaDesc'):
+            return this.sortEntregasByHorarioEntrega();
+        }
       });
-      switch (this.ultimoSort) {
-        case ('nome'):
-          return this.sortEntregasByName();
-        case ('preco'):
-          return this.sortEntregasByPrice();
-        case ('data'):
-          return this.sortEntregasByHorarioPedido();
-      }
 
     }
   }
@@ -159,20 +170,48 @@ export class EntregaListComponent implements OnInit {
     this.sortEntregasByName();
   }
 
-
   sortEntregasByName() {
-    this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
-    this.ultimoSort = 'nome;'
+    if (this.ultimoSort === 'nomeAsc') {
+      this.ultimoSort = 'nomeDesc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+    } else {
+      this.ultimoSort = 'nomeAsc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+    }
+
   }
 
   sortEntregasByPrice() {
-    this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
-    this.ultimoSort = 'preco;'
+    if (this.ultimoSort === 'precoAsc') {
+      this.ultimoSort = 'precoDesc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+    } else {
+      this.ultimoSort = 'precoAsc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+    }
+
   }
 
   sortEntregasByHorarioPedido() {
-    this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(b.data_criacao).getTime() - new Date(a.data_criacao).getTime());
-    this.ultimoSort = 'data;'
+    if (this.ultimoSort === 'dataAsc') {
+      this.ultimoSort = 'dataDesc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+    } else {
+      this.ultimoSort = 'dataAsc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+    }
+
+  }
+
+  sortEntregasByHorarioEntrega() {
+    if (this.ultimoSort === 'dataEntregaAsc') {
+      this.ultimoSort = 'dataEntregaDesc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    } else {
+      this.ultimoSort = 'dataEntregaAsc'
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    }
+
   }
 
   removerAcentos(str: string): string {

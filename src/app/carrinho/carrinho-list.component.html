@@ -16,7 +16,7 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> 
   </section>
 
   <table class="table table-bordered table-striped">
@@ -24,17 +24,26 @@
     <thead>
       <tr>
         <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">  
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a> 
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
         <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a>
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORA PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
         </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
         <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
+        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track carrinho.id) {
@@ -191,16 +200,27 @@
     <thead>
       <tr>
         <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a></th>
+        <th style='width: 9%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
+        <th style='width: 2%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
+        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
 
@@ -362,15 +382,25 @@
     <thead>
       <tr>
         <th style='width: 20%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 10%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a></th>
+        <th style='width: 4%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
+        <th style='width: 13%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> STATUS </th>
+        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
@@ -521,16 +551,26 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 20%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
+        <th style='width: 18%'> </th>
+        <th style='width: 24%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.6em;'> LOCAL</th>
-        <th style='width: 10%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a></th>
+        <th style='width: 4%;  color: #2494fc; font-weight: 500;font-size: 0.6em;'> LOCAL</th>
+        <th style='width: 16%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.6em;'> TELEFONE</th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> STATUS </th>
+        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
@@ -682,12 +722,22 @@
       <tr>
 
         <th style='width: 10%'> </th>
-        <th style='width: 8%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QTDE. </th>
-        <th style='width: 54%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORÁRIO</a></th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
+        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTDE. </th>
+        <th style='width: 43%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 22%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
@@ -749,12 +799,22 @@
     <thead>
       <tr>
         <th style='width: 10%'> </th>
-        <th style='width: 8%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QTDE. </th>
-        <th style='width: 54%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORÁRIO</a></th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
+        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTDE. </th>
+        <th style='width: 45%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
@@ -810,12 +870,22 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTD </th>
-        <th style='width: 54%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> <a (click)="sortCarrinhosByName()"
-            style="cursor: pointer;">ITEM</a> </th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> <a
-            (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">HORÁRIO</a></th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> STATUS </th>
+        <th style='width: 10; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTD </th>
+        <th style='width: 40%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
+          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 35%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
+          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
+            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
+            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
       </tr>
     </thead>
 
