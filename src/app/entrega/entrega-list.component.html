@@ -25,20 +25,26 @@
       <tr>
         <th style='width: 5%'> </th>
         <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'>
-          <a (click)="sortEntregasByName()" style="cursor: pointer;">ITEM</a>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
         </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
         <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'>
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer;">HORA PEDIDO</a>
+        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
         </th>
-        <th style='width: 8%; color: #2494fc; font-weight: 500; text-align: center;font-size: 0.8em;'> 
-          <a (click)="sortEntregasByHorarioEntrega()" style="cursor: pointer;">HORA ENTREGA</a>
+        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
         </th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;'> AÇÕES </th>
+        <th style='width: 13%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
@@ -51,7 +57,8 @@
         <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
         <td style='color: red'>
-          <div style='align-items: center;
+          <div style='
+              align-items: center;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
@@ -65,8 +72,33 @@
         <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.local }} </td>
         <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.telefone }} </td>
         <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.isencao }} </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} </td>
+        <td>
+          <div
+            style='
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+            </div>
+        </td>
+        <td>
+          <div
+            style='
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
+        </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
@@ -124,56 +156,107 @@
 
     <thead>
       <tr>
-        <th style='width: 10%'></th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> QUANTIDADE</th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;'> PRODUTO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> TELEFONE</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;'> OBSERVAÇÃO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> CORTESIA</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> HORA PEDIDO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;'> AÇÕES </th>
+        <th style='width: 5%'> </th>
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.7em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
+        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
+        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> CORTESIA</th>
+        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 13%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-        <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-          rounded" alt="..." width="100" height="70">
+      <tr class="cols">
         <td>
-          <input [(ngModel)]="entrega.pedido.quantidade" type="text" name="quantidadeLaptop1" style='color: red; width: 60px'
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..."
+            width="100" height="70">
         </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.pedido.telefone }} </td>
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.pedido.local }} </td>
-
+        <td style='color: red'>
+          <div style='
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
+        </td>
+        <td style='color: red; font-size: 0.8em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.local }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.telefone }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.isencao }} </td>
         <td>
-          <input [(ngModel)]="entrega.pedido.observacao" name="observacaoLaptop1" type="text" style='color: red'
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
+          <div
+            style='
+                  font-size: 0.7em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+            </div>
         </td>
-
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.pedido.isencao }} </td>
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style='color: #4f63e7; font-weight: 400;'>{{ entrega.data_criacao | date:'HH:mm:ss' }} </td>
-
+        <td>
+          <div
+            style='
+                  font-size: 0.7em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
+        </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab " 
+                        matMiniFab 
+                        aria-label="Entregar">
+                    <mat-icon class="my-icon">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {
@@ -208,56 +291,106 @@
 
     <thead>
       <tr>
-        <th style='width: 10%'></th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> QUANTIDADE</th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;'> PRODUTO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> TELEFONE</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;'> OBSERVAÇÃO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> CORTESIA</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> HORA PEDIDO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;'> AÇÕES </th>
+        <th style='width: 5%'> </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.7em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
+        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
+        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-        <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-          rounded" alt="..." width="100" height="70">
+      <tr class="cols">
         <td>
-          <input [(ngModel)]="entrega.pedido.quantidade" name="quantidadeLaptop2-1" type="text" style='color: red; width: 60px'
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="25" height="20" style="object-fit: cover;">            
         </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
-        <td>{{ entrega.pedido.carrinho.produto.nome }} </td>
-        <td>{{ entrega.pedido.telefone }} </td>
-        <td>{{ entrega.pedido.local }} </td>
-
+        <td style='color: red'>
+          <div style='
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
+        </td>
+        <td style='color: red; font-size: 0.8em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.local }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.telefone }} </td>
         <td>
-          <input [(ngModel)]="entrega.pedido.observacao" name="observacaoLaptop2-1" type="text" style='color: red'
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
+          <div
+            style='
+                  margin-left: 1.7em;
+                  font-size: 0.7em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+            </div>
         </td>
-
-        <td>{{ entrega.pedido.isencao }} </td>
-        <td>{{ entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td>{{ entrega.data_criacao | date:'HH:mm:ss' }} </td>
-
+        <td>
+          <div
+            style='
+                  margin-left: 1.7em;
+                  font-size: 0.7em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
+        </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab-l2 " 
+                        matMiniFab 
+                        aria-label="Detalhes">
+                    <mat-icon class="my-icon-l2">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab-l2" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon-l2">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {
@@ -287,68 +420,113 @@
     </div>
   </section>
 
-  <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'></th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> Quantidade
+        <th style='width: 5%'> </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> PRODUTO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> OBSERVAÇÃO
+        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
+        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.5em;'> OBSERVAÇÃO</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> TELEFONE</th>
+        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> CORTESIA</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA PEDIDO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> AÇÕES
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
-        <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-          rounded" alt="..." width="100" height="70">
-        <td><input [(ngModel)]="entrega.pedido.quantidade" type="text" name="quantidadeTablet1" style='color: red; width: 60px'
-            (blur)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+      <tr class="cols">
+        <td>
+          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="25" height="20" style="object-fit: cover;">            
         </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.carrinho.produto.nome }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.telefone }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{ entrega.pedido.local
-          }} </td>
-
-        <td style='width: 5%; color: red; font-weight: 500; text-align: center;  font-size: 0.7em;'>
-          <input [(ngModel)]="entrega.pedido.observacao" name="observacaoTablet1" type="text"
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
+        <td>
+          <div style='
+              width: 1em;
+              align-items: center;
+              font-size: 0.6em;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
         </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.isencao }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.data_criacao | date:'HH:mm:ss'}} </td>
+        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.local }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.telefone }} </td>
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+            </div>
+        </td>
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
+        </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab-t " 
+                        matMiniFab 
+                        aria-label="Detalhes">
+                    <mat-icon class="my-icon-t">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab-t" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon-t">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {
@@ -377,70 +555,111 @@
     </div>
   </section>
 
-  <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'></th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center; font-size: 0.7em;'> QUANTIDADE</th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> PRODUTO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> OBSERVAÇÃO
+        <th style='width: 5%'> </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> CORTESIA</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA PEDIDO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> AÇÕES
+        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
+        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.5em;'> OBS</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
+        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      <tr class="cols">
+        <td>
+          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="15" height="10" style="object-fit: cover;">            
+        </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-            rounded" alt="..." width="100" height="70">
+          <div style='
+              width: 1em;
+              align-items: center;
+              font-size: 0.6em;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
         </td>
-        <td><input [(ngModel)]="entrega.pedido.quantidade" type="text" name="quantidadeMobile1" style='color: red; width: 60px'
-            (blur)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.local }} </td>
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+            </div>
         </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.carrinho.produto.nome }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.telefone }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{ entrega.pedido.local
-          }} </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>
-          <input [(ngModel)]="entrega.pedido.observacao" type="text" style='color: red' name="observacaoMobile1"
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
         </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.isencao }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.data_criacao | date:'HH:mm:ss'}} </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab-m " 
+                        matMiniFab 
+                        aria-label="Detalhes">
+                    <mat-icon class="my-icon-m">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab-m" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {
@@ -469,69 +688,89 @@
     </div>
   </section>
 
-  <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'></th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center; font-size: 0.7em;'> QUANTIDADE</th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> PRODUTO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> CORTESIA</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA PEDIDO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> AÇÕES
+        <th style='width: 5%'> </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
+        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
+        </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      <tr class="cols">
+        <td>
+          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="15" height="10" style="object-fit: cover;">            
+        </td>
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-            rounded" alt="..." width="100" height="70">
+          <div style='
+              width: 1em;
+              align-items: center;
+              font-size: 0.6em;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
         </td>
-        <td><input [(ngModel)]="entrega.pedido.quantidade" type="text" name="quantidadeMobilePequeno1"
-            style='color: red; width: 60px' (blur)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
         </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.carrinho.produto.nome }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.telefone }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{ entrega.pedido.local
-          }} </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>
-          <input [(ngModel)]="entrega.pedido.observacao" type="text" style='color: red' name="observacaoMobilePequeno1"
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
-        </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.isencao }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.data_criacao | date:'HH:mm:ss'}} </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab-m " 
+                        matMiniFab 
+                        aria-label="Detalhes">
+                    <mat-icon class="my-icon-m">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab-m" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {
@@ -550,7 +789,7 @@
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
+          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos...M2" [(ngModel)]='filter'
             style="color: #4f63e7; " />
           <span class="input-group-text">
             <i class="bi bi-search"></i>🔍
@@ -560,70 +799,85 @@
     </div>
   </section>
 
-  <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'></th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center; font-size: 0.7em;'> QUANTIDADE</th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> PRODUTO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> OBSERVAÇÃO
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
+          <a (click)="sortEntregasByName()" style="cursor: default;">
+            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> CORTESIA</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA PEDIDO</th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> HORA ENTREGA</th>
-        <th class="text-center" style='color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'> AÇÕES
+        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
+        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
+        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
+            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+          </a>
         </th>
+        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
-      <tr [ngStyle]="{backgroundColor: i > 2 ? 'transparent' : '#cbfaf8' }">
+      <tr class="cols">
+        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
 
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid
-            rounded" alt="..." width="100" height="70">
+          <div style='
+              width: 1em;
+              align-items: center;
+              font-size: 0.6em;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue; 
+              font-weight: 400;
+              justify-content: center;'>
+            {{ entrega.pedido.carrinho.quantidade }}
+          </div>
         </td>
-        <td><input [(ngModel)]="entrega.pedido.quantidade" type="text" name="quantidadeMobilePequeno2-1"
-            style='color: red; width: 60px' (blur)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+entrega.pedido.telefone != 5511982551256 && +entrega.pedido.telefone != 5599999999998) ? true : false">
+        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td>
+          <div
+            style='
+                  margin-left: 0.6em;
+                  font-size: 0.6em;
+                  align-items: center;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  color: blue; 
+                  font-weight: 400;
+                  justify-content: center;'>
+          
+          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
+          </div>          
         </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.carrinho.produto.nome }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.telefone }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{ entrega.pedido.local
-          }} </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>
-          <input [(ngModel)]="entrega.pedido.observacao" type="text" style='color: red' name="observacaoMobilePequeno2-1"
-            (ngModelChange)="atualizarPedido(entrega.pedido)" class="nav-link"
-            [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
-        </td>
-
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.isencao }} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.pedido.data_criacao | date:'HH:mm:ss'}} </td>
-        <td style='width: 5%; color: #2494fc; font-weight: 500; text-align: center;  font-size: 0.7em;'>{{
-          entrega.data_criacao | date:'HH:mm:ss'}} </td>
         <td class="text-center">
-        <td class="text-center">
-          <button (click)="openPopup( entrega.id! )">
-            <img src='/assets/images/lupa.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Ver detalhes">
-          </button>
-          <button (click)="entregaUpdate( entrega.id! )" [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null)
-            ? false : true">
-            <img src='/assets/images/guardasol.jpg' class="figure-img img-fluid
-              rounded" alt="..." width="25" height="25" title="Entrega realizada">
-          </button>
+          <section>
+            <div class="example-button-row">
+              <div class="example-flex-container">
+                <button (click)="openPopup( entrega.id! )" 
+                        class="my-custom-mini-fab-m " 
+                        matMiniFab 
+                        aria-label="Detalhes">
+                    <mat-icon class="my-icon-m">search</mat-icon>
+                </button>
+                <button (click)="entregaUpdate( entrega.id! )"
+                        matMiniFab 
+                        class="my-custom-mini-fab-m" 
+                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
+                        aria-label="Entregar">
+                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                </button>
+              </div>
+            </div>
+          </section>
         </td>
       </tr>
+ 
     </tbody>
     }
     } @else {

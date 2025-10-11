@@ -78,7 +78,7 @@ input::placeholder{
 
 .my-custom-mini-fab-mp {
 
-  margin-left: 0.4em; /* Example: Larger icon size */
+  margin-left: 0.4em; /* Example: Larger icon size */ 
   width: 0.5em; /* Adjust as desired */
   height: 12px; /* Adjust as desired */
   line-height: 30px; /* Match height for vertical alignment */
