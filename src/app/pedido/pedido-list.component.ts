@@ -255,7 +255,7 @@ export class PedidoListComponent implements OnInit {
         this.entrega.pedido = this.pedido;
 
         this.entregaService.create(this.entrega).subscribe(() => {
-          this.entregaService.showMessage('Saiu para entrega');
+        this.entregaService.showMessage('Saiu para entrega');
         });
       }
     });

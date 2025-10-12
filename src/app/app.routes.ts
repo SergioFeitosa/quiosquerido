@@ -21,14 +21,13 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const routes: Routes = [
       {
-        path: '', redirectTo: 'cardapioPrincipal', pathMatch: 'full'
+        path: '', component: CardapioPrincipalComponent,
       },
       {
         path: 'cardapioPrincipal', component: CardapioPrincipalComponent,
       },
       {
-        path: 'carrinho', 
-        component: CarrinhoListComponent
+        path: 'carrinho', component: CarrinhoListComponent
       },
       {
         path: 'carrinho/:carrinhoId', component: CarrinhoListComponent

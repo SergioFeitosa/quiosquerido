@@ -710,3 +710,35 @@ mobile-pequeno2
 }
 
 
+/* styles.css or styles.scss */
+    .custom-snackbar-success {
+      --mdc-snackbar-container-color: #4CAF50; /* Green background */
+      --mdc-snackbar-supporting-text-color: #FFFFFF; /* White text color */
+      --mat-mdc-snack-bar-button-color: #FFFFFF; /* White button color */
+    }
+
+    .custom-snackbar-error {
+      --mdc-snackbar-container-color: #F44336; /* Red background */
+      --mdc-snackbar-supporting-text-color: #FFFFFF; /* White text color */
+      --mat-mdc-snack-bar-button-color: #FFFFFF; /* White button color */
+    }
+
+  .error-snackbar {
+  --mdc-snackbar-container-color: red;  
+  --mat-snack-bar-button-color: white;
+
+  }
+
+  .custom-success-snackbar {
+      background-color: green;
+      color: white;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    .custom-error-dialog {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+    }
+  

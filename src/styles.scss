@@ -4,6 +4,33 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+
+/* Importing Bootstrap SCSS file. */
+@use '@angular/material' as mat;
+@use 'bootstrap/scss/bootstrap';
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+  :root {
+    @include mat.snack-bar-overrides((
+      button-color: orange,
+      container-color: red,
+
+    ));
+
+  }
+
+  .custom-snackbar-panel {
+      .mdc-snackbar__label { /* For newer Angular Material versions (MDC-based) */
+        font-size: 16px !important; /* Adjust as needed */
+      }
+
+      /* For older Angular Material versions (if applicable) */
+      .mat-simple-snackbar-message {
+        font-size: 16px !important; /* Adjust as needed */
+      }
+    }
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -320,6 +347,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+  .error-snackbar {
+  --mdc-snackbar-container-color: red;  
+  --mat-snack-bar-button-color: white;
+  }
 
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+
+

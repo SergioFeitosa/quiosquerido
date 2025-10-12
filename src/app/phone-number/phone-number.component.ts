@@ -10,7 +10,7 @@ import { Produto } from '../produto/produto';
 import { LoginService } from '../services/login.service';
 import 'firebase/compat/auth';
 import { initializeApp } from 'firebase/app';
-
+import { MatSnackBar as MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-phone-number',
@@ -47,7 +47,7 @@ export class PhoneNumberComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private loginService: LoginService,
-
+    private snackBar: MatSnackBar,
   ) {
 
   }
@@ -92,10 +92,11 @@ export class PhoneNumberComponent implements OnInit {
       environment.login = true;
       this.displayCode = 'block';
     }).catch((error) => {
-      console.error('Erro no numero do telefone. Tente Novamente!!!  ', error.message);
+
+      this.showMessage('Erro no numero do telefone. Tente Novamente!!!  ');
       if (window.recaptchaVerifier) window.recaptchaVerifier.clear();
-      interval(1000).subscribe(n => window.location.reload());
-      this.router.navigate(['/'])
+      interval(3000).subscribe(n => window.location.reload());
+      this.router.navigate([''])
       
     })
   }
@@ -110,19 +111,28 @@ export class PhoneNumberComponent implements OnInit {
 
         const user = result.user;
         this.emitEvent();
-        this.router.navigate(['/']);
+        this.router.navigate(['']);
         this.loginService.login();
 
       }).catch((error: any) => {
-        console.error('Erro durante a verificação: ', error.message);
-        interval(1000).subscribe(n => window.location.reload());
-        this.router.navigate(['/'])
+        this.showMessage('Erro na verificação do código SMS');
+        interval(3000).subscribe(n => window.location.reload());
+        this.router.navigate([''])
     })
     this.loginService.login()
   }
 
   emitEvent() {
     this.phoneNumberChangeEvent.emit(this.phoneNumber);
+  }
+
+    showMessage(msg: string): void {
+    this.snackBar.open(msg, '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['error-snackbar', 'custom-snackbar-panel'] 
+    });
   }
 
 
