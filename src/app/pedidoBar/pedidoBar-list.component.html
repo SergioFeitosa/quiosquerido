@@ -29,7 +29,7 @@
             ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
+        <th style='width: 7%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
         <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
         <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
@@ -63,7 +63,7 @@
 
             </a>
             <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-              type="text" style='width: 3em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
+              type="text" style='width: 2em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
               <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
@@ -220,7 +220,7 @@
           </a>
         </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
+        <th style='width: 8%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
         <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
           <a (click)="sortPedidosByHorarioPedido()" style="cursor: pointer;">
@@ -229,7 +229,7 @@
         </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
         <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
+        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> STATUS </th>
       </tr>
     </thead>
     @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
@@ -253,7 +253,7 @@
 
             </a>
             <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-              type="text" style='width: 3em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
+              type="text" style='width: 2em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
               <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
@@ -274,7 +274,7 @@
 
             </a>
             <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-              type="text" style='width: 3em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
+              type="text" style='width: 2em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
               <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
@@ -297,7 +297,7 @@
 
               </a>
               <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-                type="text" style='width: 3em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
+                type="text" style='width: 2em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
 
               <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
                 <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
@@ -312,7 +312,7 @@
                   flex-wrap: wrap;
                   justify-content: center;'>
               <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-                type="text" style='width: 3em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
+                type="text" style='width: 2em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
 
             </div>
           </td>
@@ -400,7 +400,7 @@
           </a>
         </th>
         <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 27%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center">STATUS</th>
+        <th style='width: 30%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center">STATUS</th>
       </tr>
     </thead>
     @for (pedido of sortedPedidos; track pedido.id; let i = $index) {
@@ -426,7 +426,7 @@
 
             </a>
             <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-              type="text" style='width: 3em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
+              type="text" style='width: 2em; color: #4f63e7' (ngModelChange)="atualizarPedido(pedido)">
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
               <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
@@ -470,9 +470,9 @@
 
               </a>
               <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-                type="text" style='width: 3em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
+                type="text" style='width: 2em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
 
-              <a style="width: 1em; margin-top: 0.5em" (click)="plus(pedido)">
+              <a style="width: 1em; margin-top: 0.3em" (click)="plus(pedido)">
                 <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
               </a>
             </div>
@@ -485,7 +485,7 @@
                   flex-wrap: wrap;
                   justify-content: center;'>
               <input [(ngModel)]='pedido.carrinho.quantidade' name="quantidadeDesktop1" class='form-control; nav-link;'
-                type="text" style='width: 3em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
+                type="text" style='width: 2em; color: #4f63e7' disabled="" (ngModelChange)="atualizarPedido(pedido)">
 
             </div>
           </td>
@@ -493,7 +493,7 @@
           }
 
           <td>
-            <textarea [(ngModel)]="pedido.carrinho.observacao" name="observacaoDesktop1" type="text" style='color:red'
+            <textarea [(ngModel)]="pedido.carrinho.observacao" name="observacaoDesktop1" type="text" style='color:red;width: 2em;'
               (blur)="atualizarObservacao(pedido)" (ngModelChange)="atualizarObservacao(pedido)" class="nav-link"
               [disabled]=" i < 3 && (+telefone != 5511982551256 && +telefone != 5599999999998) ? true : false">
           </textarea>
