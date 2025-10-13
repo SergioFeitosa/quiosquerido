@@ -141,6 +141,24 @@ export class CarrinhoListComponent implements OnInit {
             this.carrinhos = carrinhos;
             this.filteredCarrinhos = this.carrinhos
               .filter((carrinho: Carrinho) => carrinho.enviado !== true);
+          switch (this.ultimoSort) {
+                case ('nomeAsc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('nomeDesc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('precoAsc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('precoDesc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('dataAsc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('dataDesc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('statusAsc'):
+                  return this.sortCarrinhosUpdateByStatus();
+                case ('statusDesc'):
+                  return this.sortCarrinhosUpdateByStatus();
+          }
 
           });
         });
@@ -149,46 +167,64 @@ export class CarrinhoListComponent implements OnInit {
     } else {
 
 
-      this.carrinhoService.read().subscribe(carrinhos => {
-        this.carrinhos = carrinhos;
-        this.filteredCarrinhos = this.carrinhos
-          .filter((carrinho: Carrinho) => carrinho.telefone - environment.telefone === 0)
-          .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-        switch (this.ultimoSort) {
-              case ('nomeAsc'):
-                return this.sortCarrinhosByName();
-              case ('nomeDesc'):
-                return this.sortCarrinhosByName();
-              case ('precoAsc'):
-                return this.sortCarrinhosByPrice();
-              case ('precoDesc'):
-                return this.sortCarrinhosByPrice();
-              case ('dataAsc'):
-                return this.sortCarrinhosByHorarioPedido();
-              case ('dataDesc'):
-                return this.sortCarrinhosByHorarioPedido();
-              case ('statusAsc'):
-                return this.sortCarrinhosByStatus();
-              case ('statusDesc'):
-                return this.sortCarrinhosByStatus();
-        }
+        this.carrinhoService.read().subscribe(carrinhos => {
+          this.carrinhos = carrinhos;
+          this.filteredCarrinhos = this.carrinhos
+            .filter((carrinho: Carrinho) => +carrinho.telefone - +environment.telefone === 0)
+            .filter((carrinho: Carrinho) => carrinho.enviado !== true);
 
+          switch (this.ultimoSort) {
+                case ('nomeAsc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('nomeDesc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('precoAsc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('precoDesc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('dataAsc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('dataDesc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('statusAsc'):
+                  return this.sortCarrinhosUpdateByStatus();
+                case ('statusDesc'):
+                  return this.sortCarrinhosUpdateByStatus();
+          }
+      
       });
 
-      this.updateSubscription = interval(5000).subscribe(
+    this.updateSubscription = interval(5000).subscribe(
         (val) => {
           this.carrinhoService.read().subscribe(carrinhos => {
             this.carrinhos = carrinhos;
             this.filteredCarrinhos = this.carrinhos
-              .filter((carrinho: Carrinho) => carrinho.telefone - environment.telefone === 0)
-              .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-
+            .filter((carrinho: Carrinho) => +carrinho.telefone - +environment.telefone === 0)
+            .filter((carrinho: Carrinho) => carrinho.enviado !== true);
           });
+          switch (this.ultimoSort) {
+                case ('nomeAsc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('nomeDesc'):
+                  return this.sortCarrinhosUpdateByName();
+                case ('precoAsc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('precoDesc'):
+                  return this.sortCarrinhosUpdateByPrice();
+                case ('dataAsc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('dataDesc'):
+                  return this.sortCarrinhosUpdateByHorarioPedido();
+                case ('statusAsc'):
+                  return this.sortCarrinhosUpdateByStatus();
+                case ('statusDesc'):
+                  return this.sortCarrinhosUpdateByStatus();
+          }
         });
 
-    }
 
-        this.login = this.carrinho.telefone - environment.telefone === 0
+    }
+    this.login = this.carrinho.telefone - environment.telefone === 0
 
 
   }
@@ -205,6 +241,16 @@ export class CarrinhoListComponent implements OnInit {
 
   }
 
+  sortCarrinhosUpdateByName() {
+
+    if (this.ultimoSort === 'nomeAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
+    } else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.nome.localeCompare(b.produto.nome));
+    }
+
+  }
+
   sortCarrinhosByPrice() {
     if (this.ultimoSort === 'precoAsc') {
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.preco - b.produto.preco);
@@ -212,6 +258,14 @@ export class CarrinhoListComponent implements OnInit {
     }  else {
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
       this.ultimoSort = 'precoAsc'
+    }
+  }
+
+  sortCarrinhosUpdateByPrice() {
+    if (this.ultimoSort === 'precoAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
+    }  else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.preco - b.produto.preco);
     }
   }
 
@@ -225,6 +279,14 @@ export class CarrinhoListComponent implements OnInit {
     }
   }
 
+  sortCarrinhosUpdateByHorarioPedido() {
+    if (this.ultimoSort === 'dataAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    } else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+    }
+  }
+
     sortCarrinhosByStatus() {
 
     if (this.ultimoSort === 'statusAsc') {
@@ -233,6 +295,16 @@ export class CarrinhoListComponent implements OnInit {
     } else {
       this.ultimoSort = 'statusAsc'
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.status.localeCompare(b.status));
+    }
+
+  }
+
+    sortCarrinhosUpdateByStatus() {
+
+    if (this.ultimoSort === 'statusAsc') {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.status.localeCompare(b.status));
+    } else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.status.localeCompare(b.status));
     }
 
   }
@@ -311,7 +383,7 @@ export class CarrinhoListComponent implements OnInit {
         let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
         this.sortedCarrinhos[index].status = 'Confirmado';      
 
-        this.atualizarCarrinho(this.carrinho);
+        this.atualizarCarrinho(this.carrinho); 
 
 
         this.pedido.telefone = this.carrinho.telefone;

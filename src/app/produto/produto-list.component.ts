@@ -79,6 +79,8 @@ export class ProdutoListComponent implements OnInit {
 
   loginService = inject(LoginService);
 
+   ultimoSort: string = 'nomeDesc';
+
   constructor(
     private produtoService: ProdutoService,
     private carrinhoService: CarrinhoService,
@@ -134,11 +136,24 @@ export class ProdutoListComponent implements OnInit {
   }
 
   sortProductsByName() {
-    this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.nome.localeCompare(b.nome));
+    if (this.ultimoSort === 'nomeAsc') {
+      this.ultimoSort = 'nomeDesc'
+      this.sortedProducts = [...this.filteredProdutos].sort((b, a) => a.nome.localeCompare(b.nome));
+    } else {
+      this.ultimoSort = 'nomeAsc'
+      this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.nome.localeCompare(b.nome));
+    }
+
   }
 
   sortProductsByPrice() {
-    this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.preco - b.preco);
+    if (this.ultimoSort === 'precoAsc') {
+      this.ultimoSort = 'precoDesc'
+      this.sortedProducts = [...this.filteredProdutos].sort((b, a) => a.preco - b.preco);
+    } else {
+      this.ultimoSort = 'precoAsc'
+      this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.preco - b.preco);
+    }
   }
 
   removerAcentos(str: string): string {

@@ -27,7 +27,6 @@ export class TelefoneValidacaoComponent implements OnInit {
   // tslint:disable-next-line:typedef
   enviarCodigo(telefone: string, codigo: string) {
 
-    console.log('enviarCodigo ' + telefone + ' ' + codigo );
     /*
     this.telefoneValidacao.from = 'youthful-sole';
     this.telefoneValidacao.to = +telefone;

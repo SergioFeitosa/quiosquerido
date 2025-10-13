@@ -798,9 +798,8 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 10%'> </th>
         <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTDE. </th>
-        <th style='width: 45%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
+        <th style='width: 40%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
           <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
             ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
@@ -810,7 +809,7 @@
             HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
           <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
             STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
@@ -820,7 +819,6 @@
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
       <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
-        <td><img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." > </td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{ carrinho.quantidade
           }} </td>
         <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;"> {{
@@ -870,18 +868,18 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 10; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTD </th>
+        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTD </th>
         <th style='width: 40%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
           <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
             ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
         </th>
-        <th style='width: 35%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
+        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
           <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
             HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
+        <th style='width: 30%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
           <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
             STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
           </a>

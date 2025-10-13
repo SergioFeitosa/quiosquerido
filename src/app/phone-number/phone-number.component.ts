@@ -112,7 +112,8 @@ export class PhoneNumberComponent implements OnInit {
         const user = result.user;
         this.emitEvent();
         this.router.navigate(['']);
-        this.loginService.login();
+        environment.telefone = this.phoneNumber
+        environment.login = true;
 
       }).catch((error: any) => {
         this.showMessage('Erro na verificação do código SMS');

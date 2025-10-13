@@ -103,17 +103,17 @@ export class PedidoListComponent implements OnInit {
           .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas');
         switch (this.ultimoSort) {
           case ('nomeAsc'):
-            return this.sortPedidosByName();
+            return this.sortPedidosUpdateByName();
           case ('nomeDesc'):
-            return this.sortPedidosByName();
+            return this.sortPedidosUpdateByName();
           case ('precoAsc'):
-            return this.sortPedidosByPrice();
+            return this.sortPedidosUpdateByPrice();
           case ('precoDesc'):
-            return this.sortPedidosByPrice();
+            return this.sortPedidosUpdateByPrice();
           case ('dataAsc'):
-            return this.sortPedidosByHorarioPedido();
+            return this.sortPedidosUpdateByHorarioPedido();
           case ('dataDesc'):
-            return this.sortPedidosByHorarioPedido();
+            return this.sortPedidosUpdateByHorarioPedido();
         }
 
       });
@@ -125,7 +125,21 @@ export class PedidoListComponent implements OnInit {
             this.filteredPedidos = this.pedidos
               .filter((pedido: Pedido) => pedido.enviado !== true)
               .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas')
+              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas');
+        switch (this.ultimoSort) {
+          case ('nomeAsc'):
+            return this.sortPedidosUpdateByName();
+          case ('nomeDesc'):
+            return this.sortPedidosUpdateByName();
+          case ('precoAsc'):
+            return this.sortPedidosUpdateByPrice();
+          case ('precoDesc'):
+            return this.sortPedidosUpdateByPrice();
+          case ('dataAsc'):
+            return this.sortPedidosUpdateByHorarioPedido();
+          case ('dataDesc'):
+            return this.sortPedidosUpdateByHorarioPedido();
+        }
           });
         });
 
@@ -133,25 +147,53 @@ export class PedidoListComponent implements OnInit {
 
       this.pedidoService.read().subscribe(pedidos => {
         this.pedidos = pedidos;
-        this.filteredPedidos = this.pedidos.filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
+        this.filteredPedidos = this.pedidos
+          .filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
           .filter((pedido: Pedido) => pedido.enviado !== true)
           .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
           .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas');
         switch (this.ultimoSort) {
           case ('nomeAsc'):
-            return this.sortPedidosByName();
+            return this.sortPedidosUpdateByName();
           case ('nomeDesc'):
-            return this.sortPedidosByName();
+            return this.sortPedidosUpdateByName();
           case ('precoAsc'):
-            return this.sortPedidosByPrice();
+            return this.sortPedidosUpdateByPrice();
           case ('precoDesc'):
-            return this.sortPedidosByPrice();
+            return this.sortPedidosUpdateByPrice();
           case ('dataAsc'):
-            return this.sortPedidosByHorarioPedido();
+            return this.sortPedidosUpdateByHorarioPedido();
           case ('dataDesc'):
-            return this.sortPedidosByHorarioPedido();
+            return this.sortPedidosUpdateByHorarioPedido();
         }
       });
+
+      this.updateSubscription = interval(5000).subscribe(
+        (val) => {
+          this.pedidoService.read().subscribe(pedidos => {
+            this.pedidos = pedidos;
+            this.filteredPedidos = this.pedidos
+              .filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
+              .filter((pedido: Pedido) => pedido.enviado !== true)
+              .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
+              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria !== 'bebidas');
+          switch (this.ultimoSort) {
+          case ('nomeAsc'):
+            return this.sortPedidosUpdateByName();
+          case ('nomeDesc'):
+            return this.sortPedidosUpdateByName();
+          case ('precoAsc'):
+            return this.sortPedidosUpdateByPrice();
+          case ('precoDesc'):
+            return this.sortPedidosUpdateByPrice();
+          case ('dataAsc'):
+            return this.sortPedidosUpdateByHorarioPedido();
+          case ('dataDesc'):
+            return this.sortPedidosUpdateByHorarioPedido();
+        }
+
+          });
+        });
     }
   }
 
@@ -162,6 +204,15 @@ export class PedidoListComponent implements OnInit {
     } else {
       this.ultimoSort = 'nomeAsc'
       this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
+    }
+
+  }
+
+  sortPedidosUpdateByName() {
+    if (this.ultimoSort === 'nomeAsc') {
+      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
+    } else {
+      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
     }
 
   }
@@ -177,6 +228,15 @@ export class PedidoListComponent implements OnInit {
 
   }
 
+  sortPedidosUpdateByPrice() {
+    if (this.ultimoSort === 'precoAsc') {
+      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.preco - b.carrinho.produto.preco);
+    } else {
+      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.preco - b.carrinho.produto.preco);
+    }
+
+  }
+
   sortPedidosByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
       this.ultimoSort = 'dataDesc'
@@ -184,6 +244,15 @@ export class PedidoListComponent implements OnInit {
     } else {
       this.ultimoSort = 'dataAsc'
       this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
+    }
+
+  }
+
+  sortPedidosUpdateByHorarioPedido() {
+    if (this.ultimoSort === 'dataAsc') {
+      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
+    } else {
+      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
     }
 
   }
@@ -366,7 +435,6 @@ export class PedidoListComponent implements OnInit {
 
       isDelete.then((value) => {
 
-        console.log('atualizar carrinho')
         this.pedido.carrinho.status = 'Excluído'
         this.atualizarCarrinho(this.pedido.carrinho);
 
