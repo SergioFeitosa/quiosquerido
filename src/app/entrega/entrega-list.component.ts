@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 
-@Component({ 
+@Component({
   templateUrl: './entrega-list.component.html',
   styleUrls: ['./entrega-list.component.css'],
   standalone: true,
@@ -25,17 +25,13 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     CommonModule,
     CaminhoMenuComponent,
-    MatButtonModule, 
-    MatDividerModule, 
+    MatButtonModule,
+    MatDividerModule,
     MatIconModule,
-    StarComponent
-
-  ]
-
+    StarComponent,
+  ],
 })
-
 export class EntregaListComponent implements OnInit {
-
   private readSubscription!: Subscription;
   private updateSubscription!: Subscription;
 
@@ -69,12 +65,10 @@ export class EntregaListComponent implements OnInit {
     private pedidoService: PedidoService,
     private carrinhoService: CarrinhoService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
-
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this.telefone = environment.telefone;
     // this.modulo = 'Entrega';
     // this.local = environment.local;
@@ -86,115 +80,114 @@ export class EntregaListComponent implements OnInit {
     environment.fundoColoridoEntrega = true;
     environment.fundoColoridoConta = false;
 
-
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999996) {
-      this.entregaService.read().subscribe(entregas => {
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999996
+    ) {
+      this.entregaService.read().subscribe((entregas) => {
         this.entregas = entregas;
         this.filteredEntregas = this.entregas;
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortEntregasByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortEntregasByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortEntregasByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortEntregasByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortEntregasByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortEntregasByHorarioPedido();
-          case ('dataEntregaAsc'):
+          case 'dataEntregaAsc':
             return this.sortEntregasByHorarioEntrega();
-          case ('dataEntregaDesc'):
+          case 'dataEntregaDesc':
             return this.sortEntregasByHorarioEntrega();
         }
       });
 
-      this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.entregaService.read().subscribe(entregas => {
-            this.entregas = entregas;
-            this.filteredEntregas = this.entregas;
-          });
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.entregaService.read().subscribe((entregas) => {
+          this.entregas = entregas;
+          this.filteredEntregas = this.entregas;
+        });
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortEntregasUpdateByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortEntregasUpdateByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortEntregasUpdateByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortEntregasUpdateByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortEntregasUpdateByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortEntregasUpdateByHorarioPedido();
-          case ('dataEntregaAsc'):
+          case 'dataEntregaAsc':
             return this.sortEntregasUpdateByHorarioEntrega();
-          case ('dataEntregaDesc'):
+          case 'dataEntregaDesc':
             return this.sortEntregasUpdateByHorarioEntrega();
         }
-
-        });
-
+      });
     } else {
-
-      this.entregaService.read().subscribe(entregas => {
+      this.entregaService.read().subscribe((entregas) => {
         this.entregas = entregas;
-        this.filteredEntregas = this.entregas
-          .filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0);
+        this.filteredEntregas = this.entregas.filter(
+          (entrega: Entrega) =>
+            entrega.pedido.telefone - environment.telefone === 0
+        );
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortEntregasByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortEntregasByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortEntregasByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortEntregasByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortEntregasByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortEntregasByHorarioPedido();
-          case ('dataEntregaAsc'):
+          case 'dataEntregaAsc':
             return this.sortEntregasByHorarioEntrega();
-          case ('dataEntregaDesc'):
+          case 'dataEntregaDesc':
             return this.sortEntregasByHorarioEntrega();
         }
       });
 
-      this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.entregaService.read().subscribe(entregas => {
-            this.entregas = entregas;
-          this.filteredEntregas = this.entregas
-            .filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0);
-          });
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.entregaService.read().subscribe((entregas) => {
+          this.entregas = entregas;
+          this.filteredEntregas = this.entregas.filter(
+            (entrega: Entrega) =>
+              entrega.pedido.telefone - environment.telefone === 0
+          );
+        });
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortEntregasUpdateByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortEntregasUpdateByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortEntregasUpdateByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortEntregasUpdateByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortEntregasUpdateByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortEntregasUpdateByHorarioPedido();
-          case ('dataEntregaAsc'):
+          case 'dataEntregaAsc':
             return this.sortEntregasUpdateByHorarioEntrega();
-          case ('dataEntregaDesc'):
+          case 'dataEntregaDesc':
             return this.sortEntregasUpdateByHorarioEntrega();
         }
-
-        });
-
+      });
     }
   }
-    // tslint:disable-next-line:typedef
+  // tslint:disable-next-line:typedef
   get filter() {
     return this._filterBy;
   }
@@ -202,105 +195,169 @@ export class EntregaListComponent implements OnInit {
   set filter(value: string) {
     this._filterBy = value;
 
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999996) {
-      this.filteredEntregas =
-        this.entregas
-          .filter((entrega: Entrega) => this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
-
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999996
+    ) {
+      this.filteredEntregas = this.entregas.filter((entrega: Entrega) =>
+        this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(
+          this.removerAcentos(this._filterBy)
+        )
+      );
     } else {
-
-      this.filteredEntregas =
-        this.entregas
-          .filter((entrega: Entrega) => entrega.pedido.telefone - environment.telefone === 0)
-          .filter((entrega: Entrega) => this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
-
+      this.filteredEntregas = this.entregas
+        .filter(
+          (entrega: Entrega) =>
+            entrega.pedido.telefone - environment.telefone === 0
+        )
+        .filter((entrega: Entrega) =>
+          this.removerAcentos(entrega.pedido.carrinho.produto.nome).includes(
+            this.removerAcentos(this._filterBy)
+          )
+        );
     }
     this.sortEntregasByName();
   }
 
   sortEntregasByName() {
     if (this.ultimoSort === 'nomeAsc') {
-      this.ultimoSort = 'nomeDesc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+      this.ultimoSort = 'nomeDesc';
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) =>
+        a.pedido.carrinho.produto.nome.localeCompare(
+          b.pedido.carrinho.produto.nome
+        )
+      );
     } else {
-      this.ultimoSort = 'nomeAsc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+      this.ultimoSort = 'nomeAsc';
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) =>
+        a.pedido.carrinho.produto.nome.localeCompare(
+          b.pedido.carrinho.produto.nome
+        )
+      );
     }
   }
 
   sortEntregasUpdateByName() {
     if (this.ultimoSort === 'nomeAsc') {
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) =>
+        a.pedido.carrinho.produto.nome.localeCompare(
+          b.pedido.carrinho.produto.nome
+        )
+      );
     } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.nome.localeCompare(b.pedido.carrinho.produto.nome));
+      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) =>
+        a.pedido.carrinho.produto.nome.localeCompare(
+          b.pedido.carrinho.produto.nome
+        )
+      );
     }
   }
 
   sortEntregasByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.ultimoSort = 'precoDesc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+      this.ultimoSort = 'precoDesc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+      );
     } else {
-      this.ultimoSort = 'precoAsc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+      this.ultimoSort = 'precoAsc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+      );
     }
-
   }
 
   sortEntregasUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+      );
     } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco);
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+      );
     }
-
   }
 
   sortEntregasByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
-      this.ultimoSort = 'dataDesc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+      this.ultimoSort = 'dataDesc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          new Date(a.pedido.carrinho.data_criacao).getTime() -
+          new Date(b.pedido.carrinho.data_criacao).getTime()
+      );
     } else {
-      this.ultimoSort = 'dataAsc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+      this.ultimoSort = 'dataAsc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          new Date(a.pedido.carrinho.data_criacao).getTime() -
+          new Date(b.pedido.carrinho.data_criacao).getTime()
+      );
     }
-
   }
 
   sortEntregasUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          new Date(a.pedido.carrinho.data_criacao).getTime() -
+          new Date(b.pedido.carrinho.data_criacao).getTime()
+      );
     } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.pedido.carrinho.data_criacao).getTime() - new Date(b.pedido.carrinho.data_criacao).getTime());
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          new Date(a.pedido.carrinho.data_criacao).getTime() -
+          new Date(b.pedido.carrinho.data_criacao).getTime()
+      );
     }
-
   }
 
   sortEntregasByHorarioEntrega() {
     if (this.ultimoSort === 'dataEntregaAsc') {
-      this.ultimoSort = 'dataEntregaDesc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.ultimoSort = 'dataEntregaDesc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     } else {
-      this.ultimoSort = 'dataEntregaAsc'
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.ultimoSort = 'dataEntregaAsc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     }
-
   }
 
   sortEntregasUpdateByHorarioEntrega() {
     if (this.ultimoSort === 'dataEntregaAsc') {
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (a, b) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     }
-
   }
 
   removerAcentos(str: string): string {
     // Converte para minúsculas e remove os diacríticos usando Unicode
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
-
 
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
@@ -309,7 +366,7 @@ export class EntregaListComponent implements OnInit {
   // tslint:disable-next-line:typedef
   openPopup(entregaId: number): void {
     // tslint:disable-next-line:no-unused-expression
-    this.entregaService.readById(entregaId).subscribe(entrega => {
+    this.entregaService.readById(entregaId).subscribe((entrega) => {
       this.entrega = entrega;
       this.pedido = this.entrega.pedido;
       this.carrinho = this.entrega.pedido.carrinho;
@@ -326,40 +383,41 @@ export class EntregaListComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
-
   }
 
   entregaUpdate(entregaId: number) {
-
     // tslint:disable-next-line:no-unused-expression
-    this.entregaService.readById(entregaId).subscribe(entrega => {
+    this.entregaService.readById(entregaId).subscribe((entrega) => {
       this.entrega = entrega;
 
-      // tslint:disable-next-line:no-unused-expression
-      this.carrinhoService.readById(
-        this.entrega.pedido.carrinho.id!).subscribe(carrinho => {
-        this.carrinho = carrinho;
-        this.carrinho.status = 'Pedido entregue';
-        this.atualizarCarrinho(this.carrinho);
-      })
-
-      // tslint:disable-next-line:no-unused-expression
-      this.pedidoService.readById(this.entrega.pedido.id!).subscribe(pedido => {
-        this.pedido = pedido;
-        this.pedido.status = 'Pedido entregue';
-        this.pedido.carrinho = this.carrinho;
-
-        this.atualizarPedido(this.pedido);
-
-      })
-
-      this.entrega.pedido = this.pedido;
-
-      let index = this.sortedEntregas.findIndex(entrega => entrega.id === entregaId);
-      this.sortedEntregas[index].data_criacao = new Date();      
-      this.entrega.data_criacao =  this.sortedEntregas[index].data_criacao ;
+      let index = this.sortedEntregas.findIndex(
+        (entrega) => entrega.id === entregaId
+      );
+      this.sortedEntregas[index].data_criacao = new Date();
+      this.entrega.data_criacao = this.sortedEntregas[index].data_criacao;
+      this.entrega.pedido.status = 'Pedido entregue';
+      //this.entrega.pedido.carrinho.status = 'Pedido entregue';
 
       this.atualizarEntrega(this.entrega);
+
+      // tslint:disable-next-line:no-unused-expression
+      this.carrinhoService
+        .readById(this.entrega.pedido.carrinho.id!)
+        .subscribe((carrinho) => {
+          this.carrinho = carrinho;
+          this.carrinho.status = 'Pedido entregue';
+          this.atualizarCarrinho(this.carrinho);
+        });
+
+      // tslint:disable-next-line:no-unused-expression
+      this.pedidoService
+        .readById(this.entrega.pedido.id!)
+        .subscribe((pedido) => {
+          this.pedido = pedido;
+          this.pedido.status = 'Pedido entregue';
+          //this.pedido.carrinho = this.carrinho;
+          this.atualizarPedido(this.pedido);
+        });
     });
   }
 
@@ -378,9 +436,8 @@ export class EntregaListComponent implements OnInit {
   }
 
   atualizarEntrega(entrega: Entrega) {
-  this.entregaService.update(entrega).subscribe(() => {
+    this.entregaService.update(entrega).subscribe(() => {
       this.entregaService.showMessage('Pedido Entregue');
     });
-
   }
 }

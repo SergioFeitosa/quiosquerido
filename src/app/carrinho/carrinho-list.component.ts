@@ -15,9 +15,8 @@ import { INITIAL_CONFIG } from '@angular/platform-server';
 import { initializeApp } from '@angular/fire/app';
 import { consumerBeforeComputation } from '@angular/core/primitives/signals';
 import { Subject } from 'rxjs';
-import { NgMaterialModule } from "../ng-material/ng-material.module";
+import { NgMaterialModule } from '../ng-material/ng-material.module';
 import { MatIconModule } from '@angular/material/icon';
-
 
 @Component({
   standalone: true,
@@ -30,15 +29,11 @@ import { MatIconModule } from '@angular/material/icon';
     StarComponent,
     NgMaterialModule,
     MatIconModule,
-
-],
+  ],
   templateUrl: './carrinho-list.component.html',
   styleUrls: ['./carrinho-list.component.css'],
-  
 })
-
 export class CarrinhoListComponent implements OnInit {
-
   private readSubscription!: Subscription;
   private updateSubscription!: Subscription;
 
@@ -87,16 +82,13 @@ export class CarrinhoListComponent implements OnInit {
   constructor(
     private carrinhoService: CarrinhoService,
     private pedidoService: PedidoService,
-    private router: Router,
-  ) {
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // this.modulo = 'Pedido';
     // this.local = environment.local;
     this.carrinho.quantidade = 1;
-
-
 
     environment.fundoColoridoCardapio = false;
     environment.fundoColoridoPedido = true;
@@ -105,214 +97,198 @@ export class CarrinhoListComponent implements OnInit {
     environment.fundoColoridoEntrega = false;
     environment.fundoColoridoConta = false;
 
-
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999997) {
-
-      this.carrinhoService.read().subscribe(carrinhos => {
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999997
+    ) {
+      this.carrinhoService.read().subscribe((carrinhos) => {
         this.carrinhos = carrinhos;
-        this.filteredCarrinhos = this.carrinhos
-          .filter((carrinho: Carrinho) => carrinho.enviado !== true);
+        this.filteredCarrinhos = this.carrinhos;
         switch (this.ultimoSort) {
-          case (''):
-            return this.sortCarrinhosByName();
-          case ('nomeAsc'):
-            return this.sortCarrinhosByName();
-          case ('nomeDesc'):
-            return this.sortCarrinhosByName();
-          case ('precoAsc'):
-            return this.sortCarrinhosByPrice();
-          case ('precoDesc'):
-            return this.sortCarrinhosByPrice();
-          case ('dataAsc'):
-            return this.sortCarrinhosByHorarioPedido();
-          case ('dataDesc'):
-            return this.sortCarrinhosByHorarioPedido();
-          case ('statusAsc'):
-            return this.sortCarrinhosByStatus();
-          case ('statusDesc'):
-            return this.sortCarrinhosByStatus();
+          case '':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeAsc':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeDesc':
+            return this.sortCarrinhosUpdateByName();
+          case 'precoAsc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'precoDesc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'dataAsc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'dataDesc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'statusAsc':
+            return this.sortCarrinhosUpdateByStatus();
+          case 'statusDesc':
+            return this.sortCarrinhosUpdateByStatus();
         }
-
       });
 
-      this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.carrinhoService.read().subscribe(carrinhos => {
-            this.carrinhos = carrinhos;
-            this.filteredCarrinhos = this.carrinhos
-              .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-          switch (this.ultimoSort) {
-                case ('nomeAsc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('nomeDesc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('precoAsc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('precoDesc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('dataAsc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('dataDesc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('statusAsc'):
-                  return this.sortCarrinhosUpdateByStatus();
-                case ('statusDesc'):
-                  return this.sortCarrinhosUpdateByStatus();
-          }
-
-          });
-        });
-
-
-    } else {
-
-
-        this.carrinhoService.read().subscribe(carrinhos => {
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.carrinhoService.read().subscribe((carrinhos) => {
           this.carrinhos = carrinhos;
-          this.filteredCarrinhos = this.carrinhos
-            .filter((carrinho: Carrinho) => +carrinho.telefone - +environment.telefone === 0)
-            .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-
+          this.filteredCarrinhos = this.carrinhos;
           switch (this.ultimoSort) {
-                case ('nomeAsc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('nomeDesc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('precoAsc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('precoDesc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('dataAsc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('dataDesc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('statusAsc'):
-                  return this.sortCarrinhosUpdateByStatus();
-                case ('statusDesc'):
-                  return this.sortCarrinhosUpdateByStatus();
-          }
-      
-      });
-
-    this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.carrinhoService.read().subscribe(carrinhos => {
-            this.carrinhos = carrinhos;
-            this.filteredCarrinhos = this.carrinhos
-            .filter((carrinho: Carrinho) => +carrinho.telefone - +environment.telefone === 0)
-            .filter((carrinho: Carrinho) => carrinho.enviado !== true);
-          });
-          switch (this.ultimoSort) {
-                case ('nomeAsc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('nomeDesc'):
-                  return this.sortCarrinhosUpdateByName();
-                case ('precoAsc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('precoDesc'):
-                  return this.sortCarrinhosUpdateByPrice();
-                case ('dataAsc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('dataDesc'):
-                  return this.sortCarrinhosUpdateByHorarioPedido();
-                case ('statusAsc'):
-                  return this.sortCarrinhosUpdateByStatus();
-                case ('statusDesc'):
-                  return this.sortCarrinhosUpdateByStatus();
+            case '':
+              return this.sortCarrinhosUpdateByName();
+            case 'nomeAsc':
+              return this.sortCarrinhosUpdateByName();
+            case 'nomeDesc':
+              return this.sortCarrinhosUpdateByName();
+            case 'precoAsc':
+              return this.sortCarrinhosUpdateByPrice();
+            case 'precoDesc':
+              return this.sortCarrinhosUpdateByPrice();
+            case 'dataAsc':
+              return this.sortCarrinhosUpdateByHorarioPedido();
+            case 'dataDesc':
+              return this.sortCarrinhosUpdateByHorarioPedido();
+            case 'statusAsc':
+              return this.sortCarrinhosUpdateByStatus();
+            case 'statusDesc':
+              return this.sortCarrinhosUpdateByStatus();
           }
         });
-
-
-    }
-    this.login = this.carrinho.telefone - environment.telefone === 0
-
-
-  }
-
-  sortCarrinhosByName() {
-
-    if (this.ultimoSort === 'nomeAsc') {
-      this.ultimoSort = 'nomeDesc'
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.nome.localeCompare(b.produto.nome));
+      });
     } else {
-      this.ultimoSort = 'nomeAsc'
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
-    }
+      this.carrinhoService.read().subscribe((carrinhos) => {
+        this.carrinhos = carrinhos;
+        this.filteredCarrinhos = this.carrinhos.filter(
+          (carrinho: Carrinho) =>
+            +carrinho.telefone - +environment.telefone === 0
+        );
 
+        switch (this.ultimoSort) {
+          case '':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeAsc':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeDesc':
+            return this.sortCarrinhosUpdateByName();
+          case 'precoAsc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'precoDesc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'dataAsc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'dataDesc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'statusAsc':
+            return this.sortCarrinhosUpdateByStatus();
+          case 'statusDesc':
+            return this.sortCarrinhosUpdateByStatus();
+        }
+      });
+
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.carrinhoService.read().subscribe((carrinhos) => {
+          this.carrinhos = carrinhos;
+          this.filteredCarrinhos = this.carrinhos.filter(
+            (carrinho: Carrinho) =>
+              +carrinho.telefone - +environment.telefone === 0
+          );
+        });
+        switch (this.ultimoSort) {
+          case '':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeAsc':
+            return this.sortCarrinhosUpdateByName();
+          case 'nomeDesc':
+            return this.sortCarrinhosUpdateByName();
+          case 'precoAsc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'precoDesc':
+            return this.sortCarrinhosUpdateByPrice();
+          case 'dataAsc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'dataDesc':
+            return this.sortCarrinhosUpdateByHorarioPedido();
+          case 'statusAsc':
+            return this.sortCarrinhosUpdateByStatus();
+          case 'statusDesc':
+            return this.sortCarrinhosUpdateByStatus();
+        }
+      });
+    }
+    this.login = this.carrinho.telefone - environment.telefone === 0;
   }
 
   sortCarrinhosUpdateByName() {
-
     if (this.ultimoSort === 'nomeAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.nome.localeCompare(b.produto.nome));
+      this.ultimoSort = 'nomeDesc';
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) =>
+        a.produto.nome.localeCompare(b.produto.nome)
+      );
     } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.nome.localeCompare(b.produto.nome));
+      this.ultimoSort = 'nomeAsc';
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) =>
+        a.produto.nome.localeCompare(b.produto.nome)
+      );
     }
-
   }
 
   sortCarrinhosByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.preco - b.produto.preco);
-      this.ultimoSort = 'precoDesc'
-    }  else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
-      this.ultimoSort = 'precoAsc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (b, a) => a.produto.preco - b.produto.preco
+      );
+      this.ultimoSort = 'precoDesc';
+    } else {
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (a, b) => a.produto.preco - b.produto.preco
+      );
+      this.ultimoSort = 'precoAsc';
     }
   }
 
   sortCarrinhosUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.produto.preco - b.produto.preco);
-    }  else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.produto.preco - b.produto.preco);
-    }
-  }
-
-  sortCarrinhosByHorarioPedido() {
-    if (this.ultimoSort === 'dataAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
-      this.ultimoSort = 'dataDesc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (a, b) => a.produto.preco - b.produto.preco
+      );
     } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
-      this.ultimoSort = 'dataAsc'
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (b, a) => a.produto.preco - b.produto.preco
+      );
     }
   }
 
   sortCarrinhosUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (a, b) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => new Date(a.data_criacao).getTime() - new Date(b.data_criacao).getTime());
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (b, a) =>
+          new Date(a.data_criacao).getTime() -
+          new Date(b.data_criacao).getTime()
+      );
     }
   }
 
-    sortCarrinhosByStatus() {
-
+  sortCarrinhosUpdateByStatus() {
     if (this.ultimoSort === 'statusAsc') {
-      this.ultimoSort = 'statusDesc'
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.status.localeCompare(b.status));
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) =>
+        a.status.localeCompare(b.status)
+      );
     } else {
-      this.ultimoSort = 'statusAsc'
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.status.localeCompare(b.status));
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) =>
+        a.status.localeCompare(b.status)
+      );
     }
-
   }
-
-    sortCarrinhosUpdateByStatus() {
-
-    if (this.ultimoSort === 'statusAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) => a.status.localeCompare(b.status));
-    } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) => a.status.localeCompare(b.status));
-    }
-
-  }
-
 
   removerAcentos(str: string): string {
     // Converte para minúsculas e remove os diacríticos usando Unicode
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   // tslint:disable-next-line:typedef
@@ -323,24 +299,40 @@ export class CarrinhoListComponent implements OnInit {
   set filter(value: string) {
     this._filterBy = value;
 
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999997) {
-
-      this.filteredCarrinhos =
-        this.carrinhos
-          .filter((carrinho: Carrinho) => carrinho.enviado !== true)
-          .filter((carrinho: Carrinho) => this.removerAcentos(carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)));
-
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999997
+    ) {
+      this.filteredCarrinhos = this.carrinhos
+        .filter(
+          (carrinho: Carrinho) =>
+            carrinho.status.toLowerCase() == 'pendente' ||
+            carrinho.status.toLowerCase() == 'confirmado' ||
+            carrinho.status.toLowerCase() == 'excluido'
+        )
+        .filter((carrinho: Carrinho) =>
+          this.removerAcentos(carrinho.produto.nome).includes(
+            this.removerAcentos(this._filterBy)
+          )
+        );
     } else {
-
-      this.filteredCarrinhos =
-        this.carrinhos
-          .filter((carrinho: Carrinho) => carrinho.enviado !== true)
-          .filter((carrinho: Carrinho) => environment.telefone - carrinho.telefone === 0)
-          .filter((carrinho: Carrinho) => this.removerAcentos(carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)));
-
+      this.filteredCarrinhos = this.carrinhos
+        .filter(
+          (carrinho: Carrinho) =>
+            carrinho.status.toLowerCase() == 'pendente' ||
+            carrinho.status.toLowerCase() == 'confirmado' ||
+            carrinho.status.toLowerCase() == 'excluido'
+        )
+        .filter(
+          (carrinho: Carrinho) => environment.telefone - carrinho.telefone === 0
+        )
+        .filter((carrinho: Carrinho) =>
+          this.removerAcentos(carrinho.produto.nome).includes(
+            this.removerAcentos(this._filterBy)
+          )
+        );
     }
-    this.sortCarrinhosByName();
-
+    this.sortCarrinhosUpdateByName();
   }
   // tslint:disable-next-line:quotemark
   // tslint:disable-next-line:member-ordering
@@ -348,9 +340,8 @@ export class CarrinhoListComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   openPopup(carrinhoId: number): void {
-
     // tslint:disable-next-line:no-unused-expression
-    this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+    this.carrinhoService.readById(carrinhoId).subscribe((carrinho) => {
       this.carrinho = carrinho;
 
       this.produto = this.carrinho.produto;
@@ -367,24 +358,20 @@ export class CarrinhoListComponent implements OnInit {
     this.displayStyle = 'none';
   }
 
-
   pedidoCreate(carrinhoId: number): void {
-
     // tslint:disable-next-line:no-unused-expression
-    this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+    this.carrinhoService.readById(carrinhoId).subscribe((carrinho) => {
       this.carrinho = carrinho;
 
-      if (carrinho.enviado !== true) {
-
-        this.carrinho.enviado = false; 
+      if (carrinho.status.toLowerCase() == 'pendente') {
         this.carrinho.status = 'Confirmado';
 
+        let index = this.sortedCarrinhos.findIndex(
+          (carrinho) => carrinho.id === carrinhoId
+        );
+        this.sortedCarrinhos[index].status = 'Confirmado';
 
-        let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
-        this.sortedCarrinhos[index].status = 'Confirmado';      
-
-        this.atualizarCarrinho(this.carrinho); 
-
+        this.atualizarCarrinho(this.carrinho);
 
         this.pedido.telefone = this.carrinho.telefone;
         this.pedido.local = this.carrinho.local;
@@ -392,7 +379,6 @@ export class CarrinhoListComponent implements OnInit {
         this.pedido.observacao = this.carrinho.observacao;
         this.pedido.isencao = this.carrinho.isencao;
         this.pedido.data_criacao = this.carrinho.data_criacao;
-        this.pedido.enviado = false;
         this.pedido.status = 'Confirmado';
         this.pedido.carrinho = this.carrinho;
 
@@ -402,14 +388,16 @@ export class CarrinhoListComponent implements OnInit {
           this.pedidoService.create(this.pedido).subscribe(() => {
             resolve(this.pedido);
           })
-        )
+        );
 
-        isCreate.then ((value) => {
-          this.pedidoService.showMessage('Pedido solicitado');
-        }).catch((error) =>{
-          console.log(error);
-        }).finally(() => {
-        })
+        isCreate
+          .then((value) => {
+            this.pedidoService.showMessage('Pedido solicitado');
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {});
       }
     });
 
@@ -418,59 +406,61 @@ export class CarrinhoListComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   atualizarCarrinho(carrinho: Carrinho) {
-
-    const isCreate = new Promise<Carrinho>((resolve, reject) =>
-        this.carrinhoService.update(carrinho).subscribe(() => {
-          resolve(this.carrinho);
-        })
-      )
-
-      isCreate.then ((value) => {
-        this.carrinhoService.showMessage('Carrinho atualizado');
-      }).catch((error) =>{
-        console.log(error);
-      }).finally(() => {
+    const isUpdate = new Promise<Carrinho>((resolve, reject) =>
+      this.carrinhoService.update(carrinho).subscribe(() => {
+        resolve(this.carrinho);
       })
+    );
+
+    isUpdate
+      .then((value) => {
+        this.carrinhoService.showMessage('Carrinho atualizado');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
   }
 
   // tslint:disable-next-line:typedef
   excluirCarrinho(carrinhoId: number) {
-  
-    this.carrinhoService.readById(carrinhoId).subscribe(carrinho => {
+    this.carrinhoService.readById(carrinhoId).subscribe((carrinho) => {
       this.carrinho = carrinho;
 
       // let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
-      // this.sortedCarrinhos.splice(index, 1);      
+      // this.sortedCarrinhos.splice(index, 1);
 
-        let index = this.sortedCarrinhos.findIndex(carrinho => carrinho.id === carrinhoId);
-        this.sortedCarrinhos[index].status = 'Excluído';      
-        carrinho.status = 'Excluído'
+      let index = this.sortedCarrinhos.findIndex(
+        (carrinho) => carrinho.id === carrinhoId
+      );
+      this.sortedCarrinhos[index].status = 'Excluído';
+      carrinho.status = 'Excluído';
 
       const isDelete = new Promise<string>((resolve, reject) =>
         this.carrinhoService.update(carrinho).subscribe(() => {
-          this.message = 'Carrinho excluído'
+          this.message = 'Carrinho excluído';
           resolve(this.message);
         })
-      )
+      );
 
-      isDelete.then((value) => {
-        this.carrinhoService.showMessage('Carrinho excluìdo');
-      }).catch((error) => {
-        console.log(error);
-      }).finally(() => {
-        this.closePopup();
-      })
-
-      
-    })
-
+      isDelete
+        .then((value) => {
+          this.carrinhoService.showMessage('Carrinho excluìdo');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.closePopup();
+        });
+    });
   }
 
   // tslint:disable-next-line:typedef
   minus(carrinho: Carrinho) {
     if (carrinho.quantidade !== 1) {
       carrinho.quantidade--;
-      this.atualizarCarrinho(carrinho)
+      this.atualizarCarrinho(carrinho);
     }
   }
 
@@ -478,9 +468,7 @@ export class CarrinhoListComponent implements OnInit {
   plus(carrinho: Carrinho) {
     if (carrinho.quantidade !== 10) {
       carrinho.quantidade++;
-      this.atualizarCarrinho(carrinho)
+      this.atualizarCarrinho(carrinho);
     }
   }
-
 }
-

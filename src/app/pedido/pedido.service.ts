@@ -2,15 +2,23 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pedido } from './pedido';
-import { MatSnackBar as MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar as MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
-
 export class PedidoService {
+  pedido = {} as Pedido;
 
+  pedidos: Pedido[] = [];
+
+  constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
   // tslint:disable-next-line:quotemark
+
+  baseUrl = 'https://sgpn.com.br/pedido';
+
   //baseUrl = "http://localhost:3001/orders";
 
   // baseUrl = 'http://localhost:8080/quiosqueBackend/pedidos';
@@ -21,39 +29,32 @@ export class PedidoService {
 
   // baseUrl = 'https://quiosque.sgpn.com.br/pedidos';
 
-  baseUrl = 'https://sgpn.com.br/pedido';
-
   // baseUrl = 'https://sgpn.com.br/pedidos';
 
   // baseUrl = 'https://springboot-postgresheroku.herokuapp.com/api/v1/orders';
 
-
-  constructor(private snackBar: MatSnackBar,
-              private http: HttpClient) {}
+  private _listners = new Subject<any>();
 
   showMessage(msg: string): void {
     this.snackBar.open(msg, '', {
       duration: 3000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
-      panelClass: ['custom-css-class']
+      panelClass: ['custom-css-class'],
     });
   }
 
-  create(pedido: Pedido): Observable<Pedido>{
+  create(pedido: Pedido): Observable<Pedido> {
     return this.http.post<Pedido>(this.baseUrl, pedido);
-
   }
 
-  update(pedido: Pedido): Observable<Pedido>{
+  update(pedido: Pedido): Observable<Pedido> {
     const url = `${this.baseUrl}/${pedido.id}`;
     return this.http.put<Pedido>(url, pedido);
-
   }
 
   read(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.baseUrl);
-
   }
 
   readById(pedidoId: number): Observable<Pedido> {
@@ -65,6 +66,4 @@ export class PedidoService {
     const url = `${this.baseUrl}/${pedidoId}`;
     return this.http.delete<Pedido>(url);
   }
-
 }
-

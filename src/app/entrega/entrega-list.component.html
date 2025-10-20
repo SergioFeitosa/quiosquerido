@@ -2,17 +2,20 @@
 
 <!-- DESKTOP -->
 
-<div class='container desktop'>
-
+<div class="container desktop">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -23,129 +26,206 @@
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          CORTESIA
+        </th>
+        <th
+          style="width: 12%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 12%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 13%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 13%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..."
-            width="100" height="70">
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            class="figure-img img-fluid rounded"
+            alt="..."
+            width="100"
+            height="70"
+          />
         </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
-        <td style='color: red'>
-          <div style='
+        <td style="color: red">
+          <div
+            style="
               align-items: center;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red'>{{ entrega.pedido.carrinho.observacao }} </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.local }} </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.telefone }} </td>
-        <td style='color: blue; font-weight: 400;'>{{ entrega.pedido.isencao }} </td>
-        <td>
-          <div
-            style='
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-            </div>
+        <td style="color: red">{{ entrega.pedido.carrinho.observacao }}</td>
+        <td style="color: blue; font-weight: 400">
+          {{ entrega.pedido.local }}
+        </td>
+        <td style="color: blue; font-weight: 400">
+          {{ entrega.pedido.telefone }}
+        </td>
+        <td style="color: blue; font-weight: 400">
+          {{ entrega.pedido.isencao }}
         </td>
         <td>
           <div
-            style='
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
+        </td>
+        <td>
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab " 
-                        matMiniFab 
-                        aria-label="Entregar">
-                    <mat-icon class="my-icon">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab"
+                  matMiniFab
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="my-icon">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- LAPTOP @media(min-width: 993px) and (max-width: 1399px) {-->
 
-<div class='container laptop'>
-
+<div class="container laptop">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -156,131 +236,210 @@
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.7em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> CORTESIA</th>
-        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          CORTESIA
+        </th>
+        <th
+          style="width: 14%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.9em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.9em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 13%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 13%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url' class="figure-img img-fluid rounded" alt="..."
-            width="100" height="70">
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            class="figure-img img-fluid rounded"
+            alt="..."
+            width="100"
+            height="70"
+          />
         </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
-        <td style='color: red'>
-          <div style='
+        <td style="color: red">
+          <div
+            style="
               align-items: center;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.8em;'>{{ entrega.pedido.carrinho.observacao }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.local }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.telefone }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.isencao }} </td>
-        <td>
-          <div
-            style='
-                  font-size: 0.7em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-            </div>
+        <td style="color: red; font-size: 0.8em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.local }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.telefone }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.isencao }}
         </td>
         <td>
           <div
-            style='
-                  font-size: 0.7em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              font-size: 0.7em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
+        </td>
+        <td>
+          <div
+            style="
+              font-size: 0.7em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab " 
-                        matMiniFab 
-                        aria-label="Entregar">
-                    <mat-icon class="my-icon">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab"
+                  matMiniFab
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="my-icon">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
-
 
 <!-- LAPTOP2 @media(min-width: 768px) and (max-width: 992px) {-->
 
-<div class='container laptop2'>
+<div class="container laptop2">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -291,605 +450,926 @@
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.7em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 20%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 14%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.9em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.9em;'>Autorenew</span>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.9em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="25" height="20" style="object-fit: cover;">            
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            alt="..."
+            width="25"
+            height="20"
+            style="object-fit: cover"
+          />
         </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
-        <td style='color: red'>
-          <div style='
+        <td style="color: red">
+          <div
+            style="
               align-items: center;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.8em;'>{{ entrega.pedido.carrinho.observacao }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.local }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.8em;'>{{ entrega.pedido.telefone }} </td>
-        <td>
-          <div
-            style='
-                  margin-left: 1.7em;
-                  font-size: 0.7em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-            </div>
+        <td style="color: red; font-size: 0.8em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.local }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.8em">
+          {{ entrega.pedido.telefone }}
         </td>
         <td>
           <div
-            style='
-                  margin-left: 1.7em;
-                  font-size: 0.7em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              margin-left: 1.7em;
+              font-size: 0.7em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
+        </td>
+        <td>
+          <div
+            style="
+              margin-left: 1.7em;
+              font-size: 0.7em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab-l2 " 
-                        matMiniFab 
-                        aria-label="Detalhes">
-                    <mat-icon class="my-icon-l2">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab-l2"
+                  matMiniFab
+                  aria-label="Detalhes"
+                >
+                  <mat-icon class="my-icon-l2">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab-l2" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon-l2">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab-l2"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon-l2">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
-
 <!-- TABLET @media(min-width: 576px) and (max-width: 767px) -->
 
-<div class='container tablet'>
+<div class="container tablet">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
   </section>
 
-    <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 20%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.5em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> TELEFONE</th>
-        <th style='width: 14%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          QTD
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 14%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="25" height="20" style="object-fit: cover;">            
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            alt="..."
+            width="25"
+            height="20"
+            style="object-fit: cover"
+          />
         </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
         <td>
-          <div style='
+          <div
+            style="
               width: 1em;
               align-items: center;
               font-size: 0.6em;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.local }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.telefone }} </td>
-        <td>
-          <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-            </div>
+        <td style="color: red; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.local }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.telefone }}
         </td>
         <td>
           <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
+        </td>
+        <td>
+          <div
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab-t " 
-                        matMiniFab 
-                        aria-label="Detalhes">
-                    <mat-icon class="my-icon-t">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab-t"
+                  matMiniFab
+                  aria-label="Detalhes"
+                >
+                  <mat-icon class="my-icon-t">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab-t" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon-t">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab-t"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon-t">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- MOBILE @media(min-width: 381px) and (max-width: 575px) -->
 
-<div class='container mobile'>
+<div class="container mobile">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
   </section>
 
-    <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.5em;'> OBS</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
-        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          QTD
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          OBS
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 12%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 12%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioEntrega()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 12%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioEntrega()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="15" height="10" style="object-fit: cover;">            
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            alt="..."
+            width="15"
+            height="10"
+            style="object-fit: cover"
+          />
         </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
         <td>
-          <div style='
+          <div
+            style="
               width: 1em;
               align-items: center;
               font-size: 0.6em;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.local }} </td>
-        <td>
-          <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-            {{ entrega.pedido.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-            </div>
+        <td style="color: red; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.local }}
         </td>
         <td>
           <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
+        </td>
+        <td>
+          <div
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab-m " 
-                        matMiniFab 
-                        aria-label="Detalhes">
-                    <mat-icon class="my-icon-m">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab-m"
+                  matMiniFab
+                  aria-label="Detalhes"
+                >
+                  <mat-icon class="my-icon-m">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab-m" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab-m"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon-m">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- MOBILE PEQUENO @media(min-width: 263px) and (max-width: 380px) -->
 
-<div class='container mobile-pequeno'>
+<div class="container mobile-pequeno">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
   </section>
 
-    <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 20%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
-        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          QTD
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
         <td>
-          <img [src]='entrega.pedido.carrinho.produto.imagem_url'  alt="..." width="15" height="10" style="object-fit: cover;">            
+          <img
+            [src]="entrega.pedido.carrinho.produto.imagem_url"
+            alt="..."
+            width="15"
+            height="10"
+            style="object-fit: cover"
+          />
         </td>
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
         <td>
-          <div style='
+          <div
+            style="
               width: 1em;
               align-items: center;
               font-size: 0.6em;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style="color: red; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
         <td>
           <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab-m " 
-                        matMiniFab 
-                        aria-label="Detalhes">
-                    <mat-icon class="my-icon-m">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab-m"
+                  matMiniFab
+                  aria-label="Detalhes"
+                >
+                  <mat-icon class="my-icon-m">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab-m" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab-m"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon-m">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- MOBILE PEQUENO2 @media(max-width: 262px) -->
 
-<div class='container mobile-pequeno2'>
+<div class="container mobile-pequeno2">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos...M2" [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos...M2"
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
   </section>
 
-    <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped">
     @if (sortedEntregas.length) {
 
     <thead>
       <tr>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.5em;'>
-          <a (click)="sortEntregasByName()" style="cursor: default;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 20%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          <a (click)="sortEntregasByName()" style="cursor: default">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> QTD</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.5em;'> LOCAL</th>
-        <th style='width: 15%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center">
-          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer; ">
-            HORÁRIO ENTREGA<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 0.7em;'>Autorenew</span>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          QTD
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortEntregasByHorarioPedido()" style="cursor: pointer">
+            HORÁRIO ENTREGA<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 0.7em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 15%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> AÇÕES </th>
+        <th
+          style="width: 15%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          AÇÕES
+        </th>
       </tr>
     </thead>
     @for (entrega of sortedEntregas; track entrega.id; let i = $index) {
     <tbody>
       <tr class="cols">
-        <td style='color: blue; font-weight: 400; font-size: 0.6em;'>{{ entrega.pedido.carrinho.produto.nome }} </td>
+        <td style="color: blue; font-weight: 400; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.produto.nome }}
+        </td>
 
         <td>
-          <div style='
+          <div
+            style="
               width: 1em;
               align-items: center;
               font-size: 0.6em;
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              color: blue; 
+              color: blue;
               font-weight: 400;
-              justify-content: center;'>
+              justify-content: center;
+            "
+          >
             {{ entrega.pedido.carrinho.quantidade }}
           </div>
         </td>
-        <td style='color: red; font-size: 0.6em;'>{{ entrega.pedido.carrinho.observacao }} </td>
+        <td style="color: red; font-size: 0.6em">
+          {{ entrega.pedido.carrinho.observacao }}
+        </td>
         <td>
           <div
-            style='
-                  margin-left: 0.6em;
-                  font-size: 0.6em;
-                  align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  color: blue; 
-                  font-weight: 400;
-                  justify-content: center;'>
-          
-          {{ entrega.data_criacao | date:'dd/MM/yy HH:mm:ss' }} 
-          </div>          
+            style="
+              margin-left: 0.6em;
+              font-size: 0.6em;
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              color: blue;
+              font-weight: 400;
+              justify-content: center;
+            "
+          >
+            {{ entrega.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+          </div>
         </td>
         <td class="text-center">
           <section>
             <div class="example-button-row">
               <div class="example-flex-container">
-                <button (click)="openPopup( entrega.id! )" 
-                        class="my-custom-mini-fab-m " 
-                        matMiniFab 
-                        aria-label="Detalhes">
-                    <mat-icon class="my-icon-m">search</mat-icon>
+                <button
+                  (click)="openPopup(entrega.id!)"
+                  class="my-custom-mini-fab-m"
+                  matMiniFab
+                  aria-label="Detalhes"
+                >
+                  <mat-icon class="my-icon-m">search</mat-icon>
                 </button>
-                <button (click)="entregaUpdate( entrega.id! )"
-                        matMiniFab 
-                        class="my-custom-mini-fab-m" 
-                        [disabled]="((+telefone == 5511982551256 || +telefone == 5599999999996) && entrega.data_criacao == null) ? false : true" 
-                        aria-label="Entregar">
-                    <mat-icon class=" row my-icon-m">beach_access</mat-icon>
+                <button
+                  (click)="entregaUpdate(entrega.id!)"
+                  matMiniFab
+                  class="my-custom-mini-fab-m"
+                  [disabled]="
+                    (+telefone == 5511982551256 ||
+                      +telefone == 5599999999996) &&
+                    entrega.pedido.status === 'Saiu para entrega'
+                      ? false
+                      : true
+                  "
+                  aria-label="Entregar"
+                >
+                  <mat-icon class="row my-icon-m">beach_access</mat-icon>
                 </button>
               </div>
             </div>
           </section>
         </td>
       </tr>
- 
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -899,44 +1379,49 @@
         </button>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Avaliação</span>
+        <span style="font-weight: bolder">Avaliação</span>
         <span><app-star [rating]="this.produto.avaliacao"></app-star></span>
-
       </div>
       <div class="modal-body row">
-        <img [src]='this.produto.imagem_url' class="figure-img img-fluid rounded" alt="..." width="400" height="400">
+        <img
+          [src]="this.produto.imagem_url"
+          class="figure-img img-fluid rounded"
+          alt="..."
+          width="400"
+          height="400"
+        />
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Quantidade:</span>
-        <span style='color: red;'>{{ this.carrinho.quantidade }} </span>
+        <span style="font-weight: bolder">Quantidade:</span>
+        <span style="color: red">{{ this.carrinho.quantidade }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Nome:</span>
+        <span style="font-weight: bolder">Nome:</span>
         <span>{{ this.produto.nome }}</span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Observação:</span>
-        <span style='color: red;'>{{ this.carrinho.observacao }} </span>
+        <span style="font-weight: bolder">Observação:</span>
+        <span style="color: red">{{ this.carrinho.observacao }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Descrição:</span>
+        <span style="font-weight: bolder">Descrição:</span>
         <span> {{ this.produto.descricao }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Preço:</span>
+        <span style="font-weight: bolder">Preço:</span>
         <span>{{ this.produto.tempo_preparacao }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Tempo de Preparação:</span>
+        <span style="font-weight: bolder">Tempo de Preparação:</span>
         <span>{{ this.produto.tempo_preparacao }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Horário do Pedido:</span>
-        <span>{{ this.pedido.data_criacao | date:'HH:mm:ss' }} </span>
+        <span style="font-weight: bolder">Horário do Pedido:</span>
+        <span>{{ this.pedido.data_criacao | date : "HH:mm:ss" }} </span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Horário da Entrega:</span>
-        <span>{{ this.entrega.data_criacao | date:'HH:mm:ss' }} </span>
+        <span style="font-weight: bolder">Horário da Entrega:</span>
+        <span>{{ this.entrega.data_criacao | date : "HH:mm:ss" }} </span>
       </div>
 
       <div class="modal-body">

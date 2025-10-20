@@ -30,13 +30,10 @@ import { MatButtonModule } from '@angular/material/button';
     StarComponent,
     MatButtonModule,
     MatDividerModule,
-    MatIconModule
-
-  ]
+    MatIconModule,
+  ],
 })
-
 export class PedidoBarListComponent implements OnInit {
-
   private updateSubscription!: Subscription;
 
   message: string = '';
@@ -77,12 +74,10 @@ export class PedidoBarListComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private entregaService: EntregaService,
     private pedidoService: PedidoService,
-    private router: Router) {
-
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this.telefone = +environment.telefone;
     this.modulo = 'Cozinha';
     this.local = environment.local;
@@ -94,174 +89,185 @@ export class PedidoBarListComponent implements OnInit {
     environment.fundoColoridoEntrega = false;
     environment.fundoColoridoConta = false;
 
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999998) {
-      this.pedidoService.read().subscribe(pedidos => {
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999998
+    ) {
+      this.pedidoService.read().subscribe((pedidos) => {
         this.pedidos = pedidos;
         this.filteredPedidos = this.pedidos
-          .filter((pedido: Pedido) => pedido.enviado !== true)
-          .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
+          .filter(
+            (pedido: Pedido) =>
+              pedido.status.toLowerCase() == 'confirmado' ||
+              this.removerAcentos(pedido.status.toLowerCase()) ==
+                'em preparação'
+          )
+
+          .filter(
+            (pedido: Pedido) =>
+              pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+          );
 
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortPedidosUpdateByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortPedidosUpdateByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortPedidosUpdateByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortPedidosUpdateByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortPedidosUpdateByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortPedidosUpdateByHorarioPedido();
         }
-
       });
 
-      this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.pedidoService.read().subscribe(pedidos => {
-            this.pedidos = pedidos;
-            this.filteredPedidos = this.pedidos
-              .filter((pedido: Pedido) => pedido.enviado !== true)
-              .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
-      
-        switch (this.ultimoSort) {
-          case ('nomeAsc'):
-            return this.sortPedidosUpdateByName();
-          case ('nomeDesc'):
-            return this.sortPedidosUpdateByName();
-          case ('precoAsc'):
-            return this.sortPedidosUpdateByPrice();
-          case ('precoDesc'):
-            return this.sortPedidosUpdateByPrice();
-          case ('dataAsc'):
-            return this.sortPedidosUpdateByHorarioPedido();
-          case ('dataDesc'):
-            return this.sortPedidosUpdateByHorarioPedido();
-        }
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.pedidoService.read().subscribe((pedidos) => {
+          this.pedidos = pedidos;
+          this.filteredPedidos = this.pedidos
+            .filter(
+              (pedido: Pedido) =>
+                pedido.status.toLowerCase() === 'confirmado' ||
+                this.removerAcentos(pedido.status.toLowerCase()) ==
+                  'em preparação'
+            )
+            .filter(
+              (pedido: Pedido) =>
+                pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+            );
 
-          });
+          switch (this.ultimoSort) {
+            case 'nomeAsc':
+              return this.sortPedidosUpdateByName();
+            case 'nomeDesc':
+              return this.sortPedidosUpdateByName();
+            case 'precoAsc':
+              return this.sortPedidosUpdateByPrice();
+            case 'precoDesc':
+              return this.sortPedidosUpdateByPrice();
+            case 'dataAsc':
+              return this.sortPedidosUpdateByHorarioPedido();
+            case 'dataDesc':
+              return this.sortPedidosUpdateByHorarioPedido();
+          }
         });
-
+      });
     } else {
-
-      this.pedidoService.read().subscribe(pedidos => {
+      this.pedidoService.read().subscribe((pedidos) => {
         this.pedidos = pedidos;
-        this.filteredPedidos = this.pedidos.filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
-          .filter((pedido: Pedido) => pedido.enviado !== true)
-          .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
+        this.filteredPedidos = this.pedidos
+          .filter(
+            (pedido: Pedido) => pedido.telefone - environment.telefone === 0
+          )
+          .filter(
+            (pedido: Pedido) =>
+              pedido.status.toLowerCase() == 'confirmado' ||
+              this.removerAcentos(pedido.status.toLowerCase()) ==
+                'em preparação'
+          )
+          .filter(
+            (pedido: Pedido) =>
+              pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+          );
 
         switch (this.ultimoSort) {
-          case ('nomeAsc'):
+          case 'nomeAsc':
             return this.sortPedidosUpdateByName();
-          case ('nomeDesc'):
+          case 'nomeDesc':
             return this.sortPedidosUpdateByName();
-          case ('precoAsc'):
+          case 'precoAsc':
             return this.sortPedidosUpdateByPrice();
-          case ('precoDesc'):
+          case 'precoDesc':
             return this.sortPedidosUpdateByPrice();
-          case ('dataAsc'):
+          case 'dataAsc':
             return this.sortPedidosUpdateByHorarioPedido();
-          case ('dataDesc'):
+          case 'dataDesc':
             return this.sortPedidosUpdateByHorarioPedido();
         }
       });
-      this.updateSubscription = interval(5000).subscribe(
-        (val) => {
-          this.pedidoService.read().subscribe(pedidos => {
-            this.pedidos = pedidos;
-            this.filteredPedidos = this.pedidos
-              .filter((pedido: Pedido) => pedido.enviado !== true)
-              .filter((pedido: Pedido) => pedido.status.toLowerCase() === 'confirmado')
-              .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
-      
-        switch (this.ultimoSort) {
-          case ('nomeAsc'):
-            return this.sortPedidosUpdateByName();
-          case ('nomeDesc'):
-            return this.sortPedidosUpdateByName();
-          case ('precoAsc'):
-            return this.sortPedidosUpdateByPrice();
-          case ('precoDesc'):
-            return this.sortPedidosUpdateByPrice();
-          case ('dataAsc'):
-            return this.sortPedidosUpdateByHorarioPedido();
-          case ('dataDesc'):
-            return this.sortPedidosUpdateByHorarioPedido();
-        }
+      this.updateSubscription = interval(5000).subscribe((val) => {
+        this.pedidoService.read().subscribe((pedidos) => {
+          this.pedidos = pedidos;
+          this.filteredPedidos = this.pedidos
+            .filter(
+              (pedido: Pedido) =>
+                pedido.status.toLowerCase() == 'confirmado' ||
+                this.removerAcentos(pedido.status.toLowerCase()) ==
+                  'em preparação'
+            )
+            .filter(
+              (pedido: Pedido) =>
+                pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+            );
 
-          });
+          switch (this.ultimoSort) {
+            case 'nomeAsc':
+              return this.sortPedidosUpdateByName();
+            case 'nomeDesc':
+              return this.sortPedidosUpdateByName();
+            case 'precoAsc':
+              return this.sortPedidosUpdateByPrice();
+            case 'precoDesc':
+              return this.sortPedidosUpdateByPrice();
+            case 'dataAsc':
+              return this.sortPedidosUpdateByHorarioPedido();
+            case 'dataDesc':
+              return this.sortPedidosUpdateByHorarioPedido();
+          }
         });
+      });
     }
-  }
-
-  sortPedidosByName() {
-    if (this.ultimoSort === 'nomeAsc') {
-      this.ultimoSort = 'nomeDesc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
-    } else {
-      this.ultimoSort = 'nomeAsc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
-    }
-
   }
 
   sortPedidosUpdateByName() {
     if (this.ultimoSort === 'nomeAsc') {
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
+      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) =>
+        a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
+      );
     } else {
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome));
+      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) =>
+        a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
+      );
     }
-
-  }
-
-  sortPedidosByPrice() {
-    if (this.ultimoSort === 'precoAsc') {
-      this.ultimoSort = 'precoDesc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.preco - b.carrinho.produto.preco);
-    } else {
-      this.ultimoSort = 'precoAsc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.preco - b.carrinho.produto.preco);
-    }
-
   }
 
   sortPedidosUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => a.carrinho.produto.preco - b.carrinho.produto.preco);
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (a, b) => a.carrinho.produto.preco - b.carrinho.produto.preco
+      );
     } else {
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => a.carrinho.produto.preco - b.carrinho.produto.preco);
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (b, a) => a.carrinho.produto.preco - b.carrinho.produto.preco
+      );
     }
-
-  }
-
-  sortPedidosByHorarioPedido() {
-    if (this.ultimoSort === 'dataAsc') {
-      this.ultimoSort = 'dataDesc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
-    } else {
-      this.ultimoSort = 'dataAsc'
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
-    }
-
   }
 
   sortPedidosUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (a, b) =>
+          new Date(a.carrinho.data_criacao).getTime() -
+          new Date(b.carrinho.data_criacao).getTime()
+      );
     } else {
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) => new Date(a.carrinho.data_criacao).getTime() - new Date(b.carrinho.data_criacao).getTime());
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (b, a) =>
+          new Date(a.carrinho.data_criacao).getTime() -
+          new Date(b.carrinho.data_criacao).getTime()
+      );
     }
-
   }
 
   removerAcentos(str: string): string {
     // Converte para minúsculas e remove os diacríticos usando Unicode
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   // tslint:disable-next-line:typedef
@@ -272,51 +278,77 @@ export class PedidoBarListComponent implements OnInit {
   set filter(value: string) {
     this._filterBy = value;
 
-    if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999998) {
-
-      this.filteredPedidos =
-        this.pedidos
-          .filter((pedido: Pedido) => pedido.enviado !== true)
-          .filter((pedido: Pedido) => this.removerAcentos(pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
-
+    if (
+      +environment.telefone === 5511982551256 ||
+      +environment.telefone === 5599999999998
+    ) {
+      this.filteredPedidos = this.pedidos
+        .filter(
+          (pedido: Pedido) =>
+            pedido.status.toLowerCase() == 'confirmado' ||
+            this.removerAcentos(pedido.status.toLowerCase()) == 'em preparação'
+        )
+        .filter((pedido: Pedido) =>
+          this.removerAcentos(pedido.carrinho.produto.nome).includes(
+            this.removerAcentos(this._filterBy)
+          )
+        )
+        .filter(
+          (pedido: Pedido) =>
+            pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+        );
     } else {
-
-      this.filteredPedidos =
-        this.pedidos
-          .filter((pedido: Pedido) => pedido.enviado !== true)
-          .filter((pedido: Pedido) => pedido.telefone - environment.telefone === 0)
-          .filter((pedido: Pedido) => this.removerAcentos(pedido.carrinho.produto.nome).includes(this.removerAcentos(this._filterBy)))
-          .filter((pedido: Pedido) => pedido.carrinho.produto.categoria.toLowerCase() === 'bebidas');
+      this.filteredPedidos = this.pedidos
+        .filter(
+          (pedido: Pedido) =>
+            pedido.status.toLowerCase() == 'confirmado' ||
+            this.removerAcentos(pedido.status.toLowerCase()) == 'em preparação'
+        )
+        .filter(
+          (pedido: Pedido) => pedido.telefone - environment.telefone === 0
+        )
+        .filter((pedido: Pedido) =>
+          this.removerAcentos(pedido.carrinho.produto.nome).includes(
+            this.removerAcentos(this._filterBy)
+          )
+        )
+        .filter(
+          (pedido: Pedido) =>
+            pedido.carrinho.produto.categoria.toLowerCase() == 'bebidas'
+        );
     }
-    this.sortPedidosByName();
+    this.sortPedidosUpdateByName();
   }
 
-
-
   entregaCreate(pedidoId: number): void {
-
     // tslint:disable-next-line:no-unused-expression
-    this.pedidoService.readById(pedidoId).subscribe(pedido => {
+    this.pedidoService.readById(pedidoId).subscribe((pedido) => {
       this.pedido = pedido;
 
-      if (this.pedido.enviado !== true) {
+      if (
+        this.pedido.status.toLowerCase() == 'confirmado' ||
+        this.removerAcentos(this.pedido.status.toLowerCase()) == 'em preparação'
+      ) {
+        this.carrinhoService
+          .readById(this.pedido.carrinho.id!)
+          .subscribe((carrinho) => {
+            this.carrinho = carrinho;
+            this.carrinho.status = 'Saiu para entrega';
+            this.carrinho.observacao = pedido.observacao;
+            this.atualizarCarrinho(this.carrinho);
+          });
 
-        this.carrinhoService.readById(this.pedido.carrinho.id!).subscribe(carrinho => {
-          this.carrinho = carrinho;
-          this.carrinho.status = 'Saiu para entrega';
-          this.carrinho.observacao = pedido.observacao;
-          this.atualizarCarrinho(this.carrinho);
-        })
-
-        this.pedido.enviado = false;
-        this.pedido.status = 'Saiu para entrega';
-        this.pedido.carrinho = this.carrinho;
-
-        let index = this.sortedPedidos.findIndex(pedido => pedido.id === pedidoId);
+        let index = this.sortedPedidos.findIndex(
+          (pedido) => pedido.id === pedidoId
+        );
         this.sortedPedidos[index].status = 'Saiu para entrega';
 
-        this.atualizarPedido(this.pedido);
+        this.pedidoService.readById(this.pedido.id!).subscribe((pedido) => {
+          this.pedido = pedido;
+          this.pedido.status = 'Saiu para entrega';
+          this.pedido.carrinho = this.carrinho;
+          this.atualizarPedido(this.pedido);
+        });
 
         this.entrega.pedido = this.pedido;
 
@@ -327,11 +359,10 @@ export class PedidoBarListComponent implements OnInit {
     });
   }
 
-
   // tslint:disable-next-line:typedef
   openPopup(pedidoId: number): void {
     // tslint:disable-next-line:no-unused-expression
-    this.pedidoService.readById(pedidoId).subscribe(pedido => {
+    this.pedidoService.readById(pedidoId).subscribe((pedido) => {
       this.pedido = pedido;
       this.carrinho = pedido.carrinho;
       this.produto = pedido.carrinho.produto;
@@ -348,14 +379,13 @@ export class PedidoBarListComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
-
   }
 
   // tslint:disable-next-line:typedef
   minus(pedido: Pedido) {
     if (pedido.carrinho.quantidade !== 1) {
       pedido.carrinho.quantidade--;
-      this.atualizarCarrinho(pedido.carrinho)
+      this.atualizarCarrinho(pedido.carrinho);
     }
   }
 
@@ -363,7 +393,7 @@ export class PedidoBarListComponent implements OnInit {
   plus(pedido: Pedido) {
     if (pedido.carrinho.quantidade !== 10) {
       pedido.carrinho.quantidade++;
-      this.atualizarCarrinho(pedido.carrinho)
+      this.atualizarCarrinho(pedido.carrinho);
     }
   }
 
@@ -372,7 +402,6 @@ export class PedidoBarListComponent implements OnInit {
     this.atualizarCarrinho(pedido.carrinho);
   }
 
-
   // deletePedido(pedidoId: number) {
   //     this.pedidoService.delete(pedidoId).subscribe(() => {
   //     this.pedidoService.showMessage('Pedido Excluído');
@@ -380,28 +409,28 @@ export class PedidoBarListComponent implements OnInit {
   //   });
 
   //     let index = this.sortedEntregas.findIndex(entrega => entrega.id === entregaId);
-  //     this.sortedEntregas[index].data_criacao = new Date();      
+  //     this.sortedEntregas[index].data_criacao = new Date();
   //     this.entrega.data_criacao =  this.sortedEntregas[index].data_criacao ;
 
   // }
 
   // tslint:disable-next-line:typedef
   atualizarPedido(pedido: Pedido) {
-
     const isUpdate = new Promise<Pedido>((resolve, reject) =>
       this.pedidoService.update(this.pedido).subscribe(() => {
         resolve(this.pedido);
       })
-    )
+    );
 
-    isUpdate.then((value) => {
-      this.pedidoService.showMessage('Pedido atualizado');
-      this.atualizarCarrinho(pedido.carrinho);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-    })
-
+    isUpdate
+      .then((value) => {
+        this.pedidoService.showMessage('Pedido atualizado');
+        this.atualizarCarrinho(pedido.carrinho);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
 
     // this.pedidoService.update(pedido).subscribe(() => {
     //   this.pedidoService.showMessage('Pedido Atualizado');
@@ -412,65 +441,56 @@ export class PedidoBarListComponent implements OnInit {
     //    this.carrinho.observacao = pedido.observacao;
     //    this.atualizarCarrinho(pedido.carrinho);
     // })
-
-
   }
 
   // tslint:disable-next-line:typedef
   excluirPedido(pedidoId: number) {
-  
-    this.pedidoService.readById(pedidoId).subscribe(pedido => {
+    this.pedidoService.readById(pedidoId).subscribe((pedido) => {
       this.pedido = pedido;
 
       const isDelete = new Promise<string>((resolve, reject) =>
         this.pedidoService.delete(pedidoId).subscribe(() => {
-          this.message = 'Pedido excluído'
+          this.message = 'Pedido excluído';
           resolve(this.message);
         })
-      )
+      );
 
+      isDelete
+        .then((value) => {
+          this.pedido.carrinho.status = 'Excluído';
+          this.atualizarCarrinho(this.pedido.carrinho);
 
-      isDelete.then((value) => {
+          let index = this.sortedPedidos.findIndex(
+            (pedido) => pedido.id === pedidoId
+          );
+          this.sortedPedidos = this.sortedPedidos.splice(1, index);
 
-        this.pedido.carrinho.status = 'Excluído'
-        this.atualizarCarrinho(this.pedido.carrinho);
-
-        
-        let index = this.sortedPedidos.findIndex(pedido => pedido.id === pedidoId);
-        this.sortedPedidos = this.sortedPedidos.splice(1,index);      
-
-        this.pedidoService.showMessage('Pedido excluìdo');
-
-
-      }).catch((error) => {
-        console.log(error);
-      }).finally(() => {
-      })
-
-      
-    })
-
+          this.pedidoService.showMessage('Pedido excluìdo');
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {});
+    });
   }
 
   atualizarCarrinho(carrinho: Carrinho) {
-
     const isUpdate = new Promise<Carrinho>((resolve, reject) =>
       this.carrinhoService.update(carrinho).subscribe(() => {
         resolve(this.carrinho);
       })
-    )
+    );
 
-    isUpdate.then((value) => {
-      this.carrinhoService.showMessage('Carrinho atualizado');
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-    })
+    isUpdate
+      .then((value) => {
+        this.carrinhoService.showMessage('Carrinho atualizado');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
   }
-
 }
-
-
 
 //===============================================================================================
 
@@ -490,19 +510,18 @@ export class PedidoBarListComponent implements OnInit {
 // import { Router, RouterLink } from '@angular/router';
 // import { StarComponent } from '../star/star.component';
 
-
 // @Component({
 //   selector: 'app-pedido-bar-list',
 //   standalone: true,
 //   imports: [
 //     CaminhoMenuComponent,
-//     CommonModule, 
+//     CommonModule,
 //     FormsModule,
 //     RouterLink,
 //     StarComponent
 //   ],
-//   templateUrl: './pedidoBar-list.component.html',    
-//   styleUrl: './pedidoBar-list.component.css',    
+//   templateUrl: './pedidoBar-list.component.html',
+//   styleUrl: './pedidoBar-list.component.css',
 // })
 
 // export class PedidoBarListComponent implements OnInit {
@@ -542,7 +561,6 @@ export class PedidoBarListComponent implements OnInit {
 
 //   ultimoSort: string = 'nomeDesc';
 
-
 //   constructor(
 //     private carrinhoService: CarrinhoService,
 //     private entregaService: EntregaService,
@@ -564,7 +582,6 @@ export class PedidoBarListComponent implements OnInit {
 //     environment.fundoColoridoBar = true;
 //     environment.fundoColoridoEntrega = false;
 //     environment.fundoColoridoConta = false;
-
 
 //     if (+environment.telefone === 5511982551256 || +environment.telefone === 5599999999998) {
 
@@ -666,7 +683,6 @@ export class PedidoBarListComponent implements OnInit {
 //     return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 //   }
 
-
 //   // tslint:disable-next-line:typedef
 //   get filter() {
 //     return this._filterBy;
@@ -699,8 +715,6 @@ export class PedidoBarListComponent implements OnInit {
 //     }
 //   }
 
-
-
 //   async entregaCreate(pedidoId: number): Promise<void> {
 
 //     // tslint:disable-next-line:no-unused-expression
@@ -715,16 +729,15 @@ export class PedidoBarListComponent implements OnInit {
 //           this.carrinho.status = 'Saiu para entrega';
 //           this.atualizarCarrinho(this.carrinho);
 //         })
-        
+
 //         this.pedido.carrinho = this.carrinho;
 //         this.pedido.enviado = false;
 //         this.pedido.status = 'Saiu para entrega';
-        
-//         let index = this.sortedPedidos.findIndex(pedido => pedido.id === pedidoId);
-//         this.sortedPedidos[index].status = 'Saiu para entrega';      
-        
-//         this.atualizarPedido(this.pedido);
 
+//         let index = this.sortedPedidos.findIndex(pedido => pedido.id === pedidoId);
+//         this.sortedPedidos[index].status = 'Saiu para entrega';
+
+//         this.atualizarPedido(this.pedido);
 
 //         this.entrega.pedido = this.pedido;
 
@@ -734,7 +747,6 @@ export class PedidoBarListComponent implements OnInit {
 //       }
 //     });
 //   }
-
 
 //   // tslint:disable-next-line:typedef
 //   openPopup(pedidoId: number): void {
@@ -769,7 +781,7 @@ export class PedidoBarListComponent implements OnInit {
 
 //   // tslint:disable-next-line:typedef
 //   plus(pedido: Pedido) {
-//     if (pedido.carrinho.quantidade !== 10) { 
+//     if (pedido.carrinho.quantidade !== 10) {
 //       pedido.carrinho.quantidade++;
 //       this.atualizarCarrinho(pedido.carrinho)
 //     }
@@ -779,8 +791,6 @@ export class PedidoBarListComponent implements OnInit {
 //   atualizarObservacao(pedido: Pedido) {
 //     this.atualizarCarrinho(pedido.carrinho);
 //   }
-
-
 
 //   // tslint:disable-next-line:typedef
 //   atualizarPedido(pedido: Pedido) {

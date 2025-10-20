@@ -1,195 +1,313 @@
 <app-caminho-menu></app-caminho-menu>
 
-
 <!-- DESKTOP -->
 
-<div class='container desktop'>
-
+<div class="container desktop">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
-    </div> 
+    </div>
   </section>
 
   <table class="table table-bordered table-striped">
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">  
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
-          </a> 
-        </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
-        <th style='width: 8%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center">
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORA PEDIDO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
-        <th style='width: 3%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 8%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORA PEDIDO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
+          </a>
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 3%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          CORTESIA
+        </th>
+        <th
+          style="width: 18%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track carrinho.id) {
     <tbody>
-      <tr style="cursor: pointer; ">
-        <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url' class="img-fluid rounded" alt="..." >
+      <tr style="cursor: pointer">
+        <td (click)="openPopup(carrinho.id!)">
+          <img
+            [src]="carrinho.produto.imagem_url"
+            class="img-fluid rounded"
+            alt="..."
+          />
         </td>
 
-        <td style="color: #4f63e7; font-size: 0.8em;" (click)="openPopup(carrinho.id! )">
+        <td
+          style="color: #4f63e7; font-size: 0.8em"
+          (click)="openPopup(carrinho.id!)"
+        >
           <p>{{ carrinho.produto.nome }}</p>
         </td>
 
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
+        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.8em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.8em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop1"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop1"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
-        }
-        @else if(carrinho.status === 'Pendente') {
+        } @else if(carrinho.status === 'Pendente') {
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i class="fa fa-minus" style="color: red; padding-right: 8px"></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop2"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop2"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
 
-        }
-        @else {
+        } @else {
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <span style="width: 1em; margin-top: 0.5em;">
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.8em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <span style="width: 1em; margin-top: 0.5em">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.8em"
+              ></i>
             </span>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop3"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop3"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <span style="width: 1em; margin-top: 0.5em">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
+              <i class="fa fa-plus" style="color: green; padding-left: 3px"></i>
             </span>
           </div>
         </td>
-        }
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
+        } @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;'>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+          />
         </td>
-        }
-        @else if(carrinho.status === 'Pendente') {
+        } @else if(carrinho.status === 'Pendente') {
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;'>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+          />
         </td>
-        }
-        @else {
+        } @else {
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;' [disabled]="true">
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+            [disabled]="true"
+          />
         </td>
         }
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7; font-size: 0.8em;"> {{ carrinho.local }} </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7; font-size: 0.8em;" class="text-center">
-          {{ carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}}
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
+          {{ carrinho.local }}
         </td>
-        <td style='color: #4f63e7; font-weight: 400;font-size: 0.8em;'>{{ carrinho.telefone }} </td>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+          class="text-center"
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+        </td>
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
+          {{ carrinho.telefone }}
+        </td>
 
-        <td style='color: #4f63e7; font-weight: 400;font-size: 0.8em;'>{{ carrinho.isencao }} </td>
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
+          {{ carrinho.isencao }}
+        </td>
 
-        <td (click)="openPopup(carrinho.id! )" class="text-center">
+        <td (click)="openPopup(carrinho.id!)" class="text-center">
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- LAPTOP -->
 
-<div class='container laptop'>
-
+<div class="container laptop">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -199,26 +317,69 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 5%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
-          </a>
-
-        </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.8em;'> OBSERVAÇÃO</th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> LOCAL</th>
-        <th style='width: 9%;  color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 5%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> TELEFONE</th>
-        <th style='width: 2%;  color: #2494fc; font-weight: 500;font-size: 0.8em;'> CORTESIA</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.8em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 9%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
+          </a>
+        </th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 2%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+        >
+          CORTESIA
+        </th>
+        <th
+          style="width: 18%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
@@ -226,152 +387,225 @@
 
     @for (carrinho of sortedCarrinhos; track carrinho.id) {
     <tbody>
-      <tr style="cursor: pointer;">
-        <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." alt="..." width="70" height="70">
+      <tr style="cursor: pointer">
+        <td (click)="openPopup(carrinho.id!)">
+          <img
+            [src]="carrinho.produto.imagem_url"
+            class="img-fluid rounded"
+            alt="..."
+            alt="..."
+            width="70"
+            height="70"
+          />
         </td>
-        <td style="color: #4f63e7; font-size: 0.8em;" (click)="openPopup(carrinho.id! )">
+        <td
+          style="color: #4f63e7; font-size: 0.8em"
+          (click)="openPopup(carrinho.id!)"
+        >
           <p>{{ carrinho.produto.nome }}</p>
         </td>
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
+        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.8em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.8em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop1"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop1"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
-        }
-        @else if(carrinho.status === 'Pendente') {
+        } @else if(carrinho.status === 'Pendente') {
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i class="fa fa-minus" style="color: red; padding-right: 8px"></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop2"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop2"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
 
-        }
-        @else {
+        } @else {
         <td>
-          <div style='align-items: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;'>
-            <span style="width: 1em; margin-top: 0.5em;">
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.8em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <span style="width: 1em; margin-top: 0.5em">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.8em"
+              ></i>
             </span>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop3"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop3"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <span style="width: 1em; margin-top: 0.5em">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;"></i>
+              <i class="fa fa-plus" style="color: green; padding-left: 3px"></i>
             </span>
           </div>
         </td>
 
-        }
+        } @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
-
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;'>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+          />
+        </td>
+        } @else if(carrinho.status === 'Pendente') {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+          />
+        </td>
+        } @else {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.8em"
+            [disabled]="true"
+          />
         </td>
         }
-        @else if(carrinho.status === 'Pendente') {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;'>
-        </td>
-        }
-        @else {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.8em;' [disabled]="true">
-        </td>
-        }
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
           {{ carrinho.local }}
         </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
-          {{ carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}}
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
         </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
           {{ carrinho.telefone }}
         </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
           {{ carrinho.isencao }}
         </td>
-        <td (click)="openPopup(carrinho.id! )" class="text-center">
+        <td (click)="openPopup(carrinho.id!)" class="text-center">
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
-
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
-
   </table>
 </div>
 
 <!-- LAPTOP2 -->
 
-<div class='container laptop2'>
+<div class="container laptop2">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -381,150 +615,265 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 20%'> </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 20%"></th>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.7em;'> OBSERVAÇÃO</th>
-        <th style='width: 4%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> LOCAL</th>
-        <th style='width: 13%;  color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 4%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 13%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.7em;'> TELEFONE</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.7em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 18%; color: #2494fc; font-weight: 500; font-size: 0.7em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr style="cursor: pointer;">
-        <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded"  alt="..." >
+      <tr style="cursor: pointer">
+        <td (click)="openPopup(carrinho.id!)">
+          <img
+            [src]="carrinho.produto.imagem_url"
+            class="img-fluid rounded"
+            alt="..."
+          />
         </td>
-        <td style="color: #4f63e7; font-size: 0.7em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
+        <td
+          style="color: #4f63e7; font-size: 0.7em"
+          (click)="openPopup(carrinho.id!)"
+        >
+          {{ carrinho.produto.nome }}
         </td>
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
+        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.7em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.7em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop1"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.7em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop1"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.7em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.7em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.7em"
+              ></i>
             </a>
           </div>
         </td>
-        }
-        @else if(carrinho.status === 'Pendente') {
+        } @else if(carrinho.status === 'Pendente') {
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.7em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.7em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop2"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop2"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
 
-        }
-        @else {
+        } @else {
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <span style="width: 1em; margin-top: 0.5em;">
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.7em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <span style="width: 1em; margin-top: 0.5em">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.7em"
+              ></i>
             </span>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop3"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.7em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop3"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.7em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <span style="width: 1em; margin-top: 0.5em">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.7em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.7em"
+              ></i>
             </span>
           </div>
         </td>
 
-        }
+        } @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
-
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.7em;'>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.7em"
+          />
+        </td>
+        } @else if(carrinho.status === 'Pendente') {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.7em"
+          />
+        </td>
+        } @else {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.7em"
+            [disabled]="true"
+          />
         </td>
         }
-        @else if(carrinho.status === 'Pendente') {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.7em;'>
+        <td
+          style="color: #4f63e7; font-size: 0.8em"
+          (click)="openPopup(carrinho.id!)"
+        >
+          {{ carrinho.local }}
         </td>
-        }
-        @else {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.7em;' [disabled]="true">
+        <td
+          style="color: #4f63e7; font-size: 0.8em"
+          (click)="openPopup(carrinho.id!)"
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
         </td>
-        }
-        <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.local }} </td>
-        <td style="color: #4f63e7;font-size: 0.8em;" (click)="openPopup(carrinho.id! )">{{ carrinho.data_criacao |
-          date:'dd/MM/yy HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.8em;">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.8em"
+        >
           {{ carrinho.telefone }}
         </td>
-        <td (click)="openPopup(carrinho.id! )" class="text-center">
+        <td (click)="openPopup(carrinho.id!)" class="text-center">
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
   </table>
@@ -532,16 +881,20 @@
 
 <!-- TABLET -->
 
-<div class='container tablet'>
+<div class="container tablet">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -551,148 +904,265 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 18%'> </th>
-        <th style='width: 24%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 18%"></th>
+        <th
+          style="width: 24%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QUANTIDADE</th>
-        <th style='width: 10%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> OBSERVAÇÃO</th>
-        <th style='width: 4%;  color: #2494fc; font-weight: 500;font-size: 0.6em;'> LOCAL</th>
-        <th style='width: 16%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          QUANTIDADE
+        </th>
+        <th
+          style="width: 10%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          OBSERVAÇÃO
+        </th>
+        <th
+          style="width: 4%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          LOCAL
+        </th>
+        <th
+          style="width: 16%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 5%;  color: #2494fc; font-weight: 500;font-size: 0.6em;'> TELEFONE</th>
-        <th style='width: 18%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          TELEFONE
+        </th>
+        <th
+          style="width: 18%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr style="cursor: pointer;">
-        <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." >
+      <tr style="cursor: pointer">
+        <td (click)="openPopup(carrinho.id!)">
+          <img
+            [src]="carrinho.produto.imagem_url"
+            class="img-fluid rounded"
+            alt="..."
+          />
         </td>
-        <td style="color: #4f63e7; font-size: 0.6em;" (click)="openPopup(carrinho.id! )">{{ carrinho.produto.nome }}
+        <td
+          style="color: #4f63e7; font-size: 0.6em"
+          (click)="openPopup(carrinho.id!)"
+        >
+          {{ carrinho.produto.nome }}
         </td>
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
+        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.6em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.6em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop1"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.6em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop1"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.6em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.6em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.6em"
+              ></i>
             </a>
           </div>
         </td>
-        }
-        @else if(carrinho.status === 'Pendente') {
+        } @else if(carrinho.status === 'Pendente') {
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <a style="width: 1em; margin-top: 0.5em;" (click)='minus(carrinho)'>
-              <i class="fa fa-minus" style="color:red; padding-right: 8px;font-size: 0.6em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <a style="width: 1em; margin-top: 0.5em" (click)="minus(carrinho)">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.6em"
+              ></i>
             </a>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop2"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.8em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop2"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.8em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <a style="width: 1em; margin-top: 0.5em" (click)="plus(carrinho)">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px;font-size: 0.8em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.8em"
+              ></i>
             </a>
           </div>
         </td>
 
-        }
-        @else {
+        } @else {
         <td>
-          <div style='align-items: center;
-                  display: flex;
-                  flex-direction: row;
-                  flex-wrap: wrap;
-                  justify-content: center;'>
-            <span style="width: 1em; margin-top: 0.5em;">
-              <i class="fa fa-minus" style="color:red; padding-right: 8px; font-size: 0.6em;"></i>
-
+          <div
+            style="
+              align-items: center;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <span style="width: 1em; margin-top: 0.5em">
+              <i
+                class="fa fa-minus"
+                style="color: red; padding-right: 8px; font-size: 0.6em"
+              ></i>
             </span>
-            <input [(ngModel)]='carrinho.quantidade' name="quantidadeDesktop3"
-              class='form-control; nav-link; text-center' type="text"
-              style='width: 2em; color: #4f63e7;font-size: 0.6em;' disabled=""
-              (ngModelChange)="atualizarCarrinho(carrinho)">
+            <input
+              [(ngModel)]="carrinho.quantidade"
+              name="quantidadeDesktop3"
+              class="form-control; nav-link; text-center"
+              type="text"
+              style="width: 2em; color: #4f63e7; font-size: 0.6em"
+              disabled=""
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            />
 
             <span style="width: 1em; margin-top: 0.5em">
-              <i class="fa fa-plus" style="color:green; padding-left: 3px; font-size: 0.6em;"></i>
+              <i
+                class="fa fa-plus"
+                style="color: green; padding-left: 3px; font-size: 0.6em"
+              ></i>
             </span>
           </div>
         </td>
 
-        }
+        } @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+        5599999999997) && (carrinho.status === 'Pendente' || carrinho.status ===
+        'Confirmado')) {
 
-        @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997) &&
-        (carrinho.status === 'Pendente' || carrinho.status === 'Confirmado')) {
-
         <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.6em; width: 7em;'>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.6em; width: 7em"
+          />
+        </td>
+        } @else if(carrinho.status === 'Pendente') {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.6em; width: 7em"
+          />
+        </td>
+        } @else {
+        <td>
+          <input
+            [(ngModel)]="carrinho.observacao"
+            (ngModelChange)="atualizarCarrinho(carrinho)"
+            name="observacao1"
+            type="text"
+            style="color: red; font-size: 0.6em; width: 7em"
+            [disabled]="true"
+          />
         </td>
         }
-        @else if(carrinho.status === 'Pendente') {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.6em; width: 7em;'>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.6em"
+        >
+          {{ carrinho.local }}
         </td>
-        }
-        @else {
-        <td>
-          <input [(ngModel)]="carrinho.observacao" (ngModelChange)="atualizarCarrinho(carrinho) " name="observacao1"
-            type="text" style='color: red;font-size: 0.6em; width: 7em;' [disabled]="true">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.6em"
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
         </td>
-        }
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.local }} </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.data_criacao |
-          date:'dd/MM/yy HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" style="color: #4f63e7;font-size: 0.6em;">{{ carrinho.telefone }} </td>
-        <td (click)="openPopup(carrinho.id! )" class="text-center">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="color: #4f63e7; font-size: 0.6em"
+        >
+          {{ carrinho.telefone }}
+        </td>
+        <td (click)="openPopup(carrinho.id!)" class="text-center">
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.6em; ">
+          <p style="margin: 0; color: red; font-size: 0.6em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.6em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.6em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
   </table>
@@ -700,17 +1170,20 @@
 
 <!-- MOBILE -->
 
-
-<div class='container mobile'>
+<div class="container mobile">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -720,58 +1193,114 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-
-        <th style='width: 10%'> </th>
-        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTDE. </th>
-        <th style='width: 43%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th style="width: 10%"></th>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          QTDE.
+        </th>
+        <th
+          style="width: 43%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 22%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 22%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 20%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 20%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr style="cursor: pointer;" (click)="openPopup(carrinho.id! )">
-        <td (click)="openPopup(carrinho.id! )">
-          <img [src]='carrinho.produto.imagem_url'  class="img-fluid rounded" alt="..." >
+      <tr style="cursor: pointer" (click)="openPopup(carrinho.id!)">
+        <td (click)="openPopup(carrinho.id!)">
+          <img
+            [src]="carrinho.produto.imagem_url"
+            class="img-fluid rounded"
+            alt="..."
+          />
         </td>
-        <td (click)="openPopup(carrinho.id! )"
-          style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{ carrinho.quantidade
-          }}</td>
-        <td (click)="openPopup(carrinho.id! )"
-          style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
-          }}</td>
-        <td (click)="openPopup(carrinho.id! )"
-          style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;">{{
-          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" class="text-center">
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.quantidade }}
+        </td>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: start;
+            align-content: center;
+          "
+        >
+          {{ carrinho.produto.nome }}
+        </td>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+        </td>
+        <td (click)="openPopup(carrinho.id!)" class="text-center">
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
   </table>
@@ -779,16 +1308,20 @@
 
 <!-- MOBILE PEQUENO -->
 
-<div class='container mobile-pequeno'>
+<div class="container mobile-pequeno">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -798,50 +1331,106 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTDE. </th>
-        <th style='width: 40%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          QTDE.
+        </th>
+        <th
+          style="width: 40%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 25%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
     </thead>
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{ carrinho.quantidade
-          }} </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;"> {{
-          carrinho.produto.nome }} </td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: center; align-content: center;"> {{
-          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" style="font-size: 0.8em; text-align: center; align-content: center;">
+      <tr (click)="openPopup(carrinho.id!)" style="cursor: pointer">
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.quantidade }}
+        </td>
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: start;
+            align-content: center;
+          "
+        >
+          {{ carrinho.produto.nome }}
+        </td>
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+        </td>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="font-size: 0.8em; text-align: center; align-content: center"
+        >
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
   </table>
@@ -849,16 +1438,20 @@
 
 <!-- MOBILE PEQUENO2 -->
 
-<div class='container mobile-pequeno2'>
+<div class="container mobile-pequeno2">
   <section class="my-4">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <div class="input-group">
-          <input type="text" name="filter1" class="form-control" placeholder="Buscar produtos..." [(ngModel)]='filter'
-            style="color: #4f63e7; " />
-          <span class="input-group-text">
-            <i class="bi bi-search"></i>🔍
-          </span>
+          <input
+            type="text"
+            name="filter1"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            [(ngModel)]="filter"
+            style="color: #4f63e7"
+          />
+          <span class="input-group-text"> <i class="bi bi-search"></i>🔍 </span>
         </div>
       </div>
     </div>
@@ -868,20 +1461,48 @@
     @if (sortedCarrinhos.length) {
     <thead>
       <tr>
-        <th style='width: 5%; color: #2494fc; font-weight: 500;font-size: 0.6em;' class="text-center"> QTD </th>
-        <th style='width: 40%; color: #2494fc; font-weight: 500;font-size: 0.6em;'> 
-          <a (click)="sortCarrinhosByName()" style="cursor: pointer;">
-            ITEM<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 5%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+          class="text-center"
+        >
+          QTD
+        </th>
+        <th
+          style="width: 40%; color: #2494fc; font-weight: 500; font-size: 0.6em"
+        >
+          <a (click)="sortCarrinhosUpdateByName()" style="cursor: pointer">
+            ITEM<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 25%;  color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
-          <a (click)="sortCarrinhosByHorarioPedido()" style="cursor: pointer;">
-            HORÁRIO<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 25%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a
+            (click)="sortCarrinhosUpdateByHorarioPedido()"
+            style="cursor: pointer"
+          >
+            HORÁRIO<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
-        <th style='width: 30%; color: #2494fc; font-weight: 500;font-size: 0.5em;' class="text-center"> 
-          <a (click)="sortCarrinhosByStatus()" style="cursor: pointer;">
-            STATUS<span class="material-symbols-outlined" style='color: orange; font-weight: 500;font-size: 1.0em;'>Autorenew</span>
+        <th
+          style="width: 30%; color: #2494fc; font-weight: 500; font-size: 0.5em"
+          class="text-center"
+        >
+          <a (click)="sortCarrinhosUpdateByStatus()" style="cursor: pointer">
+            STATUS<span
+              class="material-symbols-outlined"
+              style="color: orange; font-weight: 500; font-size: 1em"
+              >Autorenew</span
+            >
           </a>
         </th>
       </tr>
@@ -889,52 +1510,87 @@
 
     @for (carrinho of sortedCarrinhos; track $index) {
     <tbody>
-      <tr (click)="openPopup(carrinho.id! )" style="cursor: pointer;">
-        <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;">{{ carrinho.quantidade
-          }}</td>
-        <td style="color: #4f63e7; font-size: 0.8em; text-align: start; align-content: center;">{{ carrinho.produto.nome
-          }}</td>
-        <td style="color: #4f63e7; font-size: 0.7em; text-align: center; align-content: center;">{{
-          carrinho.data_criacao | date:'dd/MM/yy HH:mm:ss'}} </td>
-        <td (click)="openPopup(carrinho.id! )" style=" text-align: center; align-content: center;">
+      <tr (click)="openPopup(carrinho.id!)" style="cursor: pointer">
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.7em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.quantidade }}
+        </td>
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.8em;
+            text-align: start;
+            align-content: center;
+          "
+        >
+          {{ carrinho.produto.nome }}
+        </td>
+        <td
+          style="
+            color: #4f63e7;
+            font-size: 0.7em;
+            text-align: center;
+            align-content: center;
+          "
+        >
+          {{ carrinho.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
+        </td>
+        <td
+          (click)="openPopup(carrinho.id!)"
+          style="text-align: center; align-content: center"
+        >
           @if (carrinho.status === 'Excluído') {
-          <p style="margin: 0; color: red; font-size: 0.8em; ">
+          <p style="margin: 0; color: red; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           } @else {
-          <p style="margin: 0; color: #4f63e7; font-size: 0.8em; ">
+          <p style="margin: 0; color: #4f63e7; font-size: 0.8em">
             <small>{{ carrinho.status }}</small>
           </p>
           }
         </td>
       </tr>
     </tbody>
-    }
-    } @else {
+    } } @else {
     <div class="col-12 text-center">
-      <p class="lead" style="color: #4f63e7; font-weight: 500;">Nenhum produto encontrado com esse termo.</p>
+      <p class="lead" style="color: #4f63e7; font-weight: 500">
+        Nenhum produto encontrado com esse termo.
+      </p>
     </div>
     }
   </table>
 </div>
 
 <!-- Detalhes do produto/pedido -->
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style='background-color:rgb(246, 253, 232)'>
-      <div class="modal-header"
-        style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
+    <div class="modal-content" style="background-color: rgb(246, 253, 232)">
+      <div
+        class="modal-header"
+        style="
+          display: flex;
+          justify-content: space-evenly;
+          background-color: rgb(225, 240, 252);
+        "
+      >
         @if (carrinho.status === 'Pendente') {
         <div>
-          <button (click)="excluirCarrinho( carrinho.id! );">
-            Excluir
-          </button>
+          <button (click)="excluirCarrinho(carrinho.id!)">Excluir</button>
         </div>
 
         <div>
-          <button (click)="pedidoCreate( carrinho.id! );">
-            Confirmar
-          </button>
+          <button (click)="pedidoCreate(carrinho.id!)">Confirmar</button>
         </div>
         }
         <button type="button" class="btn btn-danger" (click)="closePopup()">
@@ -946,23 +1602,30 @@
         <app-star [rating]="produto.avaliacao"></app-star>
       </div>
       <div class="modal-body row">
-        <img [src]="produto.imagem_url" class="figure-img img-fluid rounded" alt="Imagem do Produto" width="400"
-          height="400">
+        <img
+          [src]="produto.imagem_url"
+          class="figure-img img-fluid rounded"
+          alt="Imagem do Produto"
+          width="400"
+          height="400"
+        />
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Nome:</span>
+        <span style="font-weight: bolder">Nome:</span>
         <span>{{ produto.nome }}</span>
       </div>
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Descrição:</span>
+        <span style="font-weight: bolder">Descrição:</span>
         <span> {{ produto.descricao }} </span>
       </div>
       <div class="modal-body">
         <div class="row">
-          <span class="col-4" style='font-weight: bolder; color:blue'>Preço
-            Unitário:</span>
-          <span class="col-8" style='font-weight: bolder; color:blue'>Preço
-            Total:</span>
+          <span class="col-4" style="font-weight: bolder; color: blue"
+            >Preço Unitário:</span
+          >
+          <span class="col-8" style="font-weight: bolder; color: blue"
+            >Preço Total:</span
+          >
         </div>
         <div class="row">
           <span class="col-4"> {{ produto.preco }} </span>
@@ -970,51 +1633,74 @@
         </div>
       </div>
 
-      @if ((+pedido.telefone == 5511982551256 || +pedido.telefone == 5599999999997 || login ) &&
-      (carrinho.status != 'Confirmado' && carrinho.status != 'Excluído')) {
+      @if ((+pedido.telefone == 5511982551256 || +pedido.telefone ==
+      5599999999997 || login ) && (carrinho.status != 'Confirmado' &&
+      carrinho.status != 'Excluído')) {
       <div class="modal-body row">
-        <span style='font-weight: bolder; color:blue'>Quantidade:</span>
-        <a style="width: 2em; margin-top: 0.5em" (click)="minus(carrinho)"><i class="fa
-            fa-minus" style="color:red"></i></a>
-        <input name="quantidadeModal1" style="width: 3em;" name="prp" [(ngModel)]='carrinho.quantidade'
-          class='form-control'>
-        <a style="width: 2em; margin-top: 0.5em" (click)="plus(carrinho)"><i class="fa
-            fa-plus" style="color:red"></i></a>
+        <span style="font-weight: bolder; color: blue">Quantidade:</span>
+        <a style="width: 2em; margin-top: 0.5em" (click)="minus(carrinho)"
+          ><i class="fa fa-minus" style="color: red"></i
+        ></a>
+        <input
+          name="quantidadeModal1"
+          style="width: 3em"
+          name="prp"
+          [(ngModel)]="carrinho.quantidade"
+          class="form-control"
+        />
+        <a style="width: 2em; margin-top: 0.5em" (click)="plus(carrinho)"
+          ><i class="fa fa-plus" style="color: red"></i
+        ></a>
       </div>
       <div class="modal-body row">
-        <div class='form-group row container'>
-          <span style='font-weight: bolder; color:blue'>Observação:</span>
+        <div class="form-group row container">
+          <span style="font-weight: bolder; color: blue">Observação:</span>
           <div>
-            <textarea name="observacaoModal1" [(ngModel)]='carrinho.observacao' class='form-control'
-              (ngModelChange)="atualizarCarrinho(carrinho)"></textarea>
+            <textarea
+              name="observacaoModal1"
+              [(ngModel)]="carrinho.observacao"
+              class="form-control"
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            ></textarea>
           </div>
         </div>
       </div>
       } @else {
       <div class="modal-body row">
-        <span style='font-weight: bolder; color:blue'>Quantidade:</span>
-        <span name="quantidadeModal1" style="width: 3em;" name="prp"  class='form-control'> {{ carrinho.quantidade }}</span>
+        <span style="font-weight: bolder; color: blue">Quantidade:</span>
+        <span
+          name="quantidadeModal1"
+          style="width: 3em"
+          name="prp"
+          class="form-control"
+        >
+          {{ carrinho.quantidade }}</span
+        >
       </div>
       <div class="modal-body row">
-        <div class='form-group row container'>
-          <span style='font-weight: bolder; color:blue'>Observação:</span>
+        <div class="form-group row container">
+          <span style="font-weight: bolder; color: blue">Observação:</span>
           <div>
-            <textarea name="observacaoModal1" [(ngModel)]='carrinho.observacao' class='form-control'
-              (ngModelChange)="atualizarCarrinho(carrinho)"></textarea>
+            <textarea
+              name="observacaoModal1"
+              [(ngModel)]="carrinho.observacao"
+              class="form-control"
+              (ngModelChange)="atualizarCarrinho(carrinho)"
+            ></textarea>
           </div>
         </div>
       </div>
 
       }
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Tempo de Preparação:</span>
+        <span style="font-weight: bolder">Tempo de Preparação:</span>
         <span>{{ produto.tempo_preparacao }} </span>
       </div>
 
       <div class="modal-body row">
-        <span style='font-weight: bolder;'>Os ingredientes encontrados
-          na
-          refeição são:</span>
+        <span style="font-weight: bolder"
+          >Os ingredientes encontrados na refeição são:</span
+        >
         <div>
           <ul>
             <li>alho</li>
@@ -1025,21 +1711,24 @@
           </ul>
         </div>
       </div>
-      <div class="modal-content" style='background-color:rgb(225, 240, 252)'>
-        <div class="modal-header"
-          style='display: flex; justify-content: space-evenly; background-color:rgb(225, 240, 252)'>
-
+      <div class="modal-content" style="background-color: rgb(225, 240, 252)">
+        <div
+          class="modal-header"
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            background-color: rgb(225, 240, 252);
+          "
+        >
           @if (statusPendente) {
           <div>
-            <button routerLink='/carrinho/delete/{{ carrinho.id! }}'>
+            <button routerLink="/carrinho/delete/{{ carrinho.id! }}">
               Cancelar
             </button>
           </div>
 
           <div>
-            <button (click)="pedidoCreate( carrinho.id! );">
-              Confirmar
-            </button>
+            <button (click)="pedidoCreate(carrinho.id!)">Confirmar</button>
           </div>
 
           <button type="button" class="btn btn-danger" (click)="closePopup()">
