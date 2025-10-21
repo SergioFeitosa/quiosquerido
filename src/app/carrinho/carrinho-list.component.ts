@@ -178,67 +178,73 @@ export class CarrinhoListComponent implements OnInit {
   sortCarrinhosUpdateByName() {
     if (this.ultimoSort === 'nomeAsc') {
       this.ultimoSort = 'nomeDesc';
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) =>
-        a.produto.nome.localeCompare(b.produto.nome)
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (b, a) =>
+          a.produto.nome.localeCompare(b.produto.nome) ||
+          b.status.localeCompare(a.status)
       );
     } else {
       this.ultimoSort = 'nomeAsc';
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) =>
-        a.produto.nome.localeCompare(b.produto.nome)
-      );
-    }
-  }
-
-  sortCarrinhosByPrice() {
-    if (this.ultimoSort === 'precoAsc') {
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
-        (b, a) => a.produto.preco - b.produto.preco
+        (a, b) =>
+          a.produto.nome.localeCompare(b.produto.nome) ||
+          a.status.localeCompare(b.status)
       );
-      this.ultimoSort = 'precoDesc';
-    } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
-        (a, b) => a.produto.preco - b.produto.preco
-      );
-      this.ultimoSort = 'precoAsc';
     }
   }
 
   sortCarrinhosUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
+      this.ultimoSort = 'precoDesc';
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
-        (a, b) => a.produto.preco - b.produto.preco
+        (b, a) =>
+          a.produto.preco - b.produto.preco ||
+          b.produto.nome.localeCompare(a.produto.nome)
       );
     } else {
+      this.ultimoSort = 'precoAsc';
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
-        (b, a) => a.produto.preco - b.produto.preco
+        (a, b) =>
+          a.produto.preco - b.produto.preco ||
+          a.produto.nome.localeCompare(b.produto.nome)
       );
     }
   }
 
   sortCarrinhosUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
-        (a, b) =>
-          new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
-      );
-    } else {
+      this.ultimoSort = 'dataDesc';
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
         (b, a) =>
           new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
+            new Date(b.data_criacao).getTime() ||
+          b.produto.nome.localeCompare(a.produto.nome)
+      );
+    } else {
+      this.ultimoSort = 'dataAsc';
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (a, b) =>
+          new Date(a.data_criacao).getTime() -
+            new Date(b.data_criacao).getTime() ||
+          a.produto.nome.localeCompare(b.produto.nome)
       );
     }
   }
 
   sortCarrinhosUpdateByStatus() {
     if (this.ultimoSort === 'statusAsc') {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((a, b) =>
-        a.status.localeCompare(b.status)
+      this.ultimoSort = 'statusDesc';
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (b, a) =>
+          a.status.localeCompare(b.status) ||
+          b.produto.nome.localeCompare(a.produto.nome)
       );
     } else {
-      this.sortedCarrinhos = [...this.filteredCarrinhos].sort((b, a) =>
-        a.status.localeCompare(b.status)
+      this.ultimoSort = 'statusAsc';
+      this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
+        (a, b) =>
+          a.status.localeCompare(b.status) ||
+          a.produto.nome.localeCompare(b.produto.nome)
       );
     }
   }

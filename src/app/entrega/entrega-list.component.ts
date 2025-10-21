@@ -58,7 +58,7 @@ export class EntregaListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   _filterBy: string = '';
 
-  ultimoSort: string = 'nomeDesc';
+  ultimoSort: string = 'nomeAsc';
 
   constructor(
     private entregaService: EntregaService,
@@ -89,21 +89,21 @@ export class EntregaListComponent implements OnInit {
         this.filteredEntregas = this.entregas;
         switch (this.ultimoSort) {
           case 'nomeAsc':
-            return this.sortEntregasByName();
+            return this.sortEntregasUpdateByName();
           case 'nomeDesc':
-            return this.sortEntregasByName();
+            return this.sortEntregasUpdateByName();
           case 'precoAsc':
-            return this.sortEntregasByPrice();
+            return this.sortEntregasUpdateByPrice();
           case 'precoDesc':
-            return this.sortEntregasByPrice();
+            return this.sortEntregasUpdateByPrice();
           case 'dataAsc':
-            return this.sortEntregasByHorarioPedido();
+            return this.sortEntregasUpdateByHorarioPedido();
           case 'dataDesc':
-            return this.sortEntregasByHorarioPedido();
+            return this.sortEntregasUpdateByHorarioPedido();
           case 'dataEntregaAsc':
-            return this.sortEntregasByHorarioEntrega();
+            return this.sortEntregasUpdateByHorarioEntrega();
           case 'dataEntregaDesc':
-            return this.sortEntregasByHorarioEntrega();
+            return this.sortEntregasUpdateByHorarioEntrega();
         }
       });
 
@@ -112,24 +112,6 @@ export class EntregaListComponent implements OnInit {
           this.entregas = entregas;
           this.filteredEntregas = this.entregas;
         });
-        switch (this.ultimoSort) {
-          case 'nomeAsc':
-            return this.sortEntregasUpdateByName();
-          case 'nomeDesc':
-            return this.sortEntregasUpdateByName();
-          case 'precoAsc':
-            return this.sortEntregasUpdateByPrice();
-          case 'precoDesc':
-            return this.sortEntregasUpdateByPrice();
-          case 'dataAsc':
-            return this.sortEntregasUpdateByHorarioPedido();
-          case 'dataDesc':
-            return this.sortEntregasUpdateByHorarioPedido();
-          case 'dataEntregaAsc':
-            return this.sortEntregasUpdateByHorarioEntrega();
-          case 'dataEntregaDesc':
-            return this.sortEntregasUpdateByHorarioEntrega();
-        }
       });
     } else {
       this.entregaService.read().subscribe((entregas) => {
@@ -140,21 +122,21 @@ export class EntregaListComponent implements OnInit {
         );
         switch (this.ultimoSort) {
           case 'nomeAsc':
-            return this.sortEntregasByName();
+            return this.sortEntregasUpdateByName();
           case 'nomeDesc':
-            return this.sortEntregasByName();
+            return this.sortEntregasUpdateByName();
           case 'precoAsc':
-            return this.sortEntregasByPrice();
+            return this.sortEntregasUpdateByPrice();
           case 'precoDesc':
-            return this.sortEntregasByPrice();
+            return this.sortEntregasUpdateByPrice();
           case 'dataAsc':
-            return this.sortEntregasByHorarioPedido();
+            return this.sortEntregasUpdateByHorarioPedido();
           case 'dataDesc':
-            return this.sortEntregasByHorarioPedido();
+            return this.sortEntregasUpdateByHorarioPedido();
           case 'dataEntregaAsc':
-            return this.sortEntregasByHorarioEntrega();
+            return this.sortEntregasUpdateByHorarioEntrega();
           case 'dataEntregaDesc':
-            return this.sortEntregasByHorarioEntrega();
+            return this.sortEntregasUpdateByHorarioEntrega();
         }
       });
 
@@ -166,24 +148,6 @@ export class EntregaListComponent implements OnInit {
               entrega.pedido.telefone - environment.telefone === 0
           );
         });
-        switch (this.ultimoSort) {
-          case 'nomeAsc':
-            return this.sortEntregasUpdateByName();
-          case 'nomeDesc':
-            return this.sortEntregasUpdateByName();
-          case 'precoAsc':
-            return this.sortEntregasUpdateByPrice();
-          case 'precoDesc':
-            return this.sortEntregasUpdateByPrice();
-          case 'dataAsc':
-            return this.sortEntregasUpdateByHorarioPedido();
-          case 'dataDesc':
-            return this.sortEntregasUpdateByHorarioPedido();
-          case 'dataEntregaAsc':
-            return this.sortEntregasUpdateByHorarioEntrega();
-          case 'dataEntregaDesc':
-            return this.sortEntregasUpdateByHorarioEntrega();
-        }
       });
     }
   }
@@ -216,137 +180,100 @@ export class EntregaListComponent implements OnInit {
           )
         );
     }
-    this.sortEntregasByName();
-  }
-
-  sortEntregasByName() {
-    if (this.ultimoSort === 'nomeAsc') {
-      this.ultimoSort = 'nomeDesc';
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) =>
-        a.pedido.carrinho.produto.nome.localeCompare(
-          b.pedido.carrinho.produto.nome
-        )
-      );
-    } else {
-      this.ultimoSort = 'nomeAsc';
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) =>
-        a.pedido.carrinho.produto.nome.localeCompare(
-          b.pedido.carrinho.produto.nome
-        )
-      );
-    }
+    this.sortEntregasUpdateByName();
   }
 
   sortEntregasUpdateByName() {
     if (this.ultimoSort === 'nomeAsc') {
-      this.sortedEntregas = [...this.filteredEntregas].sort((a, b) =>
-        a.pedido.carrinho.produto.nome.localeCompare(
-          b.pedido.carrinho.produto.nome
-        )
-      );
-    } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort((b, a) =>
-        a.pedido.carrinho.produto.nome.localeCompare(
-          b.pedido.carrinho.produto.nome
-        )
-      );
-    }
-  }
-
-  sortEntregasByPrice() {
-    if (this.ultimoSort === 'precoAsc') {
-      this.ultimoSort = 'precoDesc';
-      this.sortedEntregas = [...this.filteredEntregas].sort(
-        (b, a) =>
-          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
-      );
-    } else {
-      this.ultimoSort = 'precoAsc';
+      this.ultimoSort = 'nomeDesc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (a, b) =>
-          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+          a.pedido.carrinho.produto.nome.localeCompare(
+            b.pedido.carrinho.produto.nome
+          ) ||
+          new Date(a.pedido.carrinho.data_criacao).getTime() -
+            new Date(b.pedido.carrinho.data_criacao).getTime()
+      );
+    } else {
+      this.ultimoSort = 'nomeAsc';
+      this.sortedEntregas = [...this.filteredEntregas].sort(
+        (b, a) =>
+          a.pedido.carrinho.produto.nome.localeCompare(
+            b.pedido.carrinho.produto.nome
+          ) ||
+          new Date(b.pedido.carrinho.data_criacao).getTime() -
+            new Date(a.pedido.carrinho.data_criacao).getTime()
       );
     }
   }
 
   sortEntregasUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
+      this.ultimoSort = 'precoDesc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (a, b) =>
-          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco ||
+          a.pedido.carrinho.produto.nome.localeCompare(
+            b.pedido.carrinho.produto.nome
+          )
       );
     } else {
-      this.sortedEntregas = [...this.filteredEntregas].sort(
-        (b, a) =>
-          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco
-      );
-    }
-  }
+      this.ultimoSort = 'precoAsc';
 
-  sortEntregasByHorarioPedido() {
-    if (this.ultimoSort === 'dataAsc') {
-      this.ultimoSort = 'dataDesc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (b, a) =>
-          new Date(a.pedido.carrinho.data_criacao).getTime() -
-          new Date(b.pedido.carrinho.data_criacao).getTime()
-      );
-    } else {
-      this.ultimoSort = 'dataAsc';
-      this.sortedEntregas = [...this.filteredEntregas].sort(
-        (a, b) =>
-          new Date(a.pedido.carrinho.data_criacao).getTime() -
-          new Date(b.pedido.carrinho.data_criacao).getTime()
+          a.pedido.carrinho.produto.preco - b.pedido.carrinho.produto.preco ||
+          b.pedido.carrinho.produto.nome.localeCompare(
+            a.pedido.carrinho.produto.nome
+          )
       );
     }
   }
 
   sortEntregasUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
+      this.ultimoSort = 'dataDesc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (a, b) =>
           new Date(a.pedido.carrinho.data_criacao).getTime() -
-          new Date(b.pedido.carrinho.data_criacao).getTime()
+            new Date(b.pedido.carrinho.data_criacao).getTime() ||
+          a.pedido.carrinho.produto.nome.localeCompare(
+            b.pedido.carrinho.produto.nome
+          )
       );
     } else {
+      this.ultimoSort = 'dataAsc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (b, a) =>
           new Date(a.pedido.carrinho.data_criacao).getTime() -
-          new Date(b.pedido.carrinho.data_criacao).getTime()
-      );
-    }
-  }
-
-  sortEntregasByHorarioEntrega() {
-    if (this.ultimoSort === 'dataEntregaAsc') {
-      this.ultimoSort = 'dataEntregaDesc';
-      this.sortedEntregas = [...this.filteredEntregas].sort(
-        (b, a) =>
-          new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
-      );
-    } else {
-      this.ultimoSort = 'dataEntregaAsc';
-      this.sortedEntregas = [...this.filteredEntregas].sort(
-        (a, b) =>
-          new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
+            new Date(b.pedido.carrinho.data_criacao).getTime() ||
+          b.pedido.carrinho.produto.nome.localeCompare(
+            a.pedido.carrinho.produto.nome
+          )
       );
     }
   }
 
   sortEntregasUpdateByHorarioEntrega() {
     if (this.ultimoSort === 'dataEntregaAsc') {
+      this.ultimoSort = 'dataEntregaDesc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (a, b) =>
           new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
+            new Date(b.data_criacao).getTime() ||
+          a.pedido.carrinho.produto.nome.localeCompare(
+            b.pedido.carrinho.produto.nome
+          )
       );
     } else {
+      this.ultimoSort = 'dataEntregaAsc';
       this.sortedEntregas = [...this.filteredEntregas].sort(
         (b, a) =>
           new Date(a.data_criacao).getTime() -
-          new Date(b.data_criacao).getTime()
+            new Date(b.data_criacao).getTime() ||
+          b.pedido.carrinho.produto.nome.localeCompare(
+            a.pedido.carrinho.produto.nome
+          )
       );
     }
   }

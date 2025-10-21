@@ -192,43 +192,59 @@ export class PedidoListComponent implements OnInit {
   }
 
   sortPedidosUpdateByName() {
-    if (this.ultimoSort === 'nomeDesc') {
-      this.ultimoSort = 'nomeAsc';
-      this.sortedPedidos = [...this.filteredPedidos].sort((b, a) =>
-        a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
+    if (this.ultimoSort === 'nomeAsc') {
+      this.ultimoSort = 'nomeDesc';
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (a, b) =>
+          a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome) ||
+          new Date(a.carrinho.data_criacao).getTime() -
+            new Date(b.carrinho.data_criacao).getTime()
       );
     } else {
-      this.ultimoSort = 'nomeDesc';
-      this.sortedPedidos = [...this.filteredPedidos].sort((a, b) =>
-        a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
+      this.ultimoSort = 'nomeAsc';
+      this.sortedPedidos = [...this.filteredPedidos].sort(
+        (b, a) =>
+          a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome) ||
+          new Date(b.carrinho.data_criacao).getTime() -
+            new Date(a.carrinho.data_criacao).getTime()
       );
     }
   }
 
   sortPedidosUpdateByPrice() {
     if (this.ultimoSort === 'precoAsc') {
+      this.ultimoSort = 'precoDesc';
       this.sortedPedidos = [...this.filteredPedidos].sort(
-        (a, b) => a.carrinho.produto.preco - b.carrinho.produto.preco
+        (a, b) =>
+          a.carrinho.produto.preco - b.carrinho.produto.preco ||
+          a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
       );
     } else {
+      this.ultimoSort = 'precoAsc';
       this.sortedPedidos = [...this.filteredPedidos].sort(
-        (b, a) => a.carrinho.produto.preco - b.carrinho.produto.preco
+        (b, a) =>
+          a.carrinho.produto.preco - b.carrinho.produto.preco ||
+          b.carrinho.produto.nome.localeCompare(a.carrinho.produto.nome)
       );
     }
   }
 
   sortPedidosUpdateByHorarioPedido() {
     if (this.ultimoSort === 'dataAsc') {
+      this.ultimoSort = 'dataDesc';
       this.sortedPedidos = [...this.filteredPedidos].sort(
         (a, b) =>
           new Date(a.carrinho.data_criacao).getTime() -
-          new Date(b.carrinho.data_criacao).getTime()
+            new Date(b.carrinho.data_criacao).getTime() ||
+          a.carrinho.produto.nome.localeCompare(b.carrinho.produto.nome)
       );
     } else {
+      this.ultimoSort = 'dataAsc';
       this.sortedPedidos = [...this.filteredPedidos].sort(
         (b, a) =>
           new Date(a.carrinho.data_criacao).getTime() -
-          new Date(b.carrinho.data_criacao).getTime()
+            new Date(b.carrinho.data_criacao).getTime() ||
+          b.carrinho.produto.nome.localeCompare(a.carrinho.produto.nome)
       );
     }
   }

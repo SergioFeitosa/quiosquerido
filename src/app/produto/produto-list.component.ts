@@ -1,6 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProdutoService } from './produto.service';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, NgZone, OnInit } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  NgZone,
+  OnInit,
+} from '@angular/core';
 import { Produto } from './produto';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 import { Carrinho } from '../carrinho/carrinho';
@@ -15,7 +21,6 @@ import { PhoneNumberComponent } from '../phone-number/phone-number.component';
 import { environment } from '../../environments/environment';
 import { LoginService } from '../services/login.service';
 
-
 @Component({
   selector: 'app-produto-list',
   templateUrl: './produto-list.component.html',
@@ -26,13 +31,11 @@ import { LoginService } from '../services/login.service';
     FormsModule,
     CommonModule,
     StarComponent,
-    PhoneNumberComponent
+    PhoneNumberComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 export class ProdutoListComponent implements OnInit {
-
   phoneNumber: any;
   reCaptchaVerifier: any;
 
@@ -47,7 +50,6 @@ export class ProdutoListComponent implements OnInit {
   element6?: HTMLElement;
   element7?: HTMLElement;
   element8?: HTMLElement;
-
 
   login: boolean = false;
 
@@ -66,7 +68,7 @@ export class ProdutoListComponent implements OnInit {
 
   filteredProdutos: Produto[] = [];
 
-  // tslint:disable-next-line:variable-name  
+  // tslint:disable-next-line:variable-name
   _produtos: Produto[] = [];
 
   // tslint:disable-next-line:variable-name
@@ -79,7 +81,7 @@ export class ProdutoListComponent implements OnInit {
 
   loginService = inject(LoginService);
 
-   ultimoSort: string = 'nomeDesc';
+  ultimoSort: string = 'nomeDesc';
 
   constructor(
     private produtoService: ProdutoService,
@@ -87,8 +89,8 @@ export class ProdutoListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private ngZone: NgZone,
-    private caminhoMenuComponent: CaminhoMenuComponent,
-  ) { }
+    private caminhoMenuComponent: CaminhoMenuComponent
+  ) {}
 
   // config = {
   //   allowNumbersOnly: true,
@@ -105,7 +107,6 @@ export class ProdutoListComponent implements OnInit {
   sortedProducts: any[] = [];
 
   ngOnInit(): void {
-
     // this.modulo = 'Cardápio';
 
     firebase.initializeApp(environment.firebaseConfig);
@@ -125,40 +126,49 @@ export class ProdutoListComponent implements OnInit {
 
     this._categoryId = this.activatedRoute.snapshot.paramMap.get('categoriaId');
 
-    this.produtoService.read().subscribe(produto => {
-      this.produtos = produto
-        .filter((produto: Produto) => produto.categoria == this._categoryId)
+    this.produtoService.read().subscribe((produto) => {
+      this.produtos = produto.filter(
+        (produto: Produto) => produto.categoria == this._categoryId
+      );
       this.filteredProdutos = this.produtos;
       this.sortProductsByName();
-
     });
-
   }
 
   sortProductsByName() {
     if (this.ultimoSort === 'nomeAsc') {
-      this.ultimoSort = 'nomeDesc'
-      this.sortedProducts = [...this.filteredProdutos].sort((b, a) => a.nome.localeCompare(b.nome));
+      this.ultimoSort = 'nomeDesc';
+      this.sortedProducts = [...this.filteredProdutos].sort(
+        (b, a) => a.nome.localeCompare(b.nome) || b.preco - a.preco
+      );
     } else {
-      this.ultimoSort = 'nomeAsc'
-      this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.nome.localeCompare(b.nome));
+      this.ultimoSort = 'nomeAsc';
+      this.sortedProducts = [...this.filteredProdutos].sort(
+        (a, b) => a.nome.localeCompare(b.nome) || a.preco - b.preco
+      );
     }
-
   }
 
   sortProductsByPrice() {
     if (this.ultimoSort === 'precoAsc') {
-      this.ultimoSort = 'precoDesc'
-      this.sortedProducts = [...this.filteredProdutos].sort((b, a) => a.preco - b.preco);
+      this.ultimoSort = 'precoDesc';
+      this.sortedProducts = [...this.filteredProdutos].sort(
+        (b, a) => a.preco - b.preco || b.nome.localeCompare(a.nome)
+      );
     } else {
-      this.ultimoSort = 'precoAsc'
-      this.sortedProducts = [...this.filteredProdutos].sort((a, b) => a.preco - b.preco);
+      this.ultimoSort = 'precoAsc';
+      this.sortedProducts = [...this.filteredProdutos].sort(
+        (a, b) => a.preco - b.preco || a.nome.localeCompare(b.nome)
+      );
     }
   }
 
   removerAcentos(str: string): string {
     // Converte para minúsculas e remove os diacríticos usando Unicode
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   // tslint:disable-next-line:typedef
@@ -180,8 +190,6 @@ export class ProdutoListComponent implements OnInit {
     }
   }
 
-
-
   // tslint:disable-next-line:typedef
   get filter() {
     return this._filterBy;
@@ -190,13 +198,13 @@ export class ProdutoListComponent implements OnInit {
   set filter(value: string) {
     this._filterBy = value;
 
-    this.filteredProdutos =
-      this.produtos
-        .filter((produto: Produto) =>
-          this.removerAcentos(produto.nome).includes(this.removerAcentos(this._filterBy)));
+    this.filteredProdutos = this.produtos.filter((produto: Produto) =>
+      this.removerAcentos(produto.nome).includes(
+        this.removerAcentos(this._filterBy)
+      )
+    );
 
     this.sortProductsByName();
-
   }
 
   // tslint:disable-next-line:quotemark
@@ -209,11 +217,9 @@ export class ProdutoListComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   openPopup(produtoId: number): void {
-
     // tslint:disable-next-line:no-unused-expression
-    this.produtoService.readById(produtoId).subscribe(product => {
+    this.produtoService.readById(produtoId).subscribe((product) => {
       this.produto = product;
-
     });
 
     this.displayStyle = 'block';
@@ -224,24 +230,22 @@ export class ProdutoListComponent implements OnInit {
     this.displayStyle = 'none';
   }
 
-
   // tslint:disable-next-line:typedef
   openPopup2(produtoId: number): void {
     this.displayStyle2 = 'block';
   }
 
-  // tslint:disable-next-line:typedef 
+  // tslint:disable-next-line:typedef
   closePopup2() {
     //this.carrinhoCreate(this.produto.id!);
     this.displayStyle2 = 'none';
   }
 
   carrinhoCreate(produtoId: number): void {
-
     // tslint:disable-next-line:no-unused-expression
-    this.produtoService.readById(produtoId).subscribe(product => {
+    this.produtoService.readById(produtoId).subscribe((product) => {
       this.produto = product;
-      this.carrinho.enviado = false
+      this.carrinho.enviado = false;
       this.carrinho.isencao = false;
       this.carrinho.local = environment.local;
       this.carrinho.data_criacao = new Date();
@@ -255,89 +259,86 @@ export class ProdutoListComponent implements OnInit {
         this.carrinhoService.create(this.carrinho).subscribe(() => {
           resolve(this.carrinho);
         })
-      )
+      );
 
-      isCreate.then ((value) => {
-        this.carrinhoService.showMessage('Produto adicionado no carrinho');
-        this.router.navigate(['/carrinho']);
-      }).catch((error) =>{
-        console.log(error);
-      }).finally(() => {
-      })
+      isCreate
+        .then((value) => {
+          this.carrinhoService.showMessage('Produto adicionado no carrinho');
+          this.router.navigate(['/carrinho']);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {});
+    });
 
+    //    this.closePopup();
+  }
 
-  });
+  // validarTelefone(): void {
 
-  //    this.closePopup();
-}
+  //   if (this.telefone > 0) {
+  //     environment.telefone = this.telefone;
+  //     this.enviarCodigo();
+  //   }
+  // }
 
-// validarTelefone(): void {
+  // validarCodigo(produtoId: number): void {
 
-//   if (this.telefone > 0) {
-//     environment.telefone = this.telefone;
-//     this.enviarCodigo();
-//   }
-// }
+  //   // tslint:disable-next-line:no-unused-expression
+  //   this.produtoService.readById(produtoId).subscribe(product => {
+  //     this.produto = product;
 
-// validarCodigo(produtoId: number): void {
+  //   });
 
-//   // tslint:disable-next-line:no-unused-expression
-//   this.produtoService.readById(produtoId).subscribe(product => {
-//     this.produto = product;
+  //   if (environment.codigo > 0) {
+  //     environment.codigo = this.codigo;
+  //     // tslint:disable-next-line:semicolon
+  //     // this.updateClassDisabled();
+  //     this.carrinhoCreate(produtoId);
 
-//   });
+  //     this.closePopup2();
+  //     this.closePopup();
 
-//   if (environment.codigo > 0) {
-//     environment.codigo = this.codigo;
-//     // tslint:disable-next-line:semicolon
-//     // this.updateClassDisabled();
-//     this.carrinhoCreate(produtoId);
+  //   }
+  // }
 
-//     this.closePopup2();
-//     this.closePopup();
+  // enviarCodigo(): void {
+  //   // tslint:disable-next-line:comment-format
+  //   //const telefone = this.navForm.get('telefone').value;
+  //   const codigoGerado = Math.random() * this.telefone;
+  // }
 
+  // // tslint:disable-next-line:typedef
+  // updateClassDisabled() {
+  //   this.buttonDisabled = false;
+  //   this.element1 = document.getElementById('desabilitado1') as HTMLElement;
+  //   this.element2 = document.getElementById('desabilitado2') as HTMLElement;
+  //   this.element3 = document.getElementById('desabilitado3') as HTMLElement;
+  //   this.element4 = document.getElementById('desabilitado4') as HTMLElement;
+  //   this.element5 = document.getElementById('desabilitado5') as HTMLElement;
+  //   this.element6 = document.getElementById('desabilitado6') as HTMLElement;
+  //   this.element7 = document.getElementById('desabilitado7') as HTMLElement;
+  //   this.element8 = document.getElementById('desabilitado8') as HTMLElement;
 
-//   }
-// }
+  //   this.element1.removeAttribute('disabled');
+  //   this.element2.removeAttribute('disabled');
+  //   this.element3.removeAttribute('disabled');
+  //   this.element4.removeAttribute('disabled');
+  //   this.element5.removeAttribute('disabled');
+  //   this.element6.removeAttribute('disabled');
+  //   this.element7.removeAttribute('disabled');
+  //   this.element8.removeAttribute('disabled');
+  // }
 
-// enviarCodigo(): void {
-//   // tslint:disable-next-line:comment-format
-//   //const telefone = this.navForm.get('telefone').value;
-//   const codigoGerado = Math.random() * this.telefone;
-// }
-
-// // tslint:disable-next-line:typedef
-// updateClassDisabled() {
-//   this.buttonDisabled = false;
-//   this.element1 = document.getElementById('desabilitado1') as HTMLElement;
-//   this.element2 = document.getElementById('desabilitado2') as HTMLElement;
-//   this.element3 = document.getElementById('desabilitado3') as HTMLElement;
-//   this.element4 = document.getElementById('desabilitado4') as HTMLElement;
-//   this.element5 = document.getElementById('desabilitado5') as HTMLElement;
-//   this.element6 = document.getElementById('desabilitado6') as HTMLElement;
-//   this.element7 = document.getElementById('desabilitado7') as HTMLElement;
-//   this.element8 = document.getElementById('desabilitado8') as HTMLElement;
-
-//   this.element1.removeAttribute('disabled');
-//   this.element2.removeAttribute('disabled');
-//   this.element3.removeAttribute('disabled');
-//   this.element4.removeAttribute('disabled');
-//   this.element5.removeAttribute('disabled');
-//   this.element6.removeAttribute('disabled');
-//   this.element7.removeAttribute('disabled');
-//   this.element8.removeAttribute('disabled');
-// }
-
-handleEvent(event: number) {
-  this.loginService.login();
-  this.loginService.telefone = event;
-  environment.login = true;
-  environment.telefone = event;
-  this.telefone = event;
-  this.phoneNumber = event;
-  this.carrinhoCreate(this.produto.id!);
-  this.router.navigate(['/carrinho']);
-
-}
-
+  handleEvent(event: number) {
+    this.loginService.login();
+    this.loginService.telefone = event;
+    environment.login = true;
+    environment.telefone = event;
+    this.telefone = event;
+    this.phoneNumber = event;
+    this.carrinhoCreate(this.produto.id!);
+    this.router.navigate(['/carrinho']);
+  }
 }
