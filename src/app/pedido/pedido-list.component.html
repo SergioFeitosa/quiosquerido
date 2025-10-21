@@ -27,7 +27,7 @@
       <tr>
         <th style="width: 5%"></th>
         <th
-          style="width: 35%; color: #2494fc; font-weight: 500; font-size: 0.8em"
+          style="width: 30%; color: #2494fc; font-weight: 500; font-size: 0.8em"
         >
           <a (click)="sortPedidosUpdateByName()" style="cursor: default">
             ITEM<span
@@ -63,7 +63,12 @@
           >
             HORÁRIO<span
               class="material-symbols-outlined"
-              style="color: orange; font-weight: 500; font-size: 1em"
+              style="
+                width: 18%;
+                color: orange;
+                font-weight: 500;
+                font-size: 0.8em;
+              "
               >Autorenew</span
             >
           </a>
@@ -100,7 +105,7 @@
           height="60"
           style="object-fit: cover"
         />
-        <td style="color: #4f63e7; font-weight: 400">
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
           {{ pedido.carrinho.produto.nome }}
         </td>
         @if ((+this.telefone == 5511982551256 || +this.telefone ==
@@ -223,7 +228,7 @@
             [(ngModel)]="pedido.carrinho.observacao"
             name="observacaoDesktop1"
             type="text"
-            style="color: red"
+            style="color: red; font-size: 0.8em"
             (blur)="atualizarObservacao(pedido)"
             (ngModelChange)="atualizarObservacao(pedido)"
             class="nav-link"
@@ -236,13 +241,19 @@
           </textarea>
         </td>
 
-        <td style="color: #4f63e7; font-weight: 400">{{ pedido.local }}</td>
-        <td style="color: #4f63e7; font-weight: 400">
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
+          {{ pedido.local }}
+        </td>
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
           {{ pedido.data_criacao | date : "dd/MM/yy HH:mm:ss" }}
         </td>
-        <td style="color: #4f63e7; font-weight: 400">{{ pedido.telefone }}</td>
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
+          {{ pedido.telefone }}
+        </td>
 
-        <td style="color: #4f63e7; font-weight: 400">{{ pedido.isencao }}</td>
+        <td style="color: #4f63e7; font-weight: 400; font-size: 0.8em">
+          {{ pedido.isencao }}
+        </td>
         <td class="text-center">
           <button
             (click)="openPopup(pedido.id!)"

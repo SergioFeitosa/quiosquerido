@@ -130,26 +130,6 @@ export class CarrinhoListComponent implements OnInit {
         this.carrinhoService.read().subscribe((carrinhos) => {
           this.carrinhos = carrinhos;
           this.filteredCarrinhos = this.carrinhos;
-          switch (this.ultimoSort) {
-            case '':
-              return this.sortCarrinhosUpdateByName();
-            case 'nomeAsc':
-              return this.sortCarrinhosUpdateByName();
-            case 'nomeDesc':
-              return this.sortCarrinhosUpdateByName();
-            case 'precoAsc':
-              return this.sortCarrinhosUpdateByPrice();
-            case 'precoDesc':
-              return this.sortCarrinhosUpdateByPrice();
-            case 'dataAsc':
-              return this.sortCarrinhosUpdateByHorarioPedido();
-            case 'dataDesc':
-              return this.sortCarrinhosUpdateByHorarioPedido();
-            case 'statusAsc':
-              return this.sortCarrinhosUpdateByStatus();
-            case 'statusDesc':
-              return this.sortCarrinhosUpdateByStatus();
-          }
         });
       });
     } else {
@@ -190,26 +170,6 @@ export class CarrinhoListComponent implements OnInit {
               +carrinho.telefone - +environment.telefone === 0
           );
         });
-        switch (this.ultimoSort) {
-          case '':
-            return this.sortCarrinhosUpdateByName();
-          case 'nomeAsc':
-            return this.sortCarrinhosUpdateByName();
-          case 'nomeDesc':
-            return this.sortCarrinhosUpdateByName();
-          case 'precoAsc':
-            return this.sortCarrinhosUpdateByPrice();
-          case 'precoDesc':
-            return this.sortCarrinhosUpdateByPrice();
-          case 'dataAsc':
-            return this.sortCarrinhosUpdateByHorarioPedido();
-          case 'dataDesc':
-            return this.sortCarrinhosUpdateByHorarioPedido();
-          case 'statusAsc':
-            return this.sortCarrinhosUpdateByStatus();
-          case 'statusDesc':
-            return this.sortCarrinhosUpdateByStatus();
-        }
       });
     }
     this.login = this.carrinho.telefone - environment.telefone === 0;

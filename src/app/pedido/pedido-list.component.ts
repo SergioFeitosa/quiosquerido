@@ -68,7 +68,7 @@ export class PedidoListComponent implements OnInit {
 
   sortedPedidos: Pedido[] = [];
 
-  ultimoSort: string = 'nomeDesc';
+  ultimoSort: string = 'nomeAsc';
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -98,15 +98,17 @@ export class PedidoListComponent implements OnInit {
         this.filteredPedidos = this.pedidos
           .filter(
             (pedido: Pedido) =>
-              pedido.status.toLowerCase() == 'confirmado' ||
-              this.removerAcentos(pedido.status.toLowerCase()) ==
+              pedido.status.toLowerCase() === 'confirmado' ||
+              this.removerAcentos(pedido.status.toLowerCase()) ===
                 'em preparação'
           )
           .filter(
             (pedido: Pedido) => pedido.carrinho.produto.categoria != 'bebidas'
           );
         switch (this.ultimoSort) {
-          case 'nomeAsc || nomeDesc':
+          case 'nomeAsc':
+            return this.sortPedidosUpdateByName();
+          case 'nomeDesc':
             return this.sortPedidosUpdateByName();
           case 'precoAsc':
             return this.sortPedidosUpdateByPrice();
@@ -132,23 +134,9 @@ export class PedidoListComponent implements OnInit {
             .filter(
               (pedido: Pedido) => pedido.carrinho.produto.categoria != 'bebidas'
             );
-          switch (this.ultimoSort) {
-            case 'nomeAsc || nomeDesc':
-              return this.sortPedidosUpdateByName();
-            case 'precoAsc':
-              return this.sortPedidosUpdateByPrice();
-            case 'precoDesc':
-              return this.sortPedidosUpdateByPrice();
-            case 'dataAsc':
-              return this.sortPedidosUpdateByHorarioPedido();
-            case 'dataDesc':
-              return this.sortPedidosUpdateByHorarioPedido();
-          }
         });
       });
     } else {
-      console.log('passei 1');
-
       this.pedidoService.read().subscribe((pedidos) => {
         this.pedidos = pedidos;
         this.filteredPedidos = this.pedidos
@@ -166,7 +154,9 @@ export class PedidoListComponent implements OnInit {
             (pedido: Pedido) => pedido.carrinho.produto.categoria != 'bebidas'
           );
         switch (this.ultimoSort) {
-          case 'nomeAsc || nomeDesc':
+          case 'nomeAsc':
+            return this.sortPedidosUpdateByName();
+          case 'nomeDesc':
             return this.sortPedidosUpdateByName();
           case 'precoAsc':
             return this.sortPedidosUpdateByPrice();
@@ -178,8 +168,6 @@ export class PedidoListComponent implements OnInit {
             return this.sortPedidosUpdateByHorarioPedido();
         }
       });
-
-      console.log('passei 2');
 
       this.updateSubscription = interval(5000).subscribe((val) => {
         this.pedidoService.read().subscribe((pedidos) => {
@@ -198,18 +186,6 @@ export class PedidoListComponent implements OnInit {
             .filter(
               (pedido: Pedido) => pedido.carrinho.produto.categoria != 'bebidas'
             );
-          switch (this.ultimoSort) {
-            case 'nomeAsc || nomeDesc':
-              return this.sortPedidosUpdateByName();
-            case 'precoAsc':
-              return this.sortPedidosUpdateByPrice();
-            case 'precoDesc':
-              return this.sortPedidosUpdateByPrice();
-            case 'dataAsc':
-              return this.sortPedidosUpdateByHorarioPedido();
-            case 'dataDesc':
-              return this.sortPedidosUpdateByHorarioPedido();
-          }
         });
       });
     }
