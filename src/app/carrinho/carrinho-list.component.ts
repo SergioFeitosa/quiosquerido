@@ -221,6 +221,7 @@ export class CarrinhoListComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.updateSubscription) {
+      console.log('destruido');
       this.updateSubscription.unsubscribe();
     }
   }
