@@ -104,7 +104,6 @@ export class CarrinhoListComponent implements OnInit {
       this.carrinhoService.read().subscribe((carrinhos) => {
         this.carrinhos = carrinhos;
         this.filteredCarrinhos = this.carrinhos;
-        console.log('atualizacao4 ');
         switch (this.ultimoSort) {
           case '':
             return this.sortCarrinhosUpdateByName();
@@ -132,7 +131,6 @@ export class CarrinhoListComponent implements OnInit {
           this.carrinhos = carrinhos;
           this.filteredCarrinhos = this.carrinhos;
         });
-        console.log('atualizacao2 ');
         switch (this.ultimoSort) {
           case '':
             return this.sortCarrinhosByName();
@@ -161,8 +159,6 @@ export class CarrinhoListComponent implements OnInit {
           (carrinho: Carrinho) =>
             +carrinho.telefone - +environment.telefone === 0
         );
-        console.log('atualizacao3 ');
-
         switch (this.ultimoSort) {
           case '':
             return this.sortCarrinhosUpdateByName();
@@ -192,7 +188,6 @@ export class CarrinhoListComponent implements OnInit {
             (carrinho: Carrinho) =>
               +carrinho.telefone - +environment.telefone === 0
           );
-          console.log('atualizacao4 ');
           switch (this.ultimoSort) {
             case '':
               return this.sortCarrinhosByName();
@@ -221,7 +216,6 @@ export class CarrinhoListComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.updateSubscription) {
-      console.log('destruido');
       this.updateSubscription.unsubscribe();
     }
   }
@@ -243,7 +237,6 @@ export class CarrinhoListComponent implements OnInit {
   }
 
   sortCarrinhosUpdateByName() {
-    console.log('ultimosort ' + this.ultimoSort);
     if (this.ultimoSort === 'nomeAsc') {
       this.ultimoSort = 'nomeDesc';
       this.sortedCarrinhos = [...this.filteredCarrinhos].sort(
